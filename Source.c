@@ -50,6 +50,7 @@ void SameSet(Rule* Finder);
 int LastMax(Test* test, String Commit[20000], int index);
 
 int main() {
+	printf_s("ม๖ฟ๖พ฿ตส");
 	Node *arr[20000];
 	for (int Rep1 = 0; Rep1 < 20000; Rep1++) arr[Rep1] = NULL;
 	Setting(arr);
