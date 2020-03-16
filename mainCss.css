@@ -1,12 +1,14 @@
 
-.head a:link { color:black; }
+body{ margin:0; }
+.head a:link { color: black; }
 .head a:visited { color: black;}
 header { padding-top:80px; }
 li { list-style: none; text-align: center;}
 ol { padding:0; }
 .head {
     color: black;
-    background-color: bisque;
+    background-color: skyblue;
+    border-bottom : 1px solid rgb(145, 145, 145);
 }
 
 .Cursor{
@@ -32,12 +34,18 @@ header h1,h2{
     padding: 0;
     color: gray;
 }
-
+#menu .sub_nav{ padding: 0px 0px 15px 10px; margin:0; }
 #menu .sub_nav > li{
     display: inline-block;
-    border: 1px solid black;
+    padding-left: 20px;
 }
 
 #menu .sub_nav_depth_1 li{
     text-align: center;
+}
+
+#breadCrumb {
+    color: gray;
+    background-color: rgb(206, 206, 206);
+    padding: 10px 0px 10px 10px;
 }
