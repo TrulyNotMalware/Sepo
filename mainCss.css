@@ -1,23 +1,18 @@
 
-body{ margin:0; }
-.head a:link { color: black; }
-.head a:visited { color: black;}
+body, div, h1, h2{ margin:0; padding:0;}
+a:link { color: black; }
+a:visited { color: black;}
 header { padding-top:80px; }
-li { list-style: none; text-align: center;}
-ol { padding:0; }
+.head #menu li { list-style: none; text-align: center;}
+ol { margin: 0; padding:0; }
+#selected{ color: salmon;}
 .head {
     color: black;
-    background-color: skyblue;
-    border-bottom : 1px solid rgb(145, 145, 145);
+    background-color: rgb(252, 252, 245);
 }
 
 .Cursor{
     font-size: 150%;
-}
-
-header h1,header h2{
-    margin: 0;
-    padding: 0;
 }
 
 .head .title{
@@ -34,7 +29,7 @@ header h1,header h2{
     padding: 0;
     color: gray;
 }
-#menu .sub_nav{ padding: 0px 0px 15px 10px; margin:0; }
+#menu .sub_nav{ padding: 14px; margin:0; }
 #menu .sub_nav > li{
     display: inline-block;
     padding-left: 20px;
@@ -46,7 +41,24 @@ header h1,header h2{
 
 #breadCrumb {
     color: gray;
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(236, 236, 236);
     padding: 10px 0px 10px 10px;
-    border-bottom : 1px solid rgb(145, 145, 145);
+    border-bottom : 1px solid rgb(195, 195, 195);
+}
+.body #cols .Wrapper #Topic_List h2{
+    padding: 13px 0px 7px 10px;
+    border-bottom: 1px solid rgb(206, 206, 206);
+}
+.body #cols .Wrapper #Topic_List li{
+    padding: 4px 0px 4px 13px;
+    border-bottom: 1px solid rgb(236,236,236);
+}
+
+.body #cols .Wrapper aside{
+    display: block;
+    float: left;
+    width: 250px;
+    border-right: 1px solid rgb(145, 145, 145);
+    border-bottom: 1px solid rgb(145, 145, 145);
+    background-color: rgb(252, 252, 245);
 }
