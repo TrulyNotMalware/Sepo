@@ -38,6 +38,17 @@ ol { margin: 0; padding:0; }
 #menu .sub_nav_depth_1 li{
     text-align: center;
 }
+.body #cols .Wrapper .Entry{
+    margin-left: 250px;
+    margin-right: 250px;
+    text-align: center;
+    border-right:1px solid rgb(206,206,206);
+    background-color: rgb(252, 252, 245);
+    border-left:1px solid rgb(206,206,206);
+}
+.body #cols .Wrapper .Entry .Paragraph{
+    padding: 20px 10px 20px 10px;
+}
 
 #breadCrumb {
     color: gray;
@@ -58,7 +69,6 @@ ol { margin: 0; padding:0; }
     display: block;
     float: left;
     width: 250px;
-    border-right: 1px solid rgb(145, 145, 145);
     border-bottom: 1px solid rgb(145, 145, 145);
     background-color: rgb(252, 252, 245);
 }
