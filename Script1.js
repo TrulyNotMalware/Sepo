@@ -4,6 +4,7 @@ function show_sub_nav(){
     for(Rep1;Rep1<sub_navs.length;Rep1++){
         sub_navs[Rep1].addEventListener('mouseenter',function(e){
             sub_navs[Rep1].style.display='block';
+            
         });
     }
 }
