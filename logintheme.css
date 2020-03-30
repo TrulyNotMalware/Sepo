@@ -1,0 +1,31 @@
+body, div, h1, h2, p{ margin:0; padding:0;}
+a:link { color: black; }
+a:visited { color: black;}
+header { padding-top:80px; }
+.head {
+    color: black;
+    background-color: rgb(252, 252, 245);
+}
+
+.head .title{
+    text-align: center;
+    font-size: 150%;
+    text-shadow: 1px 1px 2px black;
+    margin: 0;
+    padding: 0;
+}
+.head .subtitle{
+    font-size: 120%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: gray;
+}
+body .body{
+    padding-top:70px;
+}
+body .body .Wrapper .Entry{ 
+    background-color: rgb(252, 252, 245);
+    margin:0px 200px 0px 200px;
+    border: 1px solid rgb(206, 206, 206);
+}

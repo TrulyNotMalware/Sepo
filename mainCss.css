@@ -14,6 +14,11 @@ ol { margin: 0; padding:0; }
 .Cursor{
     font-size: 150%;
 }
+.head #top_left_side ul {
+    margin:0;
+    padding:0px 0px 0px 10px;
+    list-style: none;
+}
 
 .head .title{
     text-align: center;
