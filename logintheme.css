@@ -38,6 +38,12 @@ body .body .Wrapper .Entry{
 .body .Wrapper .Entry .login_Wrapper .login_body ul{
     padding: 40px 90px 40px 90px;
 }
+.body .Wrapper .Entry .login_Wrapper .login_body { text-align: center;}
 .body .Wrapper .Entry .login_Wrapper .login_body ul input{
     font-size: 150%;
 }
+.body .Wrapper .Entry .login_Wrapper .login_body .buttons { border-bottom: rgb(206, 206, 206) 1px solid;}
+.body .Wrapper .Entry .login_Wrapper .login_body .buttons button{
+    font-size: 120%;
+}
+
