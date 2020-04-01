@@ -25,6 +25,13 @@ app.post('/join',function(req,res){
         , function(error,result){
             if(error){
                 console.log(error);
+            }else{
+
+                mysql.query('SELECT * from member',function(err,rows,fields){
+                if(!err) console.log(rows);
+                else console.log(err);
+                  }
+                );
             }
         });
 });
@@ -36,11 +43,6 @@ app.post('/join',function(req,res){
             }
  });
 */
-mysql.query('SELECT * from member',function(err,rows,fields){
-    if(!err) console.log(rows);
-    else console.log(err);
-    }
-);
 
 app.use(express.static(path.join(__dirname,'public')));
 
