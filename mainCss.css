@@ -3,7 +3,8 @@ body, div, h1, h2, p{ margin:0; padding:0;}
 a:link { color: black; }
 a:visited { color: black;}
 header { padding-top:80px; }
-.head #menu li { list-style: none; text-align: center;}
+.head #menu li {text-align: center;}
+li {list-style: none; }
 ol { margin: 0; padding:0; }
 #selected{ color: salmon;}
 .head {
@@ -46,14 +47,27 @@ ol { margin: 0; padding:0; }
 .body #cols div.Wrapper{
     position: relative;
 }
+.body #cols .Wrapper {
+    width: 1000px;
+    margin:0 auto;
+    position: relative;
+}
+.body #cols .Wrapper aside{
+    display: block;
+    width: 250px;
+    border-bottom: 1px solid rgb(145, 145, 145);
+    border-left: 1px solid rgb(145, 145, 145);
+    background-color: rgb(252, 252, 245);
+    float: left;
+}
+
 .body #cols .Wrapper .Entry{
-    margin-left: 250px;
-    margin-right: 250px;
+    float: left;
+    width: 745px;
     text-align: center;
     border-right:1px solid rgb(206,206,206);
     background-color: rgb(252, 252, 245);
     border-left:1px solid rgb(206,206,206);
-    position: relative;
     border-bottom: 1px solid rgb(195, 195, 195);
 }
 .body #cols .Wrapper .Entry .Paragraph{
@@ -85,10 +99,3 @@ ol { margin: 0; padding:0; }
     border-bottom: 1px solid rgb(236,236,236);
 }
 
-.body #cols .Wrapper aside{
-    display: block;
-    float: left;
-    width: 250px;
-    border-bottom: 1px solid rgb(145, 145, 145);
-    background-color: rgb(252, 252, 245);
-}
