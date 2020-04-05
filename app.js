@@ -10,22 +10,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
-/*
-mysql.query('SELECT id FROM member',function(err,result){
-
-      
-
-      for(var i in result){ 
-       // console.log(result[i].id);
-        if(result[i].id == 'sksghgus7175@naver.com') console.log("correct");
-      }
-      // if(result[0].id == 'sksghgus7175@naver.com') console.log("correct");
-      //else console.log("error");
-
-    
-    });
-
-*/
+//join
 app.post('/join',function(req,res){
     
     //joinErr1 = 빈칸 제출
@@ -89,7 +74,6 @@ app.post('/join',function(req,res){
     }
 });
 
-
 app.get('/joinErr1',function(req,res){    
     res.send('<script type = "text/javascript">alert("공백없이 제출하십시오."); document.location.href = "sign_up.html"</script>');
 });
@@ -108,6 +92,48 @@ app.get('/joinSuccess',function(req,res){
 });
 app.use(express.static(path.join(__dirname,'public')));
 
+//login
+
+app.post('/sign_in',function(req,res){
+    
+   var check = 0;
+   var user_id = req.body.login_ID;
+   var user_pw = req.body.login_PW;
+    
+   mysql.query('SELECT * FROM member',function(err,result){
+        for(var i in result){
+            if(result[i].id == user_id) {
+                check = i;
+                check++;
+            }
+        }
+        console.log(check);
+        if(check > 0){
+                check--;
+                if(result[check].pwd == user_pw) res.redirect('/login_success');
+                else res.redirect('/wrong_pw');
+        }
+        
+        else{
+            res.redirect('/no_id');
+        }
+
+   });
+    
+});
+
+
+app.get('/login_success',function(req,res){
+    res.send('<script type = "text/javascript">alert("로그인 성공!!."); document.location.href = "index.html"</script>');
+});
+
+app.get('/wrong_pw',function(req,res){
+    res.send('<script type = "text/javascript">alert("비밀번호가 틀렸습니다. "); document.location.href = "login.html"</script>');
+});
+
+app.get('/no_id',function(req,res){
+    res.send('<script type = "text/javascript">alert("존재하지 않는 id 입니다."); document.location.href = "login.html"</script>');
+});
 app.listen(3000, function(){
     console.log('Server on');
 });
