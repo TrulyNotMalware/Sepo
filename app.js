@@ -6,12 +6,23 @@ var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[
 var id_list;
 var cookieParser = require('cookie-parser');
 var sign = require('./db/sign.js');
+var session = require('express-session');
 //mysql.connect();
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(cookieParser());
+app.use(session({
+    key: 'sid',
+    secret : 'secret',
+    resave : false,
+    saveUninitialized : true,
+    cookie :{
+        maxAge: 24000 * 60 * 60
+    }
+
+}));
 app.use(express.static(path.join(__dirname,'public')));
 
 //join

@@ -94,9 +94,12 @@ function sign_in(req,res){
         if(check > 0){
                 check--;
                 if(result[check].pwd == user_pw) {
-                    res.cookie("user",user_id,{
+                    req.session.email = user_id;
+                    /*res.cookie("user",user_id,{
                         httpOnly: true
-                    });
+                    });*/
+                    console.log("user_id = " + user_id);
+                    console.log("user_pw = " + user_pw)
                     res.redirect('/login_success');
                     
                 }
