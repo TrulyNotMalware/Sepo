@@ -15,7 +15,7 @@
     <div class="head">
         <nav id="top_left_side">
             <ul>
-                <% if(session.email){ %>
+                <% if(!session.email){ %>
                     <li><a href="login.html">Login</a></li>
                 <%} else{ %>
                     <li><input type="submit" name="Logout" value="Logout"></li>
