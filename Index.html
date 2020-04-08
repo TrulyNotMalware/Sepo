@@ -15,7 +15,11 @@
     <div class="head">
         <nav id="top_left_side">
             <ul>
-                <li><a href="login.html">Login</a></li>
+                <% if(session.email){ %>
+                    <li><a href="login.html">Login</a></li>
+                <%} else{ %>
+                    <li><input type="submit" name="Logout" value="Logout"></li>
+                <% } %>
             </ul>
         </nav>
         <header>
@@ -111,7 +115,7 @@
                                 </li>
                                 <li>
                                     <div class="Label">
-                                        <a href=""><span>Board</span></a>
+                                        <a href="Board.html"><span>Board</span></a>
                                     </div>
                                 </li>
                             </ol>
