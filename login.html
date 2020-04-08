@@ -21,7 +21,7 @@
     <div class="body">
         <div class="Wrapper">
             <div class="Entry">
-                <form name="login_box" action="" method="POST">
+                <form name="login_box" action="/sign_in" method="POST">
                     <div class="login_Wrapper">
                         <div class="login_head">
                             <p><strong>Login</strong></p>
@@ -29,9 +29,9 @@
                         <div class="login_body">
                             <ul>
                                 <li><label>ID(E-mail)</label></li>
-                                <li><input type="text" class="text" id="login_ID"></li>
+                                <li><input type="text" class="text" name="login_ID"></li>
                                 <li><label>Password</label></li>
-                                <li><input type="text" class="text" id="login_PW"></li>
+                                <li><input type="text" class="text" name="login_PW"></li>
                             </ul>
                             <div class="buttons">
                                 <button type="submit" id="btn" class="btn_submit">로그인</button>

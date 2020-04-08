@@ -85,6 +85,8 @@ function sign_in(req,res){
     
    mysql.query('SELECT * FROM member',function(err,result){
         for(var i in result){
+            console.log(result[i].id);
+            console.log(user_id);
             if(result[i].id == user_id) {
                 check = i;
                 check++;
