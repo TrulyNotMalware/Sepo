@@ -64,7 +64,28 @@ app.get('/no_id',function(req,res){
     res.send('<script type = "text/javascript">alert("존재하지 않는 id 입니다."); document.location.href = "login.html"</script>');
 });
 
+app.get('/no_active',function(req,res){
+    res.send('<script type = "text/javascript">alert("이메일 인증을 통해 계정을 활성화 하세요."); document.location.href = "login.html"</script>');
+});
+//email_auth
 
+app.post('/email_auth',function(req,res){
+   sign.email_auth(req,res); 
+});
+
+
+app.get('/id_active',function(req,res){
+    res.send('<script type = "text/javascript">alert("계정이  활성화 되었습니다."); document.location.href = "login.html"</script>');
+});
+
+app.get('/wrong_auth',function(req,res){
+    res.send('<script type = "text/javascript">alert("잘못된 인증번호 입니다."); document.location.href = "email_auth.html"</script>');
+});
+
+
+app.get('/no_id_auth',function(req,res){
+    res.send('<script type = "text/javascript">alert("존재하지 않는 id 입니다."); document.location.href = "email_auth.html"</script>');
+});
 //server open on port 3000
 app.listen(3000, function(){
     console.log('Server on');

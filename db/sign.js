@@ -5,13 +5,16 @@ var mysql = require('./mysql.js');
 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 var id_list;
 var cookieParser = require('cookie-parser');
-
+var nodemailer = require('nodemailer')
 mysql.connect();
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
-
+function getRandomInt(min,max){
+    return Math.floor(Math.random()*(max-min)) + min;
+}
+//sign_up
 function sign_up (req,res){
     
       //joinErr1 = 빈칸 제출
@@ -25,6 +28,7 @@ function sign_up (req,res){
        var user_name = req.body.login_Name;
        var user_pwdchk = req.body.login_PWCheck;
        var id_check = 0;
+       var mail_num_check = getRandomInt(100000,999999);
      
     
     
@@ -41,13 +45,14 @@ function sign_up (req,res){
                  if(id_check == 0){
                      //joinErr4
                      if(user_pwd == user_pwdchk){
-                         mysql.query('INSERT INTO member (id,pwd,name) VALUES (?,?,?)'
-                                 ,[user_id,user_pwd,user_name]
+                         mysql.query('INSERT INTO member (id,pwd,name,auth) VALUES (?,?,?,?)'
+                                 ,[user_id,user_pwd,user_name,mail_num_check]
                                  , function(error,result){
                                      if(error){
                                         console.log(error);
                                      }
                                         else{
+                                        mail_post(req,res,mail_num_check);
                                         res.redirect('/joinSuccess');
                                         }
 
@@ -85,24 +90,24 @@ function sign_in(req,res){
     
    mysql.query('SELECT * FROM member',function(err,result){
         for(var i in result){
-            console.log(result[i].id);
-            console.log(user_id);
+            //console.log(result[i].id);
+            //console.log(user_id);
             if(result[i].id == user_id) {
                 check = i;
                 check++;
             }
         }
-        console.log(check);
+        //console.log(check);
         if(check > 0){
                 check--;
-                if(result[check].pwd == user_pw) {
-                    req.session.email = user_id;
-                    /*res.cookie("user",user_id,{
-                        httpOnly: true
-                    });*/
-                    console.log("user_id = " + user_id);
-                    console.log("user_pw = " + user_pw)
-                    res.redirect('/login_success');
+                if(result[check].pwd == user_pw){
+                    if(result[check].active == 1){
+                        req.session.email = user_id;
+                        console.log("user_id = " + user_id);
+                        console.log("user_pw = " + user_pw)
+                        res.redirect('/login_success');
+                    }
+                    else res.redirect('/no_active');
                     
                 }
                 else res.redirect('/wrong_pw');
@@ -115,6 +120,86 @@ function sign_in(req,res){
    });
     
 }
+//email_auth
+function email_auth(req,res){
+    
+    var user_id = req.body.login_ID;
+    var user_auth = req.body.auth;
+    
+    mysql.query('SELECT * FROM member',function(err,result){
+        for(var i in result){
+            //console.log(result[i].id);
+            //console.log(user_id);
+            if(result[i].id == user_id) {
+                check = i;
+                check++;
+            }
+        }
+        //console.log(check);
+        if(check > 0){
+                check--;
+                if(result[check].auth == user_auth){
+                    mysql.query('UPDATE member SET active=? WHERE id = ?',
+                    ['1',user_id],function(error,result){
+                        if(error){
+                            console.log(error);
+                        }
+                        else{
+                            res.redirect('/id_active');
+                        }
+                    })
+                }
+                else{
+                    res.redirect('/wrong_auth')
+                }
+        }
+        
+        else{
+            res.redirect('/no_id_auth');
+        }
+
+   });
+
+
+}
+//mail_post
+
+function mail_post(req,res,check_num){
+    
+    let email = req.body.login_ID;
+    
+    let transporter = nodemailer.createTransport({
+    
+        service : 'gmail',
+        auth : {
+            user : 'sksghgus7175@gmail.com',
+            pass : 'Rjstw750'
+        }
+
+    });
+
+    let mailOptions = {
+        from : 'sksghgus7175@gmail.com',
+        to : email,
+        subject : 'check for sign up',
+        text : 'Auth Key Number :' + String(check_num)
+    };
+
+    transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log('Email sent');
+        }
+
+
+    });
+
+    return check_num;
+}
+
 
 module.exports.sign_up = sign_up;
-module.exports.sign_in = sign_in; 
+module.exports.sign_in = sign_in;
+module.exports.email_auth = email_auth;
