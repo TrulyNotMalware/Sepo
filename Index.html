@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPrograming</title>
-    <script language="javascript" type="text/javascript" src="./Script1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="./mainCss.css">
     <style type="text/css">
@@ -15,11 +14,7 @@
     <div class="head">
         <nav id="top_left_side">
             <ul>
-                <% if(!session.email){ %>
-                    <li><a href="login.html">Login</a></li>
-                <%} else{ %>
-                    <li><input type="submit" name="Logout" value="Logout"></li>
-                <% } %>
+                 <li><a href="login.html">Login</a></li>
             </ul>
         </nav>
         <header>
@@ -33,7 +28,7 @@
                         <div class="Label">
                             <a class="Cursor" href="Programing Language.html">Programing Language</a>
                         </div>
-                        <div class="sub_nav_depth_1" style="display: none;">
+                        <div class="sub_nav_depth_1" style="display: none; left: 90px;">
                             <ol>
                                 <li>
                                     <div class="Label">
@@ -52,7 +47,7 @@
                         <div class="Label">
                             <a class="Cursor" href="Web.html">Web</a>
                         </div>
-                        <div class="sub_nav_depth_1" style="display: none;">
+                        <div class="sub_nav_depth_1" style="display: none; left: 240px;">
                             <ol>
                                 <li>
                                     <div class="Label">
@@ -71,10 +66,10 @@
                         <div class="Label">
                             <a class="Cursor" href="Database.html">Database</a>
                         </div>
-                        <div class="sub_nav_depth_1">
+                        <div class="sub_nav_depth_1" style="display: none; left: 330px;">
                             <ol>
                                 <li>
-                                    <div class="Label" style="display: none;">
+                                    <div class="Label">
                                         <a href="MySQL.html">MySQL</a>
                                     </div>
                                 </li>
@@ -148,5 +143,6 @@
             </div>
         </div>
     </div>
+    <script language="javascript" type="text/javascript" src="./Script1.js"></script>
 </body>
 </html>

@@ -39,6 +39,10 @@ ol { margin: 0; padding:0; }
 #menu .sub_nav > li{
     display: inline-block;
     padding-left: 20px;
+}#menu .sub_nav_depth_1{
+    background-color: rgb(145, 145, 145);
+    position: absolute;
+    width: 120px;
 }
 
 #menu .sub_nav_depth_1 li{
