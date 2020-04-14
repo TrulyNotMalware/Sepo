@@ -8,6 +8,7 @@ for(var Rep1=0;Rep1<subNavs.length;Rep1++){
         var Nav = subNavs.item(i);
         Cursor.addEventListener('mouseover',function(event){
             Nav.style.display = "block";
+            console.log(i);
         });
         Cursor.addEventListener('mouseout',function(event){
             Nav.style.display = "none";
