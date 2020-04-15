@@ -7,8 +7,10 @@ var id_list;
 var cookieParser = require('cookie-parser');
 var sign = require('./db/sign.js');
 var session = require('express-session');
+var FileStore = require('session-file-store')(session);
+var http = require('http');
 //mysql.connect();
-
+var fs = require('fs');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -18,9 +20,12 @@ app.use(session({
     secret : 'secret',
     resave : false,
     saveUninitialized : true,
-    cookie :{
-        maxAge: 24000 * 60 * 60
-    }
+    //store : new FileStore();
+    //store : new FileStore({path: './sessions/'}),
+    
+    //cookie :{
+    //    maxAge: 24000 * 60 * 60
+    //}
 
 }));
 app.use(express.static(path.join(__dirname,'public')));
@@ -37,6 +42,7 @@ app.get('/joinErr2',function(req,res){
     res.send('<script type = "text/javascript">alert("id를 이메일 형식으로 제출하십시오."); document.location.href = "sign_up.html"</script>');
 });
 app.get('/joinErr3',function(req,res){
+    res.send('<h2>login</h2><a href = "index.html">login</a>');
     res.send('<script type = "text/javascript">alert("이미 사용 중인 아이디 입니다."); document.location.href = "sign_up.html"</script>');
 });
 app.get('/joinErr4',function(req,res){
@@ -85,6 +91,30 @@ app.get('/wrong_auth',function(req,res){
 
 app.get('/no_id_auth',function(req,res){
     res.send('<script type = "text/javascript">alert("존재하지 않는 id 입니다."); document.location.href = "email_auth.html"</script>');
+});
+
+
+//log_out
+
+app.get('/log_out',function(req,res){
+    console.log("log out session :" + req.session.email);
+    req.session.destroy(); 
+    console.log("log out session :" + req.session.email);
+    res.redirect('index.html');
+});
+
+app.get('/',function(req,res){
+    console.log("open index.html");
+    fs.readFile('./public/Index.html',function(error,data){
+        if(error) console.log(error);
+        else{
+            res.writeHead(200,{'Content-Type':'text/html'});
+            console.log("req.session.email: "+req.session.email);
+            if(!req.session.email) res.write('<li><a href = login.html>Login</a></li>');
+            else res.write('<li><a href = login.html>Logout</a></li>');
+            res.end(data);
+        }
+    });
 });
 //server open on port 3000
 app.listen(3000, function(){
