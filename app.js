@@ -59,7 +59,7 @@ app.post('/sign_in',function(req,res){
 });
 
 app.get('/login_success',function(req,res){
-    res.send('<script type = "text/javascript">alert("로그인 성공!!."); document.location.href = "index.html"</script>');
+    res.send('<script type = "text/javascript">alert("로그인 성공!!."); document.location.href = "/"</script>');
 });
 
 app.get('/wrong_pw',function(req,res){
@@ -97,21 +97,21 @@ app.get('/no_id_auth',function(req,res){
 //log_out
 
 app.get('/log_out',function(req,res){
-    console.log("log out session :" + req.session.email);
-    req.session.destroy(); 
-    console.log("log out session :" + req.session.email);
-    res.redirect('index.html');
+    console.log(req.session.email +" is logged out");
+    req.session.destroy();
+    res.send('<script type = "text/javascript">alert("로그아웃 되었습니다."); document.location.href = "/"</script>');
 });
 
 app.get('/',function(req,res){
-    console.log("open index.html");
+    //console.log("open index.html");
     fs.readFile('./public/Index.html',function(error,data){
         if(error) console.log(error);
         else{
             res.writeHead(200,{'Content-Type':'text/html'});
-            console.log("req.session.email: "+req.session.email);
+            //console.log("req.session.email: "+req.session.email);
+            
             if(!req.session.email) res.write('<li><a href = login.html>Login</a></li>');
-            else res.write('<li><a href = login.html>Logout</a></li>');
+            else res.write('<li><h2></h2><a href = "/log_out">Logout</a></li>');
             res.end(data);
         }
     });

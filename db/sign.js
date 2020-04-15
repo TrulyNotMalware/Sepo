@@ -5,7 +5,7 @@ var mysql = require('./mysql.js');
 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 var id_list;
 var cookieParser = require('cookie-parser');
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer');
 mysql.connect();
 
 var bodyParser = require('body-parser');
@@ -103,8 +103,9 @@ function sign_in(req,res){
                 if(result[check].pwd == user_pw){
                     if(result[check].active == 1){
                         req.session.email = user_id;
-                        console.log("user_id = " + user_id);
-                        console.log("user_pw = " + user_pw)
+                        console.log(user_id + " is logged in");
+                        //console.log("user_pw = " + user_pw)
+                        //console.log("session = " + req.session.email);
                         res.redirect('/login_success');
                     }
                     else res.redirect('/no_active');
@@ -125,7 +126,8 @@ function email_auth(req,res){
     
     var user_id = req.body.login_ID;
     var user_auth = req.body.auth;
-    
+    var check;
+
     mysql.query('SELECT * FROM member',function(err,result){
         for(var i in result){
             //console.log(result[i].id);
