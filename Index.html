@@ -1,142 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EPrograming</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script language="javascript" type="text/javascript" src="./script_fn.js"></script>
-    <link rel="stylesheet" type="text/css" href="./mainCss.css">
-    <style type="text/css">
-        a { text-decoration: none; text-align: center;}
-    </style>
-</head>
-<body>
-    <div class="head">
-        <nav id="top_left_side">
-        </nav>
-        <header>
-            <h1><p class="title"><a href="index.html">A<sup>+</sup>star</a></p></h1>
-            <h2><p class="subtitle"><small>#Hello! world</small></p></h2>
-        </header>
-        <nav id="menu">
-            <div class="Wrapper">
-                <ul class="sub_nav">
-                    <li>
-                        <div class="Label">
-                            <a class="Cursor" href="Programing Language.html">Programing Language</a>
-                        </div>
-                        <div class="sub_nav_depth_1" style="display: none; left: 90px;">
-                            <ol>
-                                <li>
-                                    <div class="Label">
-                                        <a href="C.html">C</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="Label">
-                                        <a href="Java">Java</a>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="Label">
-                            <a class="Cursor" href="Web.html">Web</a>
-                        </div>
-                        <div class="sub_nav_depth_1" style="display: none; left: 240px;">
-                            <ol>
-                                <li>
-                                    <div class="Label">
-                                        <a href="Html.html">Html</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="Label">
-                                        <a href="CSS.html">CSS</a>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="Label">
-                            <a class="Cursor" href="Database.html">Database</a>
-                        </div>
-                        <div class="sub_nav_depth_1" style="display: none; left: 330px;">
-                            <ol>
-                                <li>
-                                    <div class="Label">
-                                        <a href="MySQL.html">MySQL</a>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="Label">
-                            <a class="Cursor" href="Team.html">Team intro</a>
-                        </div>
-                        <div class="sub_nav_depth_1" style="display: none; left: 450px">
-                            <ol>
-                                <li>
-                                    <div class="Label">
-                                        <a href="PhotoBoard.html">Photo</a>
-                                    </div>
-                                    <div class="Label">
-                                        <a href="VideoBoard.html">Videos</a>
-                                    </div>
-                                    <div class="Label">
-                                        <a href="ScheduleBoard.html">Team Schedule</a>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="body">
-        <div id="breadCrumb">
-            <div class="Wrapper">
-                <span id="BreadCrumb_Line">
-                    Index
-                </span>
-                <span class="divider">/</span>
-            </div>
-        </div>
-        <div id="cols">
-            <div class="Wrapper">
-                <aside>
-                    <div id="Topic_List" class="Index">
-                        <h2>Topic List</h2>
-                        <nav class="sub_nav">
-                            <ol id="Topic_List_Tree">
-                                <li>
-                                    <div class="Label">
-                                        <a href="Index.html">
-                                            <span class="Title" id="selected">introduce</span>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="Label">
-                                        <a href=""><span>Project</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="Label">
-                                        <a href="board.html"><span>Board</span></a>
-                                    </div>
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                </aside>
-                <div class="Entry">
-                    <section class="Paragraph">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>EPrograming</title>
+		<link rel="stylesheet" type="text/css" href="./mainCss.css">
+	</head>
+	<body>
+		<h1 class="title"><a href="index.html">A<sup>+</sup> star</a></h1>
+		<h2>#Hello! world</h2>
+
+		<div class="menu">
+			<ul class="mainMenu">
+				<li><a href="#ProgramingLanguage">Programing Language</a>
+					<ul class="subMenu">
+						<li><a href="#C">C</a></li>
+						<li><a href="#Java">Java</a></li>
+						<li><a href="#Python">Python</a></li>
+						<li><a href="#">test1</a></li>
+						<li><a href="#">test2</a></li>
+						<li><a href="#">test3</a></li>
+					</ul>
+				</li>
+				<li><a href="#Web">Web</a>
+					<ul class="subMenu">
+						<li><a href="#Html">Html</a></li>
+						<li><a href="#CSS">CSS</a></li>
+						<li><a href="#JavaScript">Java Script</a></li>
+					</ul>
+				</li>
+				<li><a href="#Database">Database</a>
+					<ul class="subMenu">
+						<li><a href="#">MySQL</a></li>
+					</ul>
+				</li>
+				<li><a href="#TeamIntro">Team Intro</a>
+					<ul class="subMenu">
+						<li><a href="#Photo">Photo</a></li>
+						<li><a href="#Videos">Videos</a></li>
+						<li><a href="#TeamSchedule">Team Schedule</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="breadCrumb">
+			<span class="BreadCrumbLine">Index</span>
+			<span class="divider">/</span>
+		</div>
+
+		<div class="cols">
+			<h3>Topic List</h3>
+			<ul>
+				<li class="leftMenu selected"><a href="#Introduce">Introduce</a></li>
+				<li class="leftMenu"><a href="#Project">Project</a></li>
+				<li class="leftMenu"><a href="#Board">Board</a></li>
+			</ul>
+		</div>
+
+		<div class="entry">
+                    <section class="paragraph">
                         <h1>A<sup>+</sup>소개글</h1>
                         <p id="date">마지막 수정일: <time datetime="2020-03-22">03/22</time></p>
                         <article>
@@ -157,10 +79,9 @@
                         </article>
                     </section>
                 </div>
-                <div></div>
-            </div>
-        </div>
-    </div>
-    <script language="javascript" type="text/javascript" src="./Script1.js"></script>
-</body>
+
+	</body>
+
+	<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+	<script src="./script_fn.js"></script>
 </html>
