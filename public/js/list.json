@@ -1,0 +1,28 @@
+{
+    "login":[
+        "Login",
+        "ID(E-mail)",
+        "Password",
+        "로그인",
+        "Sign Up",
+        "E-mail Auth"
+    ],
+
+    "sign_up":[
+        "Sign Up",
+        "Name",
+        "ID(E-mail)",
+        "Password",
+        "Password Check",
+        "Sign Up",
+        "E-mail Auth"
+    ],
+
+    "email_auth":[
+        "E-mail Auth",
+        "ID(E-mail)",
+        "Auth Key",
+        "이메일 인증",
+        "Sign Up"
+    ]
+}
