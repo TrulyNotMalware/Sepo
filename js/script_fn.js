@@ -27,20 +27,20 @@ function leftMenuLoad(){
 }
 
 
-//test script
 function paragraphListLoad(){
 	$(".items").empty();
 	fetch("paragraph.json").then(function(response){
 		response.text().then(function(text){
 			var data = JSON.parse(text);
 			for(var title in data){
-				console.log(title);
-				console.log(data[title].date);
-				console.log(data[title].article);
 				$(".items").append('<section class="paragraph"><a href="#' + title + '"><h1>'+ title +'</h1><p id="date">마지막 수정일: '+ data[title].date+'</p><article><p>'+ data[title].article+'</p></article></a></section>');
 			}
 		})
 	})
+}
+
+function writeCancle(){
+	$("#writeForm").css("display", "none");
 }
 
 
