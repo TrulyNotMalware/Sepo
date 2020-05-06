@@ -2,8 +2,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="-1">
 		<title>EPrograming</title>
-		<link rel="stylesheet" type="text/css" href="./mainCss.css">
+		<link rel="stylesheet" type="text/css" href="css/mainCss.css">
 	</head>
 	<body>
 		<h1 class="title"><a href="index.html">A<sup>+</sup> star</a></h1>
@@ -16,9 +18,6 @@
 						<li><a href="#C">C</a></li>
 						<li><a href="#Java">Java</a></li>
 						<li><a href="#Python">Python</a></li>
-						<li><a href="#">test1</a></li>
-						<li><a href="#">test2</a></li>
-						<li><a href="#">test3</a></li>
 					</ul>
 				</li>
 				<li><a href="#Web">Web</a>
@@ -30,13 +29,13 @@
 				</li>
 				<li><a href="#Database">Database</a>
 					<ul class="subMenu">
-						<li><a href="#">MySQL</a></li>
+						<li><a href="#MySQL">MySQL</a></li>
 					</ul>
 				</li>
 				<li><a href="#TeamIntro">Team Intro</a>
 					<ul class="subMenu">
 						<li><a href="#Photo">Photo</a></li>
-						<li><a href="#Videos">Videos</a></li>
+						<li><a href="#Video">Video</a></li>
 						<li><a href="#TeamSchedule">Team Schedule</a></li>
 					</ul>
 				</li>
@@ -50,38 +49,52 @@
 
 		<div class="cols">
 			<h3>Topic List</h3>
-			<ul>
-				<li class="leftMenu selected"><a href="#Introduce">Introduce</a></li>
-				<li class="leftMenu"><a href="#Project">Project</a></li>
-				<li class="leftMenu"><a href="#Board">Board</a></li>
+			<ul id = "leftMenu">
+				
 			</ul>
 		</div>
 
 		<div class="entry">
-                    <section class="paragraph">
-                        <h1>A<sup>+</sup>소개글</h1>
-                        <p id="date">마지막 수정일: <time datetime="2020-03-22">03/22</time></p>
-                        <article>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam molestie odio vitae massa pretium blandit. Nunc non lacus vulputate, euismod sapien non, dignissim quam. Sed in rhoncus nibh, nec pharetra nunc. Phasellus purus justo, scelerisque nec leo quis, sollicitudin finibus mauris. Nulla sit amet rutrum lorem. Mauris gravida ipsum dolor. In tincidunt ullamcorper neque sit amet aliquam. Donec ut enim quis sem volutpat ornare nec non nibh. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque ultricies hendrerit purus. Cras ornare sagittis velit, eu commodo mauris pulvinar quis. Fusce elementum vestibulum hendrerit. Donec id urna elementum, ornare odio a, porta dui. Vivamus erat erat, iaculis vitae augue a, maximus semper sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla placerat accumsan enim, eget pellentesque leo congue ac.
-                            </p>
-                            <p>
-                                Maecenas ac consequat dui, in feugiat massa. Proin porta ipsum orci, in dapibus quam laoreet non. Phasellus est turpis, euismod et purus at, euismod euismod lorem. Sed magna magna, consequat in porttitor ac, congue eget sem. Vestibulum volutpat urna leo, a dignissim arcu interdum ac. Duis sed consectetur enim, nec suscipit felis. Pellentesque pharetra et felis a varius.
-                            </p>
-                            <p>
-                                Phasellus augue elit, sodales eget tincidunt commodo, laoreet ut leo. In vel lorem neque. Nunc non lacus quis ex cursus cursus a non tortor. Sed at orci in felis sollicitudin ultricies nec a dolor. Praesent mattis fringilla enim, id ullamcorper magna finibus non. Ut viverra dolor massa, a facilisis diam malesuada et. Duis volutpat, tellus nec volutpat commodo, massa lectus vestibulum felis, sit amet bibendum tortor tellus vitae ligula. Fusce in congue lorem, vitae fermentum est. Suspendisse vel dui justo. Nam nec enim in ante dapibus viverra. Integer maximus feugiat consectetur. Sed eget nulla enim. Proin malesuada ut metus nec finibus. Nam nisl tortor, efficitur sed convallis ac, consectetur eu metus. Donec interdum tempor malesuada. Duis porta, magna non suscipit suscipit, risus lorem pretium sem, eu molestie ligula risus quis nisl.
-                            </p>
-                            <p>
-                                Vestibulum eleifend justo nec sapien tristique congue. Pellentesque sodales, enim in volutpat luctus, libero elit dapibus leo, sit amet aliquam justo massa dapibus velit. Nam consectetur, neque sed suscipit tempus, purus metus elementum arcu, iaculis elementum enim sem eu lectus. Phasellus ornare quis dolor in pulvinar. Donec luctus dolor nec volutpat rutrum. Cras porttitor nibh enim, sit amet maximus augue tristique quis. Curabitur gravida lacus nisi, vitae ultricies quam ultrices et. Duis sodales massa ac enim laoreet suscipit. Maecenas laoreet molestie elit vel dictum. Vivamus vel eleifend ante. Vestibulum consectetur lectus sed quam fermentum condimentum. Morbi in justo mollis, mattis libero nec, viverra erat.
-                            </p>
-                            <p>
-                                Aliquam ultricies lacus tincidunt lacus pharetra lobortis. Mauris molestie quis nunc sed maximus. Fusce bibendum nibh mattis efficitur scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam non purus in arcu aliquam ornare. Integer in tincidunt nunc. Sed a diam at felis ullamcorper convallis. In ornare fermentum ligula non vestibulum. Aliquam id sem velit. Fusce lacinia lacinia pharetra. Pellentesque scelerisque mauris vel quam malesuada pharetra quis nec ligula. Nunc consectetur, diam nec condimentum imperdiet, enim eros aliquam metus, quis maximus lacus lectus quis quam. Proin blandit, metus at lacinia malesuada, risus lectus vehicula neque, id euismod libero turpis sit amet nisl. Curabitur eros ex, ultricies vitae gravida quis, sollicitudin a nisi.
-                            </p>
-                        </article>
-                    </section>
-                </div>
+			<div class="writeMenu">
+				<p class="writeArticle">글 쓰려면 클릭</p>
+				<div class="writeMedia">
+					<p id="photo">사진</p>
+					<p id="video">영상</p>
+				</div>
+			</div>
+			<div id="writeForm">
+				<p>글 작성하기</p>
+				<form action="#" name="article" method="post">
+					<table>
+						<tr>
+							<th>Title</th>
+							<td>
+								<input type="text" name="title">
+							</td>
+						</tr>
+						<tr>
+							<th>Contents</th>
+							<td>
+								<textarea name="contents"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<th>File</th>
+							<td>
+								<input type="file" name="file">
+							</td>
+						</tr>
+					</table>
+					<input type = "submit" value = "submit"/>
+				</form>
+			</div>
+			<div class="items">
+				
+			</div>
+		</div>
 
+
+		<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+		<script src="js/script_fn.js"></script>
 	</body>
-
-	<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
-	<script src="./script_fn.js"></script>
 </html>
