@@ -1,9 +1,12 @@
-$(mainMenuLoad)
-$(leftMenuLoad)
-$(paragraphListLoad)
+$(mainMenuLoad);
+$(leftMenuLoad);
+$(paragraphListLoad);
+$(breadcrumbLoad);
 
 $(window).on('hashchange',leftMenuLoad);
 $(window).on('hashchange',paragraphListLoad);
+$(window).on('hashchange',breadcrumbLoad);
+
 
 function mainMenuLoad(){
 	console.log("start");
@@ -65,6 +68,15 @@ function paragraphListLoad(){
 	})
 }
 
+function breadcrumbLoad(){
+	$(".breadCrumb").empty();
+	var hash = window.location.hash;
+	var Sentence = `<span class="BreadCrumbLine">Index</span>\n<span class="divider">/</span>`;
+	if(hash){
+		Sentence += `<span>${hash}</span>`;
+	}
+	$(".breadCrumb").append(Sentence);
+}
 
 
 
