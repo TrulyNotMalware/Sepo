@@ -19,7 +19,7 @@ function mainMenuLoad(){
             for (key in NavList){
 				var factor = NavList[key];
 				Sentence += '<li>';
-				Sentence += `<a href="#${key}">${key}</a>`;
+				Sentence += `<label>${key}</label>`;
 				Sentence += `<ul class="subMenu">`;
 				while(Rep1<factor.length){
 					Sentence += `<li><a href="#${factor[Rep1]}" >${factor[Rep1]}</a></li>`
@@ -70,10 +70,10 @@ function paragraphListLoad(){
 
 function breadcrumbLoad(){
 	$(".breadCrumb").empty();
-	var hash = window.location.hash;
+	var hash = window.location.hash.substr(1);
 	var Sentence = `<span class="BreadCrumbLine">Index</span>\n<span class="divider">/</span>`;
 	if(hash){
-		Sentence += `<span>${hash}</span><span class="divider">/</span>`;
+		Sentence += `<span>${hash}</span><span class="divider">/ </span>`;
 	}
 	$(".breadCrumb").append(Sentence);
 }
