@@ -39,7 +39,7 @@
 			</div>
 			<div id="writeForm">
 				<p>글 작성하기</p>
-				<form action="/write" name="article" method="post">
+				<form action="/write" name="article" method="post" enctype = "multipart/form-data">
 					<table>
 						<tr>
 							<th>Title</th>
@@ -56,7 +56,7 @@
 						<tr>
 							<th>File</th>
 							<td>
-								<input type="file" name="file">
+								<input type="file" class = "files" name="files" multiple>
 							</td>
 						</tr>
 					</table>

@@ -157,7 +157,7 @@ app.get('/down',function(req,res){
     filestream.pipe(res);
 });
 
-app.post('/write',function(req,res){
+app.post('/write',upload,function(req,res,next){
     
 
     var title;
@@ -173,12 +173,18 @@ app.post('/write',function(req,res){
     date = Date.now();
     author = req.session.name;
    
+    console.log(req);
     mysql.query('INSERT INTO entries.Programing_C (title,contents,path,date,author) VALUES (?,?,?,?,?)'
     ,[title,contents,path,date,author],
     function(error,result){
         if(error) console.log(error);
-        else res.redirect('/');
+        else {
+            upload(req,res,function(err){});
+            res.send('<script type = "text/javascript">alert("글이 작성 되었습니다.."); document.location.href = "/"</script>');
+        }
     });
+
+
 });
 /*
 app.post('/uploading',upload.single('singlefile'),function(req,res,next){
