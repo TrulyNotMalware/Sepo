@@ -106,7 +106,7 @@ ul {
 }
 
 .items .paragraph{
-	margin-right: 50px;
+	margin-left: 50px;
 	margin-bottom: 50px;
 	padding: 30px;
 	float: left; 	
@@ -215,4 +215,8 @@ ul {
 
 #viewArticle .viewComment{
 	margin-top: 10px;
+}
+
+#viewArticle button{
+	float: right;
 }
