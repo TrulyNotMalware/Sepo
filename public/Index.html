@@ -6,6 +6,8 @@
 		<META HTTP-EQUIV="Expires" CONTENT="-1">
 		<title>EPrograming</title>
 		<link rel="stylesheet" type="text/css" href="css/mainCss.css">
+		<link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<h1 class="title"><a href="index.html">A<sup>+</sup> star</a></h1>
@@ -36,35 +38,59 @@
 					<p id="video">영상</p>
 				</div>
 			</div>
-			<div id="writeForm">
-				<p>글 작성하기</p>
-				<form action="/write" name="article" method="post" enctype = "multipart/form-data">
-					<table>
-						<tr>
-							<th>Title</th>
-							<td>
-								<input type="text" name="title">
-							</td>
-						</tr>
-						<tr>
-							<th>Contents</th>
-							<td>
-								<textarea name="contents"></textarea>
-							</td>
-						</tr>
-						<tr>
-							<th>File</th>
-							<td>
-								<input type="file" class = "files" name="files" multiple>
-							</td>
-						</tr>
-					</table>
-					<input type = "submit" value = "submit"/>
-				</form>
-			</div>
 			<div class="items">
 				
 			</div>
+		</div>
+		
+		<div id="writeForm">
+			<p>글 작성하기</p>
+			<form action="/write" name="article" method="post">
+				<table>
+					<tr>
+						<th>Title</th>
+						<td>
+							<input type="text" name="title">
+						</td>
+					</tr>
+					<tr>
+						<th>Contents</th>
+						<td>
+							<textarea name="contents"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>File</th>
+						<td>
+							<input type="file" name="file">
+						</td>
+					</tr>
+				</table>
+				<input type = "submit" value = "확인"/>
+				<input type="reset">
+				<button type="button" onclick="writeCancle()">취소</button>
+			</form>
+		</div>
+
+		<div id="viewArticle">
+			<section class="paragraph">
+				<h1></h1>
+				<p id="date"></p>
+				<article></article>
+			</section>
+			<div class="viewComment">
+				<p>[댓글]</p>
+				<ul>
+					<li>test comment</li>
+				</ul>
+			</div>
+			<div id="writeComment">
+				<form action="/writeComment" name="comment" method="post">
+					<input type="text" name="comment">
+					<input type = "submit" value = "댓글 입력"/>
+				</form>
+			</div>
+			<button onclick='$("#viewArticle").css("display", "none");'>닫기</button>
 		</div>
 
 

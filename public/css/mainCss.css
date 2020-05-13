@@ -96,15 +96,17 @@ ul {
 	display: inline-block;
 	position: absolute;
 	left: 230px;
+	right: 10px;
 	border: 1px solid rgb(145, 145, 145);
 	border-top: none;
 	background-color: rgb(252, 252, 245);
-	width: 80%;
+	max-width: 80%;
+	min-width: 30%;
 	padding: 0px;
 }
 
-.paragraph{
-	margin-right: 50px;
+.items .paragraph{
+	margin-left: 5%;
 	margin-bottom: 50px;
 	padding: 30px;
 	float: left; 	
@@ -126,7 +128,16 @@ ul {
 }
 
 .paragraph article p{
-    padding-top: 20px;
+	overflow: hidden;
+	padding-top: 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	white-space: normal;
+	text-align: left; 
+	word-wrap: break-word; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 10; 
+	-webkit-box-orient: vertical;
 }
 
 .writeMenu{
@@ -163,8 +174,12 @@ ul {
 
 #writeForm{
 	display: none;
-	position: relative;
-	top: -100px;
+	position: absolute;
+	top: 350px;
+	left: 250px;
+	right: 30px;
+	max-width: 70%;
+	min-width: 30%;
 	z-index: 1;
 	margin: 10px 80px;
 	padding: 10px;
@@ -191,4 +206,26 @@ ul {
 	display: block;
 	width: 90%;
 	height: 200px;
+}
+
+#viewArticle{
+	display: none;
+	position: absolute;
+	top: 350px;
+	left: 250px;
+	right: 30px;
+	padding: 20px;
+	z-index: 2;
+	border: 3px solid rgb(145, 145, 145);
+	background-color: rgb(252, 252, 245);
+	max-width: 75%;
+	min-width: 30%;
+}
+
+#viewArticle .viewComment{
+	margin-top: 10px;
+}
+
+#viewArticle button{
+	float: right;
 }
