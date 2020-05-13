@@ -106,7 +106,7 @@ ul {
 }
 
 .items .paragraph{
-	margin-left: 50px;
+	margin-left: 5%;
 	margin-bottom: 50px;
 	padding: 30px;
 	float: left; 	
@@ -128,7 +128,16 @@ ul {
 }
 
 .paragraph article p{
-    padding-top: 20px;
+	overflow: hidden;
+	padding-top: 20px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	white-space: normal;
+	text-align: left; 
+	word-wrap: break-word; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 10; 
+	-webkit-box-orient: vertical;
 }
 
 .writeMenu{
