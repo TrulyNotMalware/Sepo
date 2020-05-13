@@ -90,3 +90,11 @@ $(".writeArticle").on("click", writeArticle);
 function writeArticle(){
 	$("#writeForm").css("display", "block");
 }
+
+
+function viewArticle(item){
+	$("#viewArticle").css("display", "block");
+	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
+	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[0].innerText);
+	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
+}

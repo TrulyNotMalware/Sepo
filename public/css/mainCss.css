@@ -1,6 +1,5 @@
 *{
 	margin: 0px;
-	font-family: 'Nanum Gothic', sans-serif;
 }
 
 a{
@@ -11,15 +10,13 @@ a{
 h1{
 	text-align: center;
 	background-color: rgb(252, 252, 245);
-	font-family: 'Dosis', sans-serif;
 }
 
 h2{
 	text-align: center;
 	background-color: rgb(252, 252, 245);
     font-size: 30px;
-	color: gray;
-	font-family: 'Dosis', sans-serif;
+    color: gray;
 }
 
 ul {
@@ -99,14 +96,16 @@ ul {
 	display: inline-block;
 	position: absolute;
 	left: 230px;
+	right: 10px;
 	border: 1px solid rgb(145, 145, 145);
 	border-top: none;
 	background-color: rgb(252, 252, 245);
-	width: 80%;
+	max-width: 80%;
+	min-width: 30%;
 	padding: 0px;
 }
 
-.paragraph{
+.items .paragraph{
 	margin-right: 50px;
 	margin-bottom: 50px;
 	padding: 30px;
@@ -166,8 +165,12 @@ ul {
 
 #writeForm{
 	display: none;
-	position: relative;
-	top: -100px;
+	position: absolute;
+	top: 350px;
+	left: 250px;
+	right: 30px;
+	max-width: 70%;
+	min-width: 30%;
 	z-index: 1;
 	margin: 10px 80px;
 	padding: 10px;
@@ -194,4 +197,22 @@ ul {
 	display: block;
 	width: 90%;
 	height: 200px;
+}
+
+#viewArticle{
+	display: none;
+	position: absolute;
+	top: 350px;
+	left: 250px;
+	right: 30px;
+	padding: 20px;
+	z-index: 2;
+	border: 3px solid rgb(145, 145, 145);
+	background-color: rgb(252, 252, 245);
+	max-width: 75%;
+	min-width: 30%;
+}
+
+#viewArticle .viewComment{
+	margin-top: 10px;
 }
