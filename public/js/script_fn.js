@@ -62,7 +62,7 @@ function paragraphListLoad(){
 		response.text().then(function(text){
 			var data = JSON.parse(text);
 			for(var title in data){
-				$(".items").append('<section class="paragraph"><a href="#' + title + '"><h1>'+ title +'</h1><p id="date">마지막 수정일: '+ data[title].date+'</p><article><p>'+ data[title].article+'</p></article></a></section>');
+				$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ title +'</h1><p id="date">마지막 수정일: '+ data[title].date+'</p><article><p>'+ data[title].article+'</p></article></a></section>');
 			}
 		})
 	})
