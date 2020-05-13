@@ -73,7 +73,7 @@ function breadcrumbLoad(){
 	var hash = window.location.hash;
 	var Sentence = `<span class="BreadCrumbLine">Index</span>\n<span class="divider">/</span>`;
 	if(hash){
-		Sentence += `<span>${hash}</span>`;
+		Sentence += `<span>${hash}</span><span class="divider">/</span>`;
 	}
 	$(".breadCrumb").append(Sentence);
 }
