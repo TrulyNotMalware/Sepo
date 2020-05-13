@@ -1,5 +1,6 @@
 *{
 	margin: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 a{
@@ -10,13 +11,15 @@ a{
 h1{
 	text-align: center;
 	background-color: rgb(252, 252, 245);
+	font-family: 'Dosis', sans-serif;
 }
 
 h2{
 	text-align: center;
 	background-color: rgb(252, 252, 245);
     font-size: 30px;
-    color: gray;
+	color: gray;
+	font-family: 'Dosis', sans-serif;
 }
 
 ul {
