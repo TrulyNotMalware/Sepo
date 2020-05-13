@@ -7,6 +7,19 @@ $(window).on('hashchange',leftMenuLoad);
 $(window).on('hashchange',paragraphListLoad);
 $(window).on('hashchange',breadcrumbLoad);
 
+function jsonLoad(){
+	$.ajax({
+
+		url:'/',
+		dataType:'json',
+		type:'POST',
+		data: {'msg' :"help"},
+		success: function(result){
+			
+
+		}
+	});
+}
 
 function mainMenuLoad(){
 	console.log("start");
