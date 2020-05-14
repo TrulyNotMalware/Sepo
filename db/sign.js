@@ -53,7 +53,7 @@ function sign_up (req,res){
                                      }
                                         else{
                                         mail_post(req,res,mail_num_check);
-                                        res.redirect('/joinSuccess');
+                                        res.redirect('/joinErr/:success');
                                         }
 
 
@@ -61,22 +61,22 @@ function sign_up (req,res){
                         }
 
                         else{
-                            res.redirect('/joinErr4');
+                            res.redirect('/joinErr/:4');
                         }
                     }
     
                  else{
-                     res.redirect('/joinErr3');
+                     res.redirect('/joinErr/:3');
                  }
               })
              } 
          else{
-             res.redirect('/joinErr2');
+             res.redirect('/joinErr/:2');
          }   
         }
 
      else{
-         res.redirect('/joinErr1');
+         res.redirect('/joinErr/:1');
      }
     }
 
@@ -113,20 +113,20 @@ function sign_in(req,res){
                                 user_name = result[0].name;
                                 
                                 req.session.name = user_name;
-                                res.redirect('/login_success');
+                                res.redirect('/login/:success');
                             }
                         });
                         //console.log("user_pw = " + user_pw)
                         //console.log("session = " + req.session.email);
                     }
-                    else res.redirect('/no_active');
+                    else res.redirect('/login/:no_active');
                     
                 }
-                else res.redirect('/wrong_pw');
+                else res.redirect('/login/:wrong_pw');
         }
         
         else{
-            res.redirect('/no_id');
+            res.redirect('/login/:no_id');
         }
 
    });
@@ -158,17 +158,17 @@ function email_auth(req,res){
                             console.log(error);
                         }
                         else{
-                            res.redirect('/id_active');
+                            res.redirect('/email/:id_active');
                         }
                     })
                 }
                 else{
-                    res.redirect('/wrong_auth')
+                    res.redirect('/email/:wrong_auth')
                 }
         }
         
         else{
-            res.redirect('/no_id_auth');
+            res.redirect('/email/:no_id_auth');
         }
 
    });
