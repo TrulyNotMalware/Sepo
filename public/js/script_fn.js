@@ -9,6 +9,8 @@ $(window).on('hashchange',paragraphLoad);
 $(window).on('hashchange',breadcrumbLoad);
 
 var sessionName = '';
+var currenArticletAuthor = '';
+var currentArticleIndex = 0;
 
 function mainMenuLoad(){
 	console.log("start");
@@ -110,10 +112,12 @@ function writeArticle(){
 }
 
 function viewArticle(item){
+	currentArticleIndex = item.getElementsByTagName("p")[0].innerText;
+	currenArticletAuthor = item.getElementsByTagName("p")[1].innerText;
 	$("#viewArticle").css("display", "block");
 	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
-	$("#viewArticle .paragraph #index_article").text(item.getElementsByTagName("p")[0].innerText);
-	$("#viewArticle .paragraph #author").text(item.getElementsByTagName("p")[1].innerText);
+	$("#viewArticle .paragraph #index_article").text(currentArticleIndex);
+	$("#viewArticle .paragraph #author").text(currenArticletAuthor);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
 }
@@ -140,9 +144,7 @@ function loginSessionLoad(){
 }
 
 function delArticle(){
-	var author = $("#viewArticle .paragraph").getElementsByTagName("p")[1].innerText;
-	var index = $("#viewArticle .paragraph").getElementsByTagName("p")[0].innerText;
-	if(author == sessionName){
+	if(currenArticletAuthor == sessionName){
 		$.ajax({
 			url:'/delArticle',
 			dataType:'json',
@@ -151,7 +153,7 @@ function delArticle(){
 			success: function(result){
 			}
 		});
-		alert(author + "님의 글 삭제 완료. index : " + author);
+		alert(currenArticletAuthor + "님의 글 삭제 완료. index : " + currentArticleIndex);
 	}else{
 		alert("본인의 글만 삭제 가능합니다.");
 	}
