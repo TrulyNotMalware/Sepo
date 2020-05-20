@@ -149,11 +149,11 @@ function delArticle(){
 			url:'/delArticle',
 			dataType:'json',
 			type:'POST',
-			data: {'index' :index},
+			data: {'index' :currentArticleIndex},
 			success: function(result){
 			}
 		});
-		alert(currentArticletAuthor + "님의 글 삭제 완료. index : " + currentArticleIndex);
+		alert(currentArticleAuthor.slice(5) + "님의 글 삭제 완료. index : " + currentArticleIndex);
 	}else{
 		alert("본인의 글만 삭제 가능합니다.");
 	}
