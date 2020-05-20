@@ -109,24 +109,6 @@ function writeArticle(){
 	$("#writeForm").css("display", "block");
 }
 
-
-function delArticle(index, author){
-	if(author == sessionName){
-		$.ajax({
-			url:'/delArticle',
-			dataType:'json',
-			type:'POST',
-			data: {'index' :index},
-			success: function(result){
-			}
-		});
-		alert(author + "님의 글 삭제 완료. index : " + author);
-	}else{
-		alert("본인의 글만 삭제 가능합니다.");
-	}
-	
-}
-
 function viewArticle(item){
 	$("#viewArticle").css("display", "block");
 	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
@@ -134,7 +116,6 @@ function viewArticle(item){
 	$("#viewArticle .paragraph #author").text(item.getElementsByTagName("p")[1].innerText);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
-	$("#delArticle").on("click", delArticle(item.getElementsByTagName("p")[0].innerText, item.getElementsByTagName("p")[1].innerText));
 }
 
 function loginSessionLoad(){
@@ -148,12 +129,30 @@ function loginSessionLoad(){
 			if(!result.name){
 				sessionName = '';
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
-				$("#writeMenu").css("display", "none");
+				$(".writeMenu").css("display", "none");
 			}else{
 				sessionName = result.name;
-				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
-				$("#writeMenu").css("display", "block");
+				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + sessionName);
+				$(".writeMenu").css("display", "block");
 			}
 		}
 	});
+}
+
+function delArticle(item){
+	var author = item.parent().getElementsByTagName("p")[1].innerText;
+	var index = item.parent().getElementsByTagName("p")[0].innerText;
+	if(author == sessionName){
+		$.ajax({
+			url:'/delArticle',
+			dataType:'json',
+			type:'POST',
+			data: {'index' :index},
+			success: function(result){
+			}
+		});
+		alert(author + "님의 글 삭제 완료. index : " + author);
+	}else{
+		alert("본인의 글만 삭제 가능합니다.");
+	}
 }
