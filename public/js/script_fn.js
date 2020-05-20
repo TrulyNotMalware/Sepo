@@ -51,7 +51,7 @@ function mainMenuLoad(){
 						this.isActive = !this.isActive;
 					}
 				}
-			});	
+			});
         });
 	});
 }
