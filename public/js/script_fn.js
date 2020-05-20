@@ -69,8 +69,8 @@ function paragraphListLoad(result){
 	$(".items").empty();
 	console.log(result);
 	for(var item in result){
-		console.log(item);
-		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ data[item].title +'</h1><p id="date">마지막 수정일: '+ data[item].date+'</p><article><p>'+ data[item].contents +'</p></article></a></section>');
+		console.log(result[item]);
+		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
 	}
 }
 
