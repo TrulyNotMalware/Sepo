@@ -1,10 +1,11 @@
 $(mainMenuLoad);
 $(leftMenuLoad);
-$(jsonLoad);
+$(paragraphLoad);
 $(breadcrumbLoad);
+$(loginSessionLoad);
 
 $(window).on('hashchange',leftMenuLoad);
-$(window).on('hashchange',jsonLoad);
+$(window).on('hashchange',paragraphLoad);
 $(window).on('hashchange',breadcrumbLoad);
 
 
@@ -74,7 +75,7 @@ function paragraphListLoad(result){
 	}
 }
 
-function jsonLoad(){
+function paragraphLoad(){
 	$.ajax({
 		url:'/json',
 		dataType:'json',
@@ -115,4 +116,17 @@ function viewArticle(item){
 	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[0].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
+}
+
+function loginSessionLoad(){
+	$.ajax({
+		url:'/session',
+		dataType:'json',
+		type:'POST',
+		data: {'msg' :"help"},
+		success: function(result){
+			console.log(result);
+			console.log(result.name);
+		}
+	});
 }
