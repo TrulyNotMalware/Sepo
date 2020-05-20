@@ -8,6 +8,7 @@ $(window).on('hashchange',leftMenuLoad);
 $(window).on('hashchange',paragraphLoad);
 $(window).on('hashchange',breadcrumbLoad);
 
+var sessionName = '';
 
 function mainMenuLoad(){
 	console.log("start");
@@ -109,33 +110,50 @@ function writeArticle(){
 }
 
 
+function delArticle(index, author){
+	if(author == sessionName){
+		$.ajax({
+			url:'/delArticle',
+			dataType:'json',
+			type:'POST',
+			data: {'index' :index},
+			success: function(result){
+			}
+		});
+		alert(author + "님의 글 삭제 완료. index : " + author);
+	}else{
+		alert("본인의 글만 삭제 가능합니다.");
+	}
+	
+}
+
 function viewArticle(item){
 	$("#viewArticle").css("display", "block");
 	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
-	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[1].innerText);
+	$("#viewArticle .paragraph #index_article").text(item.getElementsByTagName("p")[0].innerText);
+	$("#viewArticle .paragraph #author").text(item.getElementsByTagName("p")[1].innerText);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
+	$("#delArticle").on("click", delArticle(item.getElementsByTagName("p")[0].innerText, item.getElementsByTagName("p")[1].innerText));
 }
 
 function loginSessionLoad(){
+	$("#writeForm").css("display", "none");
+	$("#logInOut").empty();
 	$.ajax({
 		url:'/session',
 		dataType:'json',
 		type:'POST',
 		data: {'msg' :"help"},
 		success: function(result){
-			$("#logInOut").empty();
 			if(!result.name){
+				sessionName = '';
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
-				$("#writeForm").css("display", "none");
 			}else{
+				sessionName = result.name;
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
 				$("#writeForm").css("display", "block");
 			}
 		}
 	});
-}
-
-function delArticle(){
-
 }
