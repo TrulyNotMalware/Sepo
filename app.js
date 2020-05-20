@@ -71,12 +71,23 @@ app.get('/log_out',function(req,res){
 
 //post db data
 app.post('/json',function(req,res,next){
+    console.log(req.session);
     mysql.query('SELECT * from entries.Programing_C',function(error,result){
         if(error) console.log(error);
-        else res.send(result);
+        else {
+            //console.log(result);
+            res.send(result);
+            
+        }
     });
 });
+//post login session
+app.post('/session',function(req,res,next){
 
+
+    //console.log(req.session);
+    res.send(req.session);
+})
 //글 작성
 app.post('/write',upload,function(req,res,next){
     updown.write(req,res,next);
@@ -91,14 +102,17 @@ app.get('/',function(req,res){
         else{
            
             res.writeHead(200,{'Content-Type':'text/html'});
-            if(!req.session.email) res.write('<div class = "logInOut"><a href = login.html#!login>Login</a></div>');
+            /*if(!req.session.email) res.write('<div class = "logInOut"><a href = login.html#!login>Login</a></div>');
             else {
 
                 var username=req.session.name;
                 res.write(`<div class = "logInOut"><a href = "/log_out">Logout<br></a>${username}</div>`);
             
             }
+            */
             res.end(data);
+            
+           
         }
     });
 });

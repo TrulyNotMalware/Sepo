@@ -124,7 +124,7 @@ function loginSessionLoad(){
 		data: {'msg' :"help"},
 		success: function(result){
 			$("#logInOut").empty();
-			if(result.name){
+			if(!result.name){
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
 			}else{
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
