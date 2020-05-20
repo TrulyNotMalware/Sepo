@@ -87,7 +87,7 @@ ul {
 	padding: 5px;
 }
 
-.selected > a{
+.selected{
 	color: salmon;
 }
 
