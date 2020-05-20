@@ -8,20 +8,6 @@ $(window).on('hashchange',jsonLoad);
 $(window).on('hashchange',breadcrumbLoad);
 
 
-
-function jsonLoad(){
-	$.ajax({
-
-		url:'/',
-		dataType:'json',
-		type:'POST',
-		data: {'msg' :"help"},
-		success: function(result){
-			
-		}
-	});
-}
-
 function mainMenuLoad(){
 	console.log("start");
     fetch("js/TopicList.json").then(function(res){
@@ -81,20 +67,16 @@ function leftMenuLoad(){
 
 function paragraphListLoad(result){
 	$(".items").empty();
-
-	var data = JSON.parse(result);
-	console.log(data);
-	for(var item in data){
-		console.log(data[item]);
-		console.log(data[item].title);
+	console.log(result);
+	for(var item in result){
+		console.log(item);
 		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ data[item].title +'</h1><p id="date">마지막 수정일: '+ data[item].date+'</p><article><p>'+ data[item].contents +'</p></article></a></section>');
 	}
 }
 
 function jsonLoad(){
 	$.ajax({
-
-		url:'/',
+		url:'/json',
 		dataType:'json',
 		type:'POST',
 		data: {'msg' :"help"},
