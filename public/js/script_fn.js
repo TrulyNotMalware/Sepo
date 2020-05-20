@@ -139,9 +139,9 @@ function loginSessionLoad(){
 	});
 }
 
-function delArticle(item){
-	var author = item.parent().getElementsByTagName("p")[1].innerText;
-	var index = item.parent().getElementsByTagName("p")[0].innerText;
+function delArticle(){
+	var author = $("#viewArticle .paragraph").getElementsByTagName("p")[1].innerText;
+	var index = $("#viewArticle .paragraph").getElementsByTagName("p")[0].innerText;
 	if(author == sessionName){
 		$.ajax({
 			url:'/delArticle',
