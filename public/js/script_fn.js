@@ -138,7 +138,7 @@ function viewArticle(item){
 }
 
 function loginSessionLoad(){
-	$("#writeForm").css("display", "none");
+	$("#writeMenu").css("display", "none");
 	$("#logInOut").empty();
 	$.ajax({
 		url:'/session',
@@ -152,7 +152,7 @@ function loginSessionLoad(){
 			}else{
 				sessionName = result.name;
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
-				$("#writeForm").css("display", "block");
+				$("#writeMenu").css("display", "block");
 			}
 		}
 	});
