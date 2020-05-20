@@ -55,6 +55,7 @@ function write(req,res,next){
     var date;
     var author;
     var i = 1;
+
     if(req.files[0] != undefined){
 
         file_path = req.files[0].path;
@@ -81,15 +82,35 @@ function write(req,res,next){
         if(error) console.log(error);
         else {
             upload(req,res,function(err){});
-            res.send('<script type = "text/javascript">alert("글이 작성 되었습니다.."); document.location.href = "/"</script>');
+            res.send('<script type = "text/javascript">alert("글이 작성 되었습니다"); document.location.href = "/"</script>');
         }
     });
 
-
 };
+function del_txt(req,res,next){
+   
+    var index;
+    var author;
 
+    mysql.query('SELECT author FROM entries.Programing_C where index = ?',index,function(err,result){
+        if(err) console.log(err);
+        else{
+            if(result != author) res.send('<script type = "text/javascript">alert("작성자만 글을 지울 수 있습니다."); document.location.href = "/"</script>');
+            else{
+                              
+                mysql.query('DELETE FROM entries.Programing_C where index = ?',index,function(err,result){
+    
+                if(err) console.log(err);
+                else res.send('<script type = "text/javascript">alert("글이 삭제 되었습니다."); document.location.href = "/"</script>');
+                });
+            }
+        }
+    });
+   
+}
 function up(){
     return upload;
 }
 module.exports.write = write;
 module.exports.up = up;
+module.exports.del_txt = del_txt;

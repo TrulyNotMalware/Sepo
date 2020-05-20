@@ -1,10 +1,11 @@
 $(mainMenuLoad);
 $(leftMenuLoad);
-$(jsonLoad);
+$(paragraphLoad);
 $(breadcrumbLoad);
+$(loginSessionLoad);
 
 $(window).on('hashchange',leftMenuLoad);
-$(window).on('hashchange',jsonLoad);
+$(window).on('hashchange',paragraphLoad);
 $(window).on('hashchange',breadcrumbLoad);
 
 
@@ -67,20 +68,14 @@ function leftMenuLoad(){
 
 function paragraphListLoad(result){
 	$(".items").empty();
-
-	var data = JSON.parse(result);
-	console.log(data);
-	for(var item in data){
-		console.log(data[item]);
-		console.log(data[item].title);
-		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ data[item].title +'</h1><p id="date">마지막 수정일: '+ data[item].date+'</p><article><p>'+ data[item].contents +'</p></article></a></section>');
+	for(var item in result){
+		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
 	}
 }
 
-function jsonLoad(){
+function paragraphLoad(){
 	$.ajax({
-
-		url:'/',
+		url:'/json',
 		dataType:'json',
 		type:'POST',
 		data: {'msg' :"help"},
@@ -119,4 +114,21 @@ function viewArticle(item){
 	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[0].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
+}
+
+function loginSessionLoad(){
+	$.ajax({
+		url:'/session',
+		dataType:'json',
+		type:'POST',
+		data: {'msg' :"help"},
+		success: function(result){
+			$("#logInOut").empty();
+			if(!result.name){
+				$("#logInOut").append("<a href = login.html#!login>Login</a>");
+			}else{
+				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
+			}
+		}
+	});
 }
