@@ -10,6 +10,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 		<h1 class="title"><a href="index.html">A<sup>+</sup> star</a></h1>
 		<h2>#Hello! world</h2>
 
@@ -50,7 +51,7 @@
 					<tr>
 						<th>Title</th>
 						<td>
-							<input type="text" name="title">
+							<input type="text" name="title" placeholder="Title">
 						</td>
 					</tr>
 					<tr>
@@ -86,7 +87,7 @@
 			</div>
 			<div id="writeComment">
 				<form action="/writeComment" name="comment" method="post">
-					<input type="text" name="comment">
+					<input type="text" name="comment" placeholder="comment">
 					<input type = "submit" value = "댓글 입력"/>
 				</form>
 			</div>
@@ -96,5 +97,6 @@
 
 		<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
 		<script src="js/script_fn.js"></script>
+		<script src="js/View.js"></script>
 	</body>
 </html>

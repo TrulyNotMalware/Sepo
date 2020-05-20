@@ -16,7 +16,6 @@ function jsonLoad(){
 		data: {'msg' :"help"},
 		success: function(result){
 			
-
 		}
 	});
 }
@@ -32,19 +31,29 @@ function mainMenuLoad(){
             for (key in NavList){
 				var factor = NavList[key];
 				Sentence += '<li>';
-				Sentence += `<label>${key}</label>`;
+				Sentence += `<label :class="{ selected : isActive }">${key}</label>`;
 				Sentence += `<ul class="subMenu">`;
 				while(Rep1<factor.length){
-					Sentence += `<li><a href="#${factor[Rep1]}" >${factor[Rep1]}</a></li>`
+					Sentence += `<li><a href="#${factor[Rep1]}" @click="isClicked">${factor[Rep1]}</a></li>`
 					Rep1 = Rep1+1;
 				}
 				Rep1=0;
 				Sentence +='</ul></li>';
-				
 			}
 			$(".mainMenu").append(Sentence);
+			var Views = new Vue({
+				el:'.menu',
+				data: {
+					isActive: false
+				},
+				methods: {
+					isClicked(){
+						this.isActive = !this.isActive;
+					}
+				}
+			});	
         });
-    });
+	});
 }
 
 function leftMenuLoad(){
