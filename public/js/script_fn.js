@@ -138,7 +138,6 @@ function viewArticle(item){
 }
 
 function loginSessionLoad(){
-	$("#writeMenu").css("display", "none");
 	$("#logInOut").empty();
 	$.ajax({
 		url:'/session',
@@ -149,6 +148,7 @@ function loginSessionLoad(){
 			if(!result.name){
 				sessionName = '';
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
+				$("#writeMenu").css("display", "none");
 			}else{
 				sessionName = result.name;
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
