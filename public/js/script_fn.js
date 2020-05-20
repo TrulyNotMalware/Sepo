@@ -68,9 +68,7 @@ function leftMenuLoad(){
 
 function paragraphListLoad(result){
 	$(".items").empty();
-	console.log(result);
 	for(var item in result){
-		console.log(result[item]);
 		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
 	}
 }
@@ -125,8 +123,12 @@ function loginSessionLoad(){
 		type:'POST',
 		data: {'msg' :"help"},
 		success: function(result){
-			console.log(result);
-			console.log(result.name);
+			$("#logInOut").empty();
+			if(result.name){
+				$("#logInOut").append("<a href = login.html#!login>Login</a>");
+			}else{
+				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
+			}
 		}
 	});
 }
