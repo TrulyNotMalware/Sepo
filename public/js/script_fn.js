@@ -72,7 +72,7 @@ function leftMenuLoad(){
 function paragraphListLoad(result){
 	$(".items").empty();
 	for(var item in result){
-		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].index+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
+		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
 	}
 }
 
