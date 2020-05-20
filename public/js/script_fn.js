@@ -68,17 +68,29 @@ function leftMenuLoad(){
 	})
 }
 
-
-function paragraphListLoad(){
+function paragraphListLoad(result){
 	$(".items").empty();
-	fetch("js/paragraph.json").then(function(response){
-		response.text().then(function(text){
-			var data = JSON.parse(text);
-			for(var title in data){
-				$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ title +'</h1><p id="date">마지막 수정일: '+ data[title].date+'</p><article><p>'+ data[title].article+'</p></article></a></section>');
-			}
-		})
-	})
+
+	var data = JSON.parse(result);
+	console.log(data);
+	for(var item in data){
+		console.log(data[item]);
+		console.log(data[item].title);
+		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ data[item].title +'</h1><p id="date">마지막 수정일: '+ data[item].date+'</p><article><p>'+ data[item].contents +'</p></article></a></section>');
+	}
+}
+
+function jsonLoad(){
+	$.ajax({
+
+		url:'/',
+		dataType:'json',
+		type:'POST',
+		data: {'msg' :"help"},
+		success: function(result){
+			paragraphListLoad(result);
+		}
+	});
 }
 
 function breadcrumbLoad(){
