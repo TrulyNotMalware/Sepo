@@ -1,11 +1,13 @@
 $(mainMenuLoad);
 $(leftMenuLoad);
-$(paragraphListLoad);
+$(jsonLoad);
 $(breadcrumbLoad);
 
 $(window).on('hashchange',leftMenuLoad);
-$(window).on('hashchange',paragraphListLoad);
+$(window).on('hashchange',jsonLoad);
 $(window).on('hashchange',breadcrumbLoad);
+
+
 
 function jsonLoad(){
 	$.ajax({
