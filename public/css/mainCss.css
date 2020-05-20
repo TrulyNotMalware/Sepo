@@ -229,3 +229,7 @@ ul {
 #viewArticle button{
 	float: right;
 }
+
+#index_article{
+	display: none;
+}

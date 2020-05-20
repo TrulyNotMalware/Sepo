@@ -69,7 +69,7 @@ function leftMenuLoad(){
 function paragraphListLoad(result){
 	$(".items").empty();
 	for(var item in result){
-		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
+		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].index+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
 	}
 }
 
@@ -112,7 +112,8 @@ function writeArticle(){
 function viewArticle(item){
 	$("#viewArticle").css("display", "block");
 	$("#viewArticle .paragraph h1").text(item.getElementsByTagName("h1")[0].innerText);
-	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[0].innerText);
+	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[1].innerText);
+	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
 }
 
@@ -126,9 +127,15 @@ function loginSessionLoad(){
 			$("#logInOut").empty();
 			if(!result.name){
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
+				$("#writeForm").css("display", "none");
 			}else{
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + result.name);
+				$("#writeForm").css("display", "block");
 			}
 		}
 	});
+}
+
+function delArticle(){
+
 }
