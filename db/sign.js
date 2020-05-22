@@ -212,7 +212,21 @@ function mail_post(req,res,check_num){
     return check_num;
 }
 
+//modify member info
+function modify_member_info(req,res){
+    
+    var id = req.session.email;
+    var new_passwd = req.body.password;
 
+    mysql.query('UPDATE member SET pwd = ? WHERE id = ?'
+        ,[new_passwd,id]
+        ,function(err,result){
+            if(err) console.log(err);
+    });
+    req.session.destroy();
+    res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+}
 module.exports.sign_up = sign_up;
 module.exports.sign_in = sign_in;
 module.exports.email_auth = email_auth;
+module.exports.modify_member_info = modify_member_info;

@@ -25,6 +25,9 @@ ul {
 }
 
 #logInOut{
+    position : absolute;
+    top : 0px;
+    left : 0;
     font-size : 20px;
     background-color : rgb(252,252,245);
 }

@@ -61,6 +61,13 @@ app.get('/email/:tagId',function(req,res){
     send_message.send_email_message(req,res,tagId);
 });
 
+//modify member_info
+app.post('/modify',function(req,res){
+    
+    sign.modify_member_info(req,res);
+    
+});
+
 //log_out
 
 app.get('/log_out',function(req,res){
@@ -69,29 +76,47 @@ app.get('/log_out',function(req,res){
     res.send('<script type = "text/javascript">alert("로그아웃 되었습니다."); document.location.href = "/"</script>');
 });
 
-//post db data
+//post writinig data
 app.post('/json',function(req,res,next){
-    console.log(req.session);
     mysql.query('SELECT * from entries.Programing_C',function(error,result){
         if(error) console.log(error);
         else {
-            //console.log(result);
             res.send(result);
             
         }
     });
 });
+
+//post comment data
+app.post('/jsonComment',function(req,res,next){
+    mysql.query('SELECT * from entries.Programing_C_comment',function(err,result){
+        if(err) console.log(err);
+        else res.send(result);
+    });
+});
 //post login session
 app.post('/session',function(req,res,next){
 
-
-    //console.log(req.session);
     res.send(req.session);
 })
 //글 작성
 app.post('/write',upload,function(req,res,next){
     updown.write(req,res,next);
 });
+
+//글 삭제
+app.post('/delarticle',function(req,res,next){
+    updown.del_txt(req,res,next);
+});
+
+
+//댓글 작성
+app.post('/writeComment',function(req,res,next){
+   
+    updown.write_comment(req,res,next);
+})
+
+
 
 //server open on port 3000
 
@@ -100,19 +125,8 @@ app.get('/',function(req,res){
     fs.readFile('./public/Index.html',function(error,data){
         if(error) console.log(error);
         else{
-           
             res.writeHead(200,{'Content-Type':'text/html'});
-            /*if(!req.session.email) res.write('<div class = "logInOut"><a href = login.html#!login>Login</a></div>');
-            else {
-
-                var username=req.session.name;
-                res.write(`<div class = "logInOut"><a href = "/log_out">Logout<br></a>${username}</div>`);
-            
-            }
-            */
             res.end(data);
-            
-           
         }
     });
 });

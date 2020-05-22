@@ -120,6 +120,9 @@ function viewArticle(item){
 	$("#viewArticle .paragraph #author").text(currentArticleAuthor);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
+    
+    //currentArticleIndex for wirte comment
+    comment.origin_number.value = currentArticleIndex;
 }
 
 function loginSessionLoad(){
@@ -137,7 +140,8 @@ function loginSessionLoad(){
 			}else{
 				sessionName = result.name;
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + sessionName);
-				$(".writeMenu").css("display", "block");
+				$("#logInOut").append(`<br><a href = '/modify.html'>회원 정보 수정</a>`);
+                $(".writeMenu").css("display", "block");
 			}
 		}
 	});
@@ -153,8 +157,10 @@ function delArticle(){
 			success: function(result){
 			}
 		});
-		alert(currentArticleAuthor.slice(5) + "님의 글 삭제 완료. number : " + currentArticleIndex);
+		alert(currentArticleAuthor.slice(5) + "님의 글이 삭제 되었습니다.. ");
+        document.location.reload();
 	}else{
 		alert("본인의 글만 삭제 가능합니다.");
+        document.location.reload();
 	}
 }
