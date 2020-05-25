@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-		<h1 class="title"><a href="index.html">A<sup>+</sup> star</a></h1>
+		<h1 class="title"><a href="/">A<sup>+</sup> star</a></h1>
 		<h2>#Hello! world</h2>
 
 		<div id="logInOut"></div>
@@ -78,6 +78,8 @@
 		<div id="viewArticle">
 			<section class="paragraph">
 				<h1></h1>
+				<p id="index_article"></p>
+				<p id="author"></p>
 				<p id="date"></p>
 				<article></article>
 			</section>
@@ -91,8 +93,10 @@
 				<form action="/writeComment" name="comment" method="post">
 					<input type="text" name="comment" placeholder="comment">
 					<input type = "submit" value = "댓글 입력"/>
+                    <input type = "hidden" name = "origin_number" value = "/"> 
 				</form>
 			</div>
+			<button onclick="delArticle()">삭제</button>
 			<button onclick='$("#viewArticle").css("display", "none");'>닫기</button>
 		</div>
 

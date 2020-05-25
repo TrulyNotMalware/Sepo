@@ -73,8 +73,6 @@ function write(req,res,next){
     contents = req.body.contents;
     date = moment().format('YYYY-MM-DD HH:mm:ss');
     author = req.session.name;
- 
-
 
     mysql.query('INSERT INTO entries.Programing_C (title,contents,path,date,author) VALUES (?,?,?,?,?)'
     ,[title,contents,file_path,date,author],
@@ -89,24 +87,54 @@ function write(req,res,next){
 };
 function del_txt(req,res,next){
    
-    var index;
-    var author;
+    var number = req.body.number;
+    var author = req.session.email;
 
-    mysql.query('SELECT author FROM entries.Programing_C where index = ?',index,function(err,result){
+
+    mysql.query('DELETE FROM entries.Programing_C where number = ?',number,function(err,result){
         if(err) console.log(err);
         else{
-            if(result != author) res.send('<script type = "text/javascript">alert("작성자만 글을 지울 수 있습니다."); document.location.href = "/"</script>');
-            else{
-                              
-                mysql.query('DELETE FROM entries.Programing_C where index = ?',index,function(err,result){
-    
-                if(err) console.log(err);
-                else res.send('<script type = "text/javascript">alert("글이 삭제 되었습니다."); document.location.href = "/"</script>');
-                });
-            }
+                  
+            mysql.query('DELETE FROM entries.Programing_C_comment where origin_num = ?',number,function(err,result){
+            if(err) console.log(err);
+            });
         }
     });
+
+    
    
+}
+
+function write_comment(req,res,next){
+    
+    var contents;
+    var date;
+    var author;
+    var origin_num;
+    
+    contents = req.body.comment;
+    date = moment().format('YYYY-MM-DD HH:mm:ss');
+    author = req.session.name;
+    origin_num = req.body.origin_number;
+
+    /*
+    console.log("contents: "+ contents);
+    console.log("date: "+ date);
+    console.log("author: "+ author);
+    console.log("origin_num:"+ origin_num);
+    */
+
+    mysql.query('INSERT INTO entries.Programing_C_comment (contents,date,author,origin_num) VALUES (?,?,?,?)'
+        ,[contents,date,author,origin_num]
+    ,function(err,result){
+        if(err) console.log(err);
+        else{
+            res.send('<script type = "text/javascript">alert("댓글이 작성 되었습니다"); document.location.href = "/"</script>');
+        }
+    })
+    
+
+    
 }
 function up(){
     return upload;
@@ -114,3 +142,4 @@ function up(){
 module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;
+module.exports.write_comment = write_comment;
