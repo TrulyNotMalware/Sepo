@@ -73,7 +73,15 @@ function leftMenuLoad(){
 function paragraphListLoad(result){
 	$(".items").empty();
 	for(var item in result){
-		$(".items").append('<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article></a></section>');
+		var starthtml = '<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article>';
+		var midhtml = '';
+		var endhtml = '</a></section>';
+		if(result[item].path != "./"){
+			var filepath = result[item].path.slice(17);
+			console.log(filepath);
+			midhtml = '<img src="' + filepath +'" witdh = 200>'
+		}
+		$(".items").append(starthtml + midhtml + endhtml);
 	}
 }
 
@@ -177,7 +185,6 @@ function delArticle(){
 }
 
 function viewComment(){
-	console.log("comment 원본글" + currentArticleIndex);
 	$(".commentList").empty();
 	$.ajax({
 			url:'/jsonComment',
@@ -185,7 +192,6 @@ function viewComment(){
 			type:'POST',
 			data: {'msg' :"help"},
 			success: function(result){
-				console.log(result);
 				for(var item in result){
 					if(result[item].origin_num == currentArticleIndex){
 						$(".commentList").append("<li><p><b>"+result[item].author+"</b>"+result[item].date+"</p><p>"+result[item].contents+"</p></li>");
