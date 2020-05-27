@@ -76,7 +76,7 @@ function paragraphListLoad(result){
 		var starthtml = '<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p>';
 		var midhtml = '';
 		var endhtml = '</article></a></section>';
-		if(result[item].path != "./"){
+		if(result[item].path != "-1"){
 			var filepath = result[item].path.slice(17);
 			if(filepath.slice(-4).toUpperCase() == ".JPG" || filepath.slice(-4).toUpperCase() == ".PNG" || filepath.slice(-4).toUpperCase() == ".GIF" || filepath.slice(-4).toUpperCase() == "BMP" || filepath.slice(-4).toUpperCase() == "JPEG"){
 				midhtml = '<img src="' + filepath +'" width = 200>';
@@ -130,6 +130,9 @@ function writeArticle(){
 }
 
 function viewArticle(item){
+	console.log(item);
+	console.log(item.getElementsByTagName("p"));
+	console.log(item.getElementsByTagName("article"));
 	currentArticleIndex = item.getElementsByTagName("p")[0].innerText;
 	currentArticleAuthor = item.getElementsByTagName("p")[1].innerText;
 	$("#viewArticle").css("display", "block");
