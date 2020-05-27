@@ -73,9 +73,9 @@ function leftMenuLoad(){
 function paragraphListLoad(result){
 	$(".items").empty();
 	for(var item in result){
-		var starthtml = '<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><div><p>'+ result[item].contents +'</p>';
+		var starthtml = '<section class="paragraph" onclick="viewArticle(this)><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p>';
 		var midhtml = '';
-		var endhtml = '</div></a></section>';
+		var endhtml = '</article></section>';
 		console.log(result[item].path);
 		if(result[item].path != "-1"){
 			var filepath = result[item].path.slice(17);
@@ -133,7 +133,7 @@ function writeArticle(){
 function viewArticle(item){
 	console.log(item);
 	console.log(item.getElementsByTagName("p"));
-	console.log(item.getElementsByTagName("div"));
+	console.log(item.getElementsByTagName("article"));
 	currentArticleIndex = item.getElementsByTagName("p")[0].innerText;
 	currentArticleAuthor = item.getElementsByTagName("p")[1].innerText;
 	$("#viewArticle").css("display", "block");
@@ -141,7 +141,7 @@ function viewArticle(item){
 	$("#viewArticle .paragraph #index_article").text(currentArticleIndex);
 	$("#viewArticle .paragraph #author").text(currentArticleAuthor);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
-	$("#viewArticle .paragraph article").html(item.getElementsByTagName("div")[0].innerHTML);
+	$("#viewArticle .paragraph article").html(item.getElementsByTagName("article")[0].innerHTML);
     viewComment();
     //currentArticleIndex for wirte comment
     comment.origin_number.value = currentArticleIndex;
