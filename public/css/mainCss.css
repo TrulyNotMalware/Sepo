@@ -199,6 +199,16 @@ ul {
 
 #modify{
 	display: none;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    padding-left: 50px;
+    width:300px;
+    border: 1px solid black;
+    height: 300px;
+    line-height: 300px;
+    background-color: rgb(236,236,236);
+    z-index: 1;
 }
 
 #writeForm p{

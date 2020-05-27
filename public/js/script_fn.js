@@ -73,15 +73,13 @@ function leftMenuLoad(){
 function paragraphListLoad(result){
 	$(".items").empty();
 	for(var item in result){
-		var starthtml = '<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p>';
+		var starthtml = '<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p></article>';
 		var midhtml = '';
-		var endhtml = '</article></a></section>';
+		var endhtml = '</a></section>';
 		if(result[item].path != "./"){
 			var filepath = result[item].path.slice(17);
-			if(filepath.slice(-4).toUpperCase() == ".JPG" || filepath.slice(-4).toUpperCase() == ".PNG" || filepath.slice(-4).toUpperCase() == ".GIF" || filepath.slice(-4).toUpperCase() == "BMP" || filepath.slice(-4).toUpperCase() == "JPEG"){
-				midhtml = '<img src="' + filepath +'" width = 200>';
-			}
-			midhtml = midhtml + '<a href="'+ filepath +'" download="'+filepath+'">파일 다운로드</a>';
+			console.log(filepath);
+			midhtml = '<img src="' + filepath +'" width = 200>'
 		}
 		$(".items").append(starthtml + midhtml + endhtml);
 	}
@@ -109,7 +107,7 @@ function breadcrumbLoad(){
 	$(".breadCrumb").append(Sentence);
 }
 
-function modifyCancle(){
+function modifyCancel(){
 	$("#modify").css("display","none");
 }
 function modifyShow(){
@@ -158,7 +156,7 @@ function loginSessionLoad(){
 			}else{
 				sessionName = result.name;
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + sessionName);
-				$("#logInOut").append(`<br><a href = '' class="changepw" onclick="modifyShow()">회원 정보 수정</a>`);
+				$("#logInOut").append(`<br><a class="changepw" onclick="modifyShow()">회원 정보 수정</a>`);
 				$(".writeMenu").css("display", "block");
 				$("#modify").append(`<p>${result.name}</p>`);
 			}
