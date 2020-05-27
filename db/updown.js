@@ -11,13 +11,13 @@ var storage = multer.diskStorage({
     filename : function(req,file,cb){
 
 
-        cb(null,moment().format('YYYY-MM-DD HH:mm:ss')+":"+file.originalname);
+        cb(null,moment().format('YYYY-MM-DD_HH:mm:ss')+":"+file.originalname);
     }
     
     
 });
 
-var maxFileSize= 3*1000*1000;
+var maxFileSize= 30*1000*1000;
 var upload = multer({storage : storage,limits:{files:12, fileSize: maxFileSize}}).array('files',12);
 
 /*
@@ -74,15 +74,28 @@ function write(req,res,next){
     date = moment().format('YYYY-MM-DD HH:mm:ss');
     author = req.session.name;
 
-    mysql.query('INSERT INTO entries.Programing_C (title,contents,path,date,author) VALUES (?,?,?,?,?)'
-    ,[title,contents,file_path,date,author],
-    function(error,result){
-        if(error) console.log(error);
-        else {
-            upload(req,res,function(err){});
-            res.send('<script type = "text/javascript">alert("글이 작성 되었습니다"); document.location.href = "/"</script>');
-        }
-    });
+    if(title == "" || contents ==""){
+    
+        res.send('<script type = "text/javascript">alert("빈칸 없이 작성해주세요."); document.location.href = "/"</script>');
+
+    }
+    else{
+        mysql.query('INSERT INTO entries.Programing_C (title,contents,path,date,author) VALUES (?,?,?,?,?)'
+        ,[title,contents,file_path,date,author],
+        function(error,result){
+            if(error) console.log(error);
+            else {
+
+                if(file_path != "-1"){
+
+                    upload(req,res,function(err,result){
+                        if(err) console.log(err);
+                    });
+                }
+                res.send('<script type = "text/javascript">alert("글이 작성 되었습니다"); document.location.href = "/"</script>');
+            }
+        });
+    }
 
 };
 function del_txt(req,res,next){
@@ -117,23 +130,31 @@ function write_comment(req,res,next){
     author = req.session.name;
     origin_num = req.body.origin_number;
 
-    /*
+    
     console.log("contents: "+ contents);
     console.log("date: "+ date);
     console.log("author: "+ author);
     console.log("origin_num:"+ origin_num);
-    */
-
-    mysql.query('INSERT INTO entries.Programing_C_comment (contents,date,author,origin_num) VALUES (?,?,?,?)'
-        ,[contents,date,author,origin_num]
-    ,function(err,result){
-        if(err) console.log(err);
+   
+    if(author == undefined){
+            res.send('<script type = "text/javascript">alert("댓글을 작성하려면 로그인 해주세요."); document.location.href = "/"</script>');
+    }
+    else{
+        if(contents == ""){
+            res.send('<script type = "text/javascript">alert("빈칸으로 제출 할 수 없습니다."); document.location.href = "/"</script>');
+        } 
         else{
-            res.send('<script type = "text/javascript">alert("댓글이 작성 되었습니다"); document.location.href = "/"</script>');
-        }
-    })
-    
+            mysql.query('INSERT INTO entries.Programing_C_comment (contents,date,author,origin_num) VALUES (?,?,?,?)'
+                    ,[contents,date,author,origin_num]
+                    ,function(err,result){
+                    if(err) console.log(err);
+                    });
 
+           res.redirect("/");
+        }
+    }
+
+    
     
 }
 function up(){

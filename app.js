@@ -89,9 +89,12 @@ app.post('/json',function(req,res,next){
 
 //post comment data
 app.post('/jsonComment',function(req,res,next){
+    
     mysql.query('SELECT * from entries.Programing_C_comment',function(err,result){
         if(err) console.log(err);
-        else res.send(result);
+        else {
+            res.send(result);
+        }
     });
 });
 //post login session
@@ -102,6 +105,7 @@ app.post('/session',function(req,res,next){
 //글 작성
 app.post('/write',upload,function(req,res,next){
     updown.write(req,res,next);
+    console.log("write");
 });
 
 //글 삭제

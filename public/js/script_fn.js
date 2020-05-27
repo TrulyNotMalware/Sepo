@@ -79,7 +79,7 @@ function paragraphListLoad(result){
 		if(result[item].path != "./"){
 			var filepath = result[item].path.slice(17);
 			console.log(filepath);
-			midhtml = '<img src="' + filepath +'" witdh = 200>'
+			midhtml = '<img src="' + filepath +'" width = 200>'
 		}
 		$(".items").append(starthtml + midhtml + endhtml);
 	}
@@ -107,7 +107,7 @@ function breadcrumbLoad(){
 	$(".breadCrumb").append(Sentence);
 }
 
-function modifyCancle(){
+function modifyCancel(){
 	$("#modify").css("display","none");
 }
 function modifyShow(){
