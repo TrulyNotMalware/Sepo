@@ -120,7 +120,7 @@ function viewArticle(item){
 	$("#viewArticle .paragraph #author").text(currentArticleAuthor);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
-    
+    viewComment();
     //currentArticleIndex for wirte comment
     comment.origin_number.value = currentArticleIndex;
 }
@@ -163,4 +163,22 @@ function delArticle(){
 		alert("본인의 글만 삭제 가능합니다.");
         document.location.reload();
 	}
+}
+
+function viewComment(){
+	console.log("comment 원본글" + currentArticleIndex);
+	$.ajax({
+			url:'/jsonComment',
+			dataType:'json',
+			type:'POST',
+			data: {'msg' :"help"},
+			success: function(result){
+				console.log(result);
+				for(var item in result){
+					if(result.item[origin_num] == currentArticleIndex){
+						$(".commentList").append("<li><p><b>"+result.item[author]+"</b>"+result.item[date]+"</p><p>"+result.item[contents]+"</p></li>");
+					}
+				}
+			}
+	});
 }
