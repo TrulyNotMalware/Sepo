@@ -197,6 +197,10 @@ ul {
 	background-color: rgb(200, 200, 200);
 }
 
+#modify{
+	display: none;
+}
+
 #writeForm p{
 	font-size: 30px;
 	text-align: center;
