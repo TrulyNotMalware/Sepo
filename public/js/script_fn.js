@@ -137,7 +137,7 @@ function viewArticle(item){
 	$("#viewArticle .paragraph #index_article").text(currentArticleIndex);
 	$("#viewArticle .paragraph #author").text(currentArticleAuthor);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
-	$("#viewArticle .paragraph article").text(item.getElementsByTagName("article")[0].innerText);
+	$("#viewArticle .paragraph article").html(item.getElementsByTagName("article")[0].innerHTML);
     viewComment();
     //currentArticleIndex for wirte comment
     comment.origin_number.value = currentArticleIndex;
