@@ -167,6 +167,7 @@ function delArticle(){
 
 function viewComment(){
 	console.log("comment 원본글" + currentArticleIndex);
+	$(".commentList").empty();
 	$.ajax({
 			url:'/jsonComment',
 			dataType:'json',
@@ -175,8 +176,8 @@ function viewComment(){
 			success: function(result){
 				console.log(result);
 				for(var item in result){
-					if(result.item[origin_num] == currentArticleIndex){
-						$(".commentList").append("<li><p><b>"+result.item[author]+"</b>"+result.item[date]+"</p><p>"+result.item[contents]+"</p></li>");
+					if(result[item].origin_num == currentArticleIndex){
+						$(".commentList").append("<li><p><b>"+result[item].author+"</b>"+result[item].date+"</p><p>"+result[item].contents+"</p></li>");
 					}
 				}
 			}
