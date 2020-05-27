@@ -121,6 +121,11 @@ app.post('/writeComment',function(req,res,next){
 })
 
 
+app.post('/getHash',function(req,res){
+    
+    console.log(req.body);
+    res.send(req.body);
+});
 
 //server open on port 3000
 
