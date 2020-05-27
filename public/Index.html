@@ -99,11 +99,12 @@
 			<button onclick="delArticle()">삭제</button>
 			<button onclick='$("#viewArticle").css("display", "none");'>닫기</button>
 		</div>
-		
+
 		<div id="modfiy">
 			<form action="/modify" name="newPasswd"  method="POST">
 				<input type="text" name="password" placeholder="NewPassword">
 				<input type="submit" value="Modify">
+				<button onclick="modifyCancle()">Cancle</button>
 			</form>
 		</div>
 

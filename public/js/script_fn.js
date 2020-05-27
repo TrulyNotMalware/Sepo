@@ -105,7 +105,8 @@ function modifyCancle(){
 function modifyShow(){
 	$("#modify").css("display","block");
 }
-$("#modify").on("click",modifyShow);
+$("#modify").css("display","none");
+$(".changepw").on("click",modifyShow);
 
 function writeCancle(){
 	$("#writeForm").css("display", "none");
@@ -147,7 +148,7 @@ function loginSessionLoad(){
 			}else{
 				sessionName = result.name;
 				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + sessionName);
-				$("#logInOut").append(`<br><a>회원 정보 수정</a>`);
+				$("#logInOut").append(`<br><a href = '/modify' class="changepw">회원 정보 수정</a>`);
 				$(".writeMenu").css("display", "block");
 				$("#modify").append(`<p>${result.name}</p>`);
 			}
