@@ -3,7 +3,7 @@ $(leftMenuLoad);
 $(paragraphLoad);
 $(breadcrumbLoad);
 $(loginSessionLoad);
-$();
+
 
 $(window).on('hashchange',leftMenuLoad);
 $(window).on('hashchange',paragraphLoad);
