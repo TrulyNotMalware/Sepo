@@ -217,6 +217,7 @@ function modify_member_info(req,res){
     
     var id = req.session.email;
     var new_passwd = req.body.password;
+    var new_name = req.body.
 
     mysql.query('UPDATE member SET pwd = ? WHERE id = ?'
         ,[new_passwd,id]

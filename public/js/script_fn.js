@@ -73,15 +73,16 @@ function leftMenuLoad(){
 function paragraphListLoad(result){
 	$(".items").empty();
 	for(var item in result){
-		var starthtml = '<section class="paragraph"><a onclick="viewArticle(this);"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p>';
+		var starthtml = '<section class="paragraph" onclick="viewArticle(this)"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p>';
 		var midhtml = '';
-		var endhtml = '</article></a></section>';
+		var endhtml = '</article></section>';
+		console.log(result[item].path);
 		if(result[item].path != "-1"){
 			var filepath = result[item].path.slice(17);
 			if(filepath.slice(-4).toUpperCase() == ".JPG" || filepath.slice(-4).toUpperCase() == ".PNG" || filepath.slice(-4).toUpperCase() == ".GIF" || filepath.slice(-4).toUpperCase() == "BMP" || filepath.slice(-4).toUpperCase() == "JPEG"){
-				midhtml = '<img src="' + filepath +'" width = 200>';
+				midhtml = '<img src="' + filepath +'" width = 200px>';
 			}
-			midhtml = midhtml + '<a href="'+ filepath +'" download="'+filepath+'">파일 다운로드</a>';
+			midhtml = midhtml + '<a href="' + filepath + '" download="' + filepath + '">파일 다운로드 : ' + filepath + '</a>';
 		}
 		$(".items").append(starthtml + midhtml + endhtml);
 	}
@@ -141,6 +142,7 @@ function viewArticle(item){
 	$("#viewArticle .paragraph #author").text(currentArticleAuthor);
 	$("#viewArticle .paragraph #date").text(item.getElementsByTagName("p")[2].innerText);
 	$("#viewArticle .paragraph article").html(item.getElementsByTagName("article")[0].innerHTML);
+	$("#viewArticle img").css("width","70%");
     viewComment();
     //currentArticleIndex for wirte comment
     comment.origin_number.value = currentArticleIndex;
