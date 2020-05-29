@@ -8,6 +8,8 @@ var cookieParser = require('cookie-parser');
 var nodemailer = require('nodemailer');
 mysql.connect();
 
+var empty = require('is-empty');
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -217,13 +219,22 @@ function modify_member_info(req,res){
     
     var id = req.session.email;
     var new_passwd = req.body.password;
-    var new_name = req.body.
+    var new_name = req.body.newname;
 
-    mysql.query('UPDATE member SET pwd = ? WHERE id = ?'
-        ,[new_passwd,id]
-        ,function(err,result){
-            if(err) console.log(err);
-    });
+    if(!empty(new_name)){
+        mysql.query('UPDATE member SET name = ? WHERE id = ?',[new_name,id]
+            ,function(err,result){
+                if(err) console.log(err);
+            });
+    }
+
+    if(!empty(new_passwd)){
+        mysql.query('UPDATE member SET pwd = ? WHERE id = ?'
+            ,[new_passwd,id]
+            ,function(err,result){
+                if(err) console.log(err);
+        });
+    }
     req.session.destroy();
     res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
 }
