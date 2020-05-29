@@ -13,6 +13,7 @@ var sessionName = '';
 var currentArticleAuthor = '';
 var currentArticleIndex = 0;
 
+
 function mainMenuLoad(){
 	console.log("start");
     fetch("js/TopicList.json").then(function(res){
@@ -128,6 +129,7 @@ $(".writeArticle").on("click", writeArticle);
 
 function writeArticle(){
 	$("#writeForm").css("display", "block");
+    $("#writeForm .hashvalue").val(window.location.hash);
 }
 
 function viewArticle(item){

@@ -105,7 +105,9 @@ app.post('/session',function(req,res,next){
 //글 작성
 app.post('/write',upload,function(req,res,next){
     updown.write(req,res,next);
+    console.log(req.body);
     console.log("write");
+    
 });
 
 //글 삭제
@@ -120,12 +122,6 @@ app.post('/writeComment',function(req,res,next){
     updown.write_comment(req,res,next);
 })
 
-
-app.post('/getHash',function(req,res){
-    
-    console.log(req.body);
-    res.send(req.body);
-});
 
 //server open on port 3000
 

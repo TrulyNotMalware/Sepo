@@ -48,7 +48,6 @@ function download_file(req,res){
 */
 function write(req,res,next){
     
-
     var title;
     var contents;
     var file_path;
@@ -71,6 +70,7 @@ function write(req,res,next){
 
     title = req.body.title;
     contents = req.body.contents;
+    hash = req.body.hashvalue;
     date = moment().format('YYYY-MM-DD HH:mm:ss');
     author = req.session.name;
 
