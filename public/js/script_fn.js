@@ -128,6 +128,7 @@ $(".writeArticle").on("click", writeArticle);
 
 function writeArticle(){
 	$("#writeForm").css("display", "block");
+	
 }
 
 function viewArticle(item){
