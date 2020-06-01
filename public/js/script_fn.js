@@ -3,7 +3,7 @@ $(leftMenuLoad);
 $(paragraphLoad);
 $(breadcrumbLoad);
 $(loginSessionLoad);
-import newform from 'src/components/App.vue';
+//import newform from './src/components/App.vue';
 
 
 $(window).on('hashchange',leftMenuLoad);
@@ -210,15 +210,3 @@ function viewComment(){
 			}
 	});
 }
-
-
-var Modify = new Vue({
-	el: "#modify",
-	components:{
-		newform	
-	},
-	data : {
-		
-	},
-
-});
