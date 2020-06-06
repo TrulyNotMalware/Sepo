@@ -1,12 +1,29 @@
 
+Vue.components('xinput',{
+    template:`
+
+    `,
+    props:{
+
+    },
+    data() {
+        return{
+
+        }
+    },
+    methods:{
+
+    }
+
+});
+
+
 const newform = {
     template:`
-    <div>
-        <form :method="method" :action="action">
-            <input>
-            <input>
-        <form>
-    </div>
+    <form :method="method" :action="action">
+        <xinput></xinput>
+        <input>
+    <form>
     `,
     props:{
         action:{
@@ -22,7 +39,11 @@ const newform = {
         return {
 
         }
+    },
+    methods:{
+
     }
+
 
 };
 

@@ -3,7 +3,7 @@ $(leftMenuLoad);
 $(paragraphLoad);
 $(breadcrumbLoad);
 $(loginSessionLoad);
-//import newform from './src/components/App.vue';
+
 
 
 $(window).on('hashchange',leftMenuLoad);
