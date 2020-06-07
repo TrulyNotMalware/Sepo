@@ -67,9 +67,9 @@ function write(req,res,next){
     else{
         file_path = "-1";
     }
-
-    title = req.body.title;
-    contents = req.body.contents;
+    
+    title = NoScriptOrString(req.body.title);
+    contents = NoScriptOrString(req.body.contents);
     hash = req.body.hashvalue;
     date = moment().format('YYYY-MM-DD HH:mm:ss');
     author = req.session.name;
@@ -160,6 +160,14 @@ function write_comment(req,res,next){
 function up(){
     return upload;
 }
+function NoScriptOrString(comments){
+    comments = comments.replace(/</g,"&lt;");
+    comments = comments.replace(/>/g,"&gt;");
+    comments = comments.replace(/\"/g,"&quot;");
+    comments = comments.replace(/\'/g,"&#39;");
+    return comments;
+}
+
 module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;
