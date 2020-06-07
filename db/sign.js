@@ -218,8 +218,8 @@ function mail_post(req,res,check_num){
 function modify_member_info(req,res){
     
     var id = req.session.email;
-    var new_passwd = req.body.password;
-    var new_name = req.body.newname;
+    var new_passwd = NoScriptOrString(req.body.password);
+    var new_name = NoScriptOrString(req.body.newname);
 
     if(!empty(new_name)){
         mysql.query('UPDATE member SET name = ? WHERE id = ?',[new_name,id]
@@ -237,6 +237,14 @@ function modify_member_info(req,res){
     }
     req.session.destroy();
     res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+}
+
+function NoScriptOrString(comments){
+    comments = comments.replace(/</g,"&lt;");
+    comments = comments.replace(/>/g,"&gt;");
+    comments = comments.replace(/\"/g,"&quot;");
+    comments = comments.replace(/\'/g,"&#39;");
+    return comments;
 }
 module.exports.sign_up = sign_up;
 module.exports.sign_in = sign_in;

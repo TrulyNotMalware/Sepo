@@ -153,7 +153,6 @@ function write_comment(req,res,next){
            res.redirect("/");
         }
     }
-
     
     
 }
