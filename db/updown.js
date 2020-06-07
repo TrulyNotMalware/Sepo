@@ -67,7 +67,7 @@ function write(req,res,next){
     else{
         file_path = "-1";
     }
-    
+
     title = NoScriptOrString(req.body.title);
     contents = NoScriptOrString(req.body.contents);
     hash = req.body.hashvalue;
@@ -125,9 +125,9 @@ function write_comment(req,res,next){
     var author;
     var origin_num;
     
-    contents = req.body.comment;
+    contents = NoScriptOrString(req.body.comment);
     date = moment().format('YYYY-MM-DD HH:mm:ss');
-    author = req.session.name;
+    author = NoScriptOrString(req.session.name);
     origin_num = req.body.origin_number;
 
     
