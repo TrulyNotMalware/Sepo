@@ -122,7 +122,6 @@ app.post('/writeComment',function(req,res,next){
     updown.write_comment(req,res,next);
 })
 
-
 //server open on port 3000
 
 app.get('/',function(req,res){
