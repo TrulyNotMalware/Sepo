@@ -157,51 +157,6 @@ function write_comment(req,res,next){
     
 }
 
-function search_article(req,res){
-    
-    var option = req.body.option;
-    var value = "%" + req.body.value + "%";
-    //var value = req.body.value;
-    console.log("option is " + option);
-    console.log("value is " + value);
-
-   if(option == "title"){ 
-    mysql.query('SELECT * from entries.Programing_C where title LIKE ?',value
-        ,function(err,result){
-            if(err) console.log(err);
-            else {
-                console.log(result);
-                res.send(result);
-            }
-        });
-   }
-   else if(option == "contents"){
-   
-    mysql.query('SELECT * from entries.Programing_C where contents LIKE ?',value
-        ,function(err,result){
-            if(err) console.log(err);
-            else {
-                console.log(result);
-                res.send(result);
-            }
-        });
-   }
-   else if(option == "author"){
-   
-    mysql.query('SELECT * from entries.Programing_C where author LIKE ?',value
-        ,function(err,result){
-            if(err) console.log(err);
-            else {
-                console.log(result);
-                res.send(result);
-            }
-        });
-   }
-   else{
-        console.log("err");
-   }
-    
-}
 function up(){
     return upload;
 }
@@ -217,4 +172,3 @@ module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;
 module.exports.write_comment = write_comment;
-module.exports.search_article = search_article;

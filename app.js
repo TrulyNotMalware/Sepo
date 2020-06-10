@@ -122,11 +122,6 @@ app.post('/writeComment',function(req,res,next){
     updown.write_comment(req,res,next);
 })
 
-//search article
-app.post('/search',function(req,res){
-
-    updown.search_article(req,res);
-});
 
 //server open on port 3000
 
