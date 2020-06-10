@@ -41,6 +41,17 @@
 					<p id="video">영상</p>
 				</div>
 			</div>
+			<div class="search">
+				<form action="/search" method="post">
+					<select name="option">
+						<option value="title">제목</option>
+						<option value="contents">내용</option>
+						<option value="author">작성자</option>
+					</select>
+					<input type="text" name="value">
+					<input type="submit" value="검색">
+				</form>
+			</div>
 			<div class="items">
 				
 			</div>
@@ -113,11 +124,11 @@
 		</div>
 
 
-		<div>
+		<footer>
 			<p>
 				copyright : 공부 WEB STUDY(a.k.a 술을 위한 핑계)
 			</p>
-		</div>
+		</footer>
 		<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
 		<script src="js/script_fn.js"></script>
         <script src="src/components/View.js"></script>
