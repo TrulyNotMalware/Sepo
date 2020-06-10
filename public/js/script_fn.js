@@ -78,7 +78,6 @@ function paragraphListLoad(result){
 		var starthtml = '<section class="paragraph" onclick="viewArticle(this)"><h1>'+ result[item].title +'</h1><p id="index_article">'+result[item].number+'</p><p id="author">글쓴이: '+ result[item].author +'</p><p id="date">마지막 수정일: '+ result[item].date+'</p><article><p>'+ result[item].contents +'</p>';
 		var midhtml = '';
 		var endhtml = '</article></section>';
-		console.log(result[item].path);
 		if(result[item].path != "-1"){
 			var filepath = result[item].path.slice(17);
 			if(filepath.slice(-4).toUpperCase() == ".JPG" || filepath.slice(-4).toUpperCase() == ".PNG" || filepath.slice(-4).toUpperCase() == ".GIF" || filepath.slice(-4).toUpperCase() == "BMP" || filepath.slice(-4).toUpperCase() == "JPEG"){
@@ -101,6 +100,20 @@ function paragraphLoad(){
 		}
 	});
 }
+
+function searchLoad(){
+	$.ajax({
+		url:'/search',
+		dataType:'json',
+		type:'POST',
+		data: {'msg' :"help"},
+		success: function(result){
+			paragraphListLoad(result);
+		}
+	});
+}
+
+$("#search_form").submit(searchLoad);
 
 function breadcrumbLoad(){
 	$(".breadCrumb").empty();
@@ -210,3 +223,4 @@ function viewComment(){
 			}
 	});
 }
+
