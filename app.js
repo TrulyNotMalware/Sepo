@@ -102,7 +102,7 @@ app.post('/session',function(req,res,next){
 
     res.send(req.session);
 })
-//글 작성
+//write article
 app.post('/write',upload,function(req,res,next){
     updown.write(req,res,next);
     console.log(req.body);
@@ -110,18 +110,23 @@ app.post('/write',upload,function(req,res,next){
     
 });
 
-//글 삭제
+//delete article
 app.post('/delarticle',function(req,res,next){
     updown.del_txt(req,res,next);
 });
 
 
-//댓글 작성
+//write comment
 app.post('/writeComment',function(req,res,next){
    
     updown.write_comment(req,res,next);
 })
 
+//search article
+app.post('/search',function(req,res){
+
+    updown.search_article(req,res);
+});
 
 //server open on port 3000
 
