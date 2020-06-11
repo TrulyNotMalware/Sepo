@@ -172,6 +172,7 @@ function loginSessionLoad(){
 		type:'POST',
 		data: {'msg' :"help"},
 		success: function(result){
+            $(".userEmail").val(result.email);
 			if(!result.name){
 				sessionName = '';
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
