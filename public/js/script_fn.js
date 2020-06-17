@@ -235,3 +235,5 @@ function search(){
 		if(item.innerText.indexOf($(".search>input").val()) != -1) $(item).show();
 	}
 }
+
+$(".search > input").on("change keyup paste", search());
