@@ -6,7 +6,7 @@ function send_join_message(req,res,tagId){
     
     else if(tagId == "2") res.send('<script type = "text/javascript">alert("id를 이메일 형식으로 제출하십시오."); document.location.href = "/login.html#!sign_up"</script>');
     
-    else if(tagId == "3")res.send('<script type = "text/javascript">alert("이미 사용 중인 아이디 입니다."); document.location.href = "/login.html#!sign_up"</script>');
+    else if(tagId == "3")res.send('<script type = "text/javascript">alert("이미 사용 중인 아이디 혹은 닉네임  입니다."); document.location.href = "/login.html#!sign_up"</script>');
     
     else if(tagId == "4")res.send('<script type = "text/javascript">alert("비밀번호와 비밀번호 확인이 일치하지 않습니다."); document.location.href = "/login.html#!sign_up"</script>');
 

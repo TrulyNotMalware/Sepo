@@ -40,9 +40,9 @@ function sign_up (req,res){
          //joinErr2
             if(user_id.match(regExp) != null){
                //joinErr3
-               mysql.query('SELECT id FROM member',function(err,result){
+               mysql.query('SELECT id,name FROM member',function(err,result){
                  for(var i in result){
-                        if(result[i].id == user_id) id_check += 1;
+                        if(result[i].id == user_id || result[i].name == user_name) id_check += 1;
                     }
                  if(id_check == 0){
                      //joinErr4
@@ -220,8 +220,12 @@ function modify_member_info(req,res){
     var id = req.session.email;
     var new_passwd = NoScriptOrString(req.body.password);
     var new_name = NoScriptOrString(req.body.newname);
+    
+    
 
     if(!empty(new_name)){
+        mysql.query();
+
         mysql.query('UPDATE member SET name = ? WHERE id = ?',[new_name,id]
             ,function(err,result){
                 if(err) console.log(err);
