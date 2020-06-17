@@ -224,3 +224,14 @@ function viewComment(){
 			}
 	});
 }
+
+function search(){
+//	console.log($(".search>select option:selected").val());
+//	console.log($(".search>input").val());
+	$(".items > section").hide();
+	var items = $(".items > section");
+//	console.log(items);
+	for(var item of items){
+		if(item.innerText.indexOf($(".search>input").val()) != -1) $(item).show();
+	}
+}
