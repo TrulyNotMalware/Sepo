@@ -236,4 +236,6 @@ function search(){
 	}
 }
 
-$(".search > input").on("change keyup paste", search());
+$(".search > input").on("change keyup paste", function(){
+	search();
+});
