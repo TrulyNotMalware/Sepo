@@ -225,6 +225,4 @@ function viewComment(){
 	});
 }
 
-function e(){
 
-}
