@@ -225,6 +225,3 @@ function viewComment(){
 	});
 }
 
-function e(){
-
-}
