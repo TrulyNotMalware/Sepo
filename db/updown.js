@@ -1,1 +1,174 @@
-var _0x58a2=['session','contents','DELETE\x20FROM\x20entries.Programing_C_comment\x20where\x20origin_num\x20=\x20?','/root/wp/db/mysql.js','number','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22댓글을\x20작성하려면\x20로그인\x20해주세요.\x22);\x20document.location.href\x20=\x20\x22/\x22</script>','name','replace','format','exports','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22빈칸으로\x20제출\x20할\x20수\x20없습니다.\x22);\x20document.location.href\x20=\x20\x22/\x22</script>','log','path','&#39;','files','YYYY-MM-DD_HH:mm:ss','send','INSERT\x20INTO\x20entries.Programing_C_comment\x20(contents,date,author,origin_num)\x20VALUES\x20(?,?,?,?)','write_comment','hashvalue','array','contents:\x20','date:\x20','comment','YYYY-MM-DD\x20HH:mm:ss','del_txt','INSERT\x20INTO\x20entries.Programing_C\x20(title,contents,path,date,author)\x20VALUES\x20(?,?,?,?,?)','&quot;','mime-types','&lt;','multer','query','moment','DELETE\x20FROM\x20entries.Programing_C\x20where\x20number\x20=\x20?','&gt;','origin_num:','body','origin_number','title'];(function(_0x3f09bb,_0x58a279){var _0x4a6cd3=function(_0x2340f3){while(--_0x2340f3){_0x3f09bb['push'](_0x3f09bb['shift']());}};_0x4a6cd3(++_0x58a279);}(_0x58a2,0x16d));var _0x4a6c=function(_0x3f09bb,_0x58a279){_0x3f09bb=_0x3f09bb-0x0;var _0x4a6cd3=_0x58a2[_0x3f09bb];return _0x4a6cd3;};var moment=require(_0x4a6c('0x12'));var multer=require(_0x4a6c('0x10'));var mime=require(_0x4a6c('0xe'));var mysql=require(_0x4a6c('0x1c'));var storage=multer['diskStorage']({'destination':function(_0x5a461d,_0x5d0005,_0x4ad1a5){_0x4ad1a5(null,'/root/wp/download');},'filename':function(_0x5d5e08,_0x28d5a4,_0x426672){_0x426672(null,moment()[_0x4a6c('0x21')](_0x4a6c('0x1'))+':'+_0x28d5a4['originalname']);}});var maxFileSize=0x1e*0x3e8*0x3e8;var upload=multer({'storage':storage,'limits':{'files':0xc,'fileSize':maxFileSize}})[_0x4a6c('0x6')](_0x4a6c('0x0'),0xc);function write(_0x2ab7da,_0x7fd2bc,_0x546c70){var _0x140255;var _0x218099;var _0x36cdff;var _0xf80a10;var _0x2046ca;var _0x4fcdd7=0x1;if(_0x2ab7da[_0x4a6c('0x0')][0x0]!=undefined){_0x36cdff=_0x2ab7da[_0x4a6c('0x0')][0x0][_0x4a6c('0x25')];while(0x1){if(_0x2ab7da[_0x4a6c('0x0')][_0x4fcdd7]==undefined)break;_0x36cdff=_0x36cdff+','+_0x2ab7da[_0x4a6c('0x0')][_0x4fcdd7][_0x4a6c('0x25')];_0x4fcdd7++;}}else{_0x36cdff='-1';}_0x140255=NoScriptOrString(_0x2ab7da['body'][_0x4a6c('0x18')]);_0x218099=NoScriptOrString(_0x2ab7da[_0x4a6c('0x16')][_0x4a6c('0x1a')]);hash=_0x2ab7da['body'][_0x4a6c('0x5')];_0xf80a10=moment()[_0x4a6c('0x21')](_0x4a6c('0xa'));_0x2046ca=_0x2ab7da[_0x4a6c('0x19')][_0x4a6c('0x1f')];if(_0x140255==''||_0x218099==''){_0x7fd2bc['send']('<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22빈칸\x20없이\x20작성해주세요.\x22);\x20document.location.href\x20=\x20\x22/\x22</script>');}else{mysql['query'](_0x4a6c('0xc'),[_0x140255,_0x218099,_0x36cdff,_0xf80a10,_0x2046ca],function(_0xd052d8,_0x5a1ad6){if(_0xd052d8)console['log'](_0xd052d8);else{if(_0x36cdff!='-1'){upload(_0x2ab7da,_0x7fd2bc,function(_0x286410,_0x5cea02){if(_0x286410)console['log'](_0x286410);});}_0x7fd2bc['send']('<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22글이\x20작성\x20되었습니다\x22);\x20document.location.href\x20=\x20\x22/\x22</script>');}});}};function del_txt(_0xaa106d,_0x3e21e4,_0x4984fc){var _0x2503d3=_0xaa106d[_0x4a6c('0x16')][_0x4a6c('0x1d')];var _0x33d656=_0xaa106d[_0x4a6c('0x19')]['email'];mysql[_0x4a6c('0x11')](_0x4a6c('0x13'),_0x2503d3,function(_0x45e465,_0x54f488){if(_0x45e465)console[_0x4a6c('0x24')](_0x45e465);else{mysql[_0x4a6c('0x11')](_0x4a6c('0x1b'),_0x2503d3,function(_0x3274e6,_0x57ac34){if(_0x3274e6)console[_0x4a6c('0x24')](_0x3274e6);});}});}function write_comment(_0x29db1f,_0x4122f6,_0x190059){var _0x2866a7;var _0x129d30;var _0x2f7c34;var _0x180430;_0x2866a7=NoScriptOrString(_0x29db1f[_0x4a6c('0x16')][_0x4a6c('0x9')]);_0x129d30=moment()[_0x4a6c('0x21')](_0x4a6c('0xa'));_0x2f7c34=NoScriptOrString(_0x29db1f[_0x4a6c('0x19')][_0x4a6c('0x1f')]);_0x180430=_0x29db1f[_0x4a6c('0x16')][_0x4a6c('0x17')];console['log'](_0x4a6c('0x7')+_0x2866a7);console[_0x4a6c('0x24')](_0x4a6c('0x8')+_0x129d30);console[_0x4a6c('0x24')]('author:\x20'+_0x2f7c34);console[_0x4a6c('0x24')](_0x4a6c('0x15')+_0x180430);if(_0x2f7c34==undefined){_0x4122f6[_0x4a6c('0x2')](_0x4a6c('0x1e'));}else{if(_0x2866a7==''){_0x4122f6[_0x4a6c('0x2')](_0x4a6c('0x23'));}else{mysql[_0x4a6c('0x11')](_0x4a6c('0x3'),[_0x2866a7,_0x129d30,_0x2f7c34,_0x180430],function(_0xaf9298,_0x3c98c6){if(_0xaf9298)console[_0x4a6c('0x24')](_0xaf9298);});_0x4122f6['redirect']('/');}}}function up(){return upload;}function NoScriptOrString(_0x1bd625){_0x1bd625=_0x1bd625[_0x4a6c('0x20')](/</g,_0x4a6c('0xf'));_0x1bd625=_0x1bd625[_0x4a6c('0x20')](/>/g,_0x4a6c('0x14'));_0x1bd625=_0x1bd625[_0x4a6c('0x20')](/\"/g,_0x4a6c('0xd'));_0x1bd625=_0x1bd625[_0x4a6c('0x20')](/\'/g,_0x4a6c('0x26'));return _0x1bd625;}module['exports']['write']=write;module[_0x4a6c('0x22')]['up']=up;module['exports'][_0x4a6c('0xb')]=del_txt;module[_0x4a6c('0x22')][_0x4a6c('0x4')]=write_comment;
+var moment = require('moment');
+var multer = require('multer');
+var mime = require('mime-types');
+
+var mysql = require('/root/wp/db/mysql.js');
+var storage = multer.diskStorage({
+
+    destination : function(req,file,cb){
+        cb(null,'/root/wp/download');
+    },
+    filename : function(req,file,cb){
+
+
+        cb(null,moment().format('YYYY-MM-DD_HH:mm:ss')+":"+file.originalname);
+    }
+    
+    
+});
+
+var maxFileSize= 30*1000*1000;
+var upload = multer({storage : storage,limits:{files:12, fileSize: maxFileSize}}).array('files',12);
+
+/*
+//upload file
+function upload_file(req,res,next){
+    upload(req,res,function(err){});
+      
+    
+    //console.log(req); 
+    res.send('<script type = "text/javascript">alert("파일이 업로드 되었습니다."); document.location.href = "/upload.html"</script>');
+
+};
+
+//download file
+function download_file(req,res){
+
+    var file = './download/test.txt';
+
+    var filename = path.basename(file);
+    var mimetype = mime.lookup(file);
+
+    res.setHeader('Content-disposition','attachment; filename = ' + filename);
+    res.setHeader('Content-type',mimetype);
+
+    var filestream = fs.createReadStream(file);
+    filestream.pipe(res);
+};
+*/
+function write(req,res,next){
+    
+    var title;
+    var contents;
+    var file_path;
+    var date;
+    var author;
+    var i = 1;
+
+    if(req.files[0] != undefined){
+
+        file_path = req.files[0].path;
+        while(1){
+            if(req.files[i] == undefined) break;
+            file_path = file_path + "," + req.files[i].path;
+            i++;
+        }
+    }
+    else{
+        file_path = "-1";
+    }
+
+    title = NoScriptOrString(req.body.title);
+    contents = NoScriptOrString(req.body.contents);
+    hash = req.body.hashvalue;
+    date = moment().format('YYYY-MM-DD HH:mm:ss');
+    author = req.session.name;
+
+    if(title == "" || contents ==""){
+    
+        res.send('<script type = "text/javascript">alert("빈칸 없이 작성해주세요."); document.location.href = "/"</script>');
+
+    }
+    else{
+        mysql.query('INSERT INTO entries.Programing_C (title,contents,path,date,author) VALUES (?,?,?,?,?)'
+        ,[title,contents,file_path,date,author],
+        function(error,result){
+            if(error) console.log(error);
+            else {
+
+                if(file_path != "-1"){
+
+                    upload(req,res,function(err,result){
+                        if(err) console.log(err);
+                    });
+                }
+                res.send('<script type = "text/javascript">alert("글이 작성 되었습니다"); document.location.href = "/"</script>');
+            }
+        });
+    }
+
+};
+function del_txt(req,res,next){
+   
+    var number = req.body.number;
+    var author = req.session.email;
+
+
+    mysql.query('DELETE FROM entries.Programing_C where number = ?',number,function(err,result){
+        if(err) console.log(err);
+        else{
+                  
+            mysql.query('DELETE FROM entries.Programing_C_comment where origin_num = ?',number,function(err,result){
+            if(err) console.log(err);
+            });
+        }
+    });
+
+    
+   
+}
+
+function write_comment(req,res,next){
+    
+    var contents;
+    var date;
+    var author;
+    var origin_num;
+    
+    contents = NoScriptOrString(req.body.comment);
+    date = moment().format('YYYY-MM-DD HH:mm:ss');
+    author = NoScriptOrString(req.session.name);
+    origin_num = req.body.origin_number;
+
+    
+    console.log("contents: "+ contents);
+    console.log("date: "+ date);
+    console.log("author: "+ author);
+    console.log("origin_num:"+ origin_num);
+   
+    if(author == undefined){
+            res.send('<script type = "text/javascript">alert("댓글을 작성하려면 로그인 해주세요."); document.location.href = "/"</script>');
+    }
+    else{
+        if(contents == ""){
+            res.send('<script type = "text/javascript">alert("빈칸으로 제출 할 수 없습니다."); document.location.href = "/"</script>');
+        } 
+        else{
+            mysql.query('INSERT INTO entries.Programing_C_comment (contents,date,author,origin_num) VALUES (?,?,?,?)'
+                    ,[contents,date,author,origin_num]
+                    ,function(err,result){
+                    if(err) console.log(err);
+                    });
+
+           res.redirect("/");
+        }
+    }
+    
+    
+}
+
+function up(){
+    return upload;
+}
+function NoScriptOrString(comments){
+    comments = comments.replace(/</g,"&lt;");
+    comments = comments.replace(/>/g,"&gt;");
+    comments = comments.replace(/\"/g,"&quot;");
+    comments = comments.replace(/\'/g,"&#39;");
+    return comments;
+}
+
+module.exports.write = write;
+module.exports.up = up;
+module.exports.del_txt = del_txt;
+module.exports.write_comment = write_comment;

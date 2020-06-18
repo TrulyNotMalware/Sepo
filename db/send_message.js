@@ -1,1 +1,47 @@
-var _0x100c=['<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22잘못된\x20인증번호\x20입니다.\x22);\x20document.location.href\x20=\x20\x22/login.html#!email_auth\x22</script>','/login.html#!sign_up','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22id를\x20이메일\x20형식으로\x20제출하십시오.\x22);\x20document.location.href\x20=\x20\x22/login.html#!sign_up\x22</script>','id_active','send_join_message','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22존재하지\x20않는\x20id\x20입니다.\x22);\x20document.location.href\x20=\x20\x22/login.html#!email_auth\x22</script>','success','send','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22로그인\x20성공!!.\x22);\x20document.location.href\x20=\x20\x22/\x22</script>','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22비밀번호와\x20비밀번호\x20확인이\x20일치하지\x20않습니다.\x22);\x20document.location.href\x20=\x20\x22/login.html#!sign_up\x22</script>','/login.html#!email_auth','send_email_message','no_active','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22계정이\x20\x20활성화\x20되었습니다.\x22);\x20document.location.href\x20=\x20\x22/login.html\x22</script>','no_id_auth','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22회원가입\x20성공!!.\x22);\x20document.location.href\x20=\x20\x22/\x22</script>','wrong_pw','exports','<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22공백없이\x20제출하십시오.\x22);\x20document.location.href\x20=\x20\x22/login.html#!sign_up\x22</script>','/login.html','wrong_auth','redirect'];(function(_0xee13aa,_0x100c4c){var _0x3ceaa4=function(_0x2c7360){while(--_0x2c7360){_0xee13aa['push'](_0xee13aa['shift']());}};_0x3ceaa4(++_0x100c4c);}(_0x100c,0xa2));var _0x3cea=function(_0xee13aa,_0x100c4c){_0xee13aa=_0xee13aa-0x0;var _0x3ceaa4=_0x100c[_0xee13aa];return _0x3ceaa4;};function send_join_message(_0x5c863d,_0xc5c09e,_0x31f714){if(_0x31f714=='1')_0xc5c09e[_0x3cea('0x15')](_0x3cea('0xa'));else if(_0x31f714=='2')_0xc5c09e[_0x3cea('0x15')](_0x3cea('0x10'));else if(_0x31f714=='3')_0xc5c09e[_0x3cea('0x15')]('<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22이미\x20사용\x20중인\x20아이디\x20혹은\x20닉네임\x20\x20입니다.\x22);\x20document.location.href\x20=\x20\x22/login.html#!sign_up\x22</script>');else if(_0x31f714=='4')_0xc5c09e[_0x3cea('0x15')](_0x3cea('0x1'));else if(_0x31f714==_0x3cea('0x14'))_0xc5c09e[_0x3cea('0x15')](_0x3cea('0x7'));else _0xc5c09e[_0x3cea('0xd')](_0x3cea('0xf'));};function send_login_message(_0x3a0db0,_0x10dc11,_0x1310d8){if(_0x1310d8==_0x3cea('0x14'))_0x10dc11[_0x3cea('0x15')](_0x3cea('0x0'));else if(_0x1310d8==_0x3cea('0x8'))_0x10dc11[_0x3cea('0x15')]('<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22비밀번호가\x20틀렸습니다.\x20\x22);\x20document.location.href\x20=\x20\x22/login.html\x22</script>');else if(_0x1310d8=='no_id')_0x10dc11[_0x3cea('0x15')]('<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22존재하지\x20않는\x20id\x20입니다.\x22);\x20document.location.href\x20=\x20\x22/login.html\x22</script>');else if(_0x1310d8==_0x3cea('0x4'))_0x10dc11[_0x3cea('0x15')]('<script\x20type\x20=\x20\x22text/javascript\x22>alert(\x22이메일\x20인증을\x20통해\x20계정을\x20활성화\x20하세요.\x22);\x20document.location.href\x20=\x20\x22/login.html\x22</script>');else _0x10dc11[_0x3cea('0xd')](_0x3cea('0xb'));}function send_email_message(_0x4aa29a,_0x49b1da,_0x4f59df){if(_0x4f59df==_0x3cea('0x11'))_0x49b1da[_0x3cea('0x15')](_0x3cea('0x5'));else if(_0x4f59df==_0x3cea('0xc'))_0x49b1da[_0x3cea('0x15')](_0x3cea('0xe'));else if(_0x4f59df=_0x3cea('0x6'))_0x49b1da[_0x3cea('0x15')](_0x3cea('0x13'));else _0x49b1da[_0x3cea('0xd')](_0x3cea('0x2'));}module['exports']['send_login_message']=send_login_message;module[_0x3cea('0x9')][_0x3cea('0x3')]=send_email_message;module[_0x3cea('0x9')][_0x3cea('0x12')]=send_join_message;
+//join
+
+function send_join_message(req,res,tagId){
+    
+    if(tagId == "1" )res.send('<script type = "text/javascript">alert("공백없이 제출하십시오."); document.location.href = "/login.html#!sign_up"</script>');
+    
+    else if(tagId == "2") res.send('<script type = "text/javascript">alert("id를 이메일 형식으로 제출하십시오."); document.location.href = "/login.html#!sign_up"</script>');
+    
+    else if(tagId == "3")res.send('<script type = "text/javascript">alert("이미 사용 중인 아이디 혹은 닉네임  입니다."); document.location.href = "/login.html#!sign_up"</script>');
+    
+    else if(tagId == "4")res.send('<script type = "text/javascript">alert("비밀번호와 비밀번호 확인이 일치하지 않습니다."); document.location.href = "/login.html#!sign_up"</script>');
+
+    else if(tagId == "success")res.send('<script type = "text/javascript">alert("회원가입 성공!!."); document.location.href = "/"</script>');
+    
+    else res.redirect('/login.html#!sign_up');
+};
+//login
+function send_login_message(req,res,tagId){
+
+    if(tagId == "success") res.send('<script type = "text/javascript">alert("로그인 성공!!."); document.location.href = "/"</script>');
+
+    else if(tagId == "wrong_pw")res.send('<script type = "text/javascript">alert("비밀번호가 틀렸습니다. "); document.location.href = "/login.html"</script>');
+
+    else if(tagId == "no_id") res.send('<script type = "text/javascript">alert("존재하지 않는 id 입니다."); document.location.href = "/login.html"</script>');
+
+    else if(tagId == "no_active") res.send('<script type = "text/javascript">alert("이메일 인증을 통해 계정을 활성화 하세요."); document.location.href = "/login.html"</script>');
+    
+    else res.redirect('/login.html') ;
+}
+
+
+//email_auth
+function send_email_message(req,res,tagId){
+
+    if(tagId == "id_active") res.send('<script type = "text/javascript">alert("계정이  활성화 되었습니다."); document.location.href = "/login.html"</script>');
+
+    else if(tagId == "wrong_auth")res.send('<script type = "text/javascript">alert("잘못된 인증번호 입니다."); document.location.href = "/login.html#!email_auth"</script>');
+
+    else if(tagId = "no_id_auth")res.send('<script type = "text/javascript">alert("존재하지 않는 id 입니다."); document.location.href = "/login.html#!email_auth"</script>');
+    
+    else res.redirect('/login.html#!email_auth');
+}
+
+
+module.exports.send_login_message = send_login_message;
+module.exports.send_email_message = send_email_message;
+module.exports.send_join_message = send_join_message;

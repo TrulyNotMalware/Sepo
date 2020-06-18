@@ -1,1 +1,93 @@
-var _0x1321=['/join','sign_up','\x0a<div\x20class\x20=\x22sign_up\x22><a\x20href\x20=\x20\x22#!sign_up\x22\x20onclick\x20=\x20\x22fetchPage(\x22list.json\x22,\x22sign_up\x22)\x22>','.firstComment','</label></li><li><input\x20type=\x22text\x22\x20class=\x22text\x22\x20name=\x22third_post\x22></li>','then','./js/list.json','/email_auth','.first_comment','\x0a<div\x20class\x20=\x22email_auth\x22><a\x20href\x20=\x20\x22#!email_auth\x22\x20onclick\x20=\x20\x22fetchPage(\x22list.json\x22,\x22email_auth\x22)\x22>','article','text','querySelector','reload','.submit','\x0a<li><label>','<form\x20name=\x22login_box\x22\x20action=\x22/email_auth\x22\x20method=\x22POST\x22>','substr','log','</div></a></div>','action','hash','menu','innerHTML','.sub_title','login','parse','.second_comment','html','email_auth'];(function(_0x3cc305,_0x132171){var _0x3cc031=function(_0x5be03e){while(--_0x5be03e){_0x3cc305['push'](_0x3cc305['shift']());}};_0x3cc031(++_0x132171);}(_0x1321,0x163));var _0x3cc0=function(_0x3cc305,_0x132171){_0x3cc305=_0x3cc305-0x0;var _0x3cc031=_0x1321[_0x3cc305];return _0x3cc031;};function Init(){document['location'][_0x3cc0('0x12')]();}function fetchPage(_0x43b74a,_0x491310){fetch(_0x43b74a)[_0x3cc0('0xa')](function(_0x2aa8bc){_0x2aa8bc[_0x3cc0('0x10')]()[_0x3cc0('0xa')](function(_0x43faa7){var _0x2f6633=JSON[_0x3cc0('0x1')](_0x43faa7);var _0x4e1a77='';var _0x228a16='';var _0x46f80b='';console[_0x3cc0('0x17')](_0x43b74a);console[_0x3cc0('0x17')](_0x491310);$(_0x3cc0('0x8'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x0')][0x0]);if(_0x491310==_0x3cc0('0x0')){$(_0x3cc0('0x1d'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x0')][0x0]);$(_0x3cc0('0xd'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x0')][0x1]);$(_0x3cc0('0x2'))['html'](_0x2f6633['login'][0x2]);$(_0x3cc0('0x13'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x0')][0x3]);_0x228a16+=_0x3cc0('0x7');_0x228a16+=_0x2f6633[_0x3cc0('0x0')][0x4];_0x228a16+=_0x3cc0('0x18');_0x228a16+=_0x3cc0('0xe');_0x228a16+=_0x2f6633[_0x3cc0('0x0')][0x5];_0x228a16+='</div></a></div>';login_box['action']='/sign_in';}else if(_0x491310==_0x3cc0('0x6')){$('.sub_title')[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x6')][0x0]);$(_0x3cc0('0xd'))[_0x3cc0('0x3')](_0x2f6633['sign_up'][0x1]);$('.second_comment')[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x6')][0x2]);$(_0x3cc0('0x13'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x6')][0x5]);_0x228a16+=_0x3cc0('0xe');_0x228a16+=_0x2f6633[_0x3cc0('0x6')][0x6];_0x228a16+=_0x3cc0('0x18');_0x4e1a77+=_0x3cc0('0x14');_0x4e1a77+=_0x2f6633[_0x3cc0('0x6')][0x3];_0x4e1a77+=_0x3cc0('0x9');_0x4e1a77+=_0x3cc0('0x14');_0x4e1a77+=_0x2f6633[_0x3cc0('0x6')][0x4];_0x4e1a77+='</label></li><li><input\x20type=\x22text\x22\x20class=\x22text\x22\x20name=\x22forth_post\x22></li>';_0x46f80b+='<form\x20name=\x22login_box\x22\x20action=\x22/sign_up\x22\x20method=\x22POST\x22>';login_box[_0x3cc0('0x19')]=_0x3cc0('0x5');}else if(_0x491310==_0x3cc0('0x4')){$(_0x3cc0('0x1d'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x4')][0x0]);$(_0x3cc0('0xd'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x4')][0x1]);$('.second_comment')[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x4')][0x2]);$(_0x3cc0('0x13'))[_0x3cc0('0x3')](_0x2f6633[_0x3cc0('0x4')][0x3]);_0x228a16+=_0x3cc0('0x7');_0x228a16+=_0x2f6633[_0x3cc0('0x4')][0x4];_0x228a16+=_0x3cc0('0x18');_0x46f80b+=_0x3cc0('0x15');login_box[_0x3cc0('0x19')]=_0x3cc0('0xc');}else{}document[_0x3cc0('0x11')](_0x3cc0('0xf'))[_0x3cc0('0x1c')]=_0x4e1a77;document[_0x3cc0('0x11')](_0x3cc0('0x1b'))[_0x3cc0('0x1c')]=_0x228a16;});});}if(location[_0x3cc0('0x1a')]){fetchPage('./js/list.json',location[_0x3cc0('0x1a')][_0x3cc0('0x16')](0x2));}else{fetchPage(_0x3cc0('0xb'),_0x3cc0('0x0'));}
+
+    function Init(){
+            document.location.reload();
+    }
+    
+    
+    function fetchPage(name,openPage){
+        fetch(name).then(function(response){
+            response.text().then(function(text){
+                var data = JSON.parse(text);
+                var article = "";
+                var menu = "";
+                var paction = "";
+
+                console.log(name);
+                console.log(openPage);
+                $('.firstComment').html(data.login[0]);
+                
+                if(openPage == "login"){
+                    $('.sub_title').html(data.login[0]);
+                    $('.first_comment').html(data.login[1]);
+                    $('.second_comment').html(data.login[2]);
+                    $('.submit').html(data.login[3]);
+
+                    menu += '\n<div class ="sign_up"><a href = "#!sign_up" onclick = "fetchPage("list.json","sign_up")">';
+                    menu += data.login[4];
+                    menu += '</div></a></div>';
+                    menu += '\n<div class ="email_auth"><a href = "#!email_auth" onclick = "fetchPage("list.json","email_auth")">';
+                    menu += data.login[5];
+                    menu += '</div></a></div>';
+
+                    login_box.action = "/sign_in";
+
+
+
+                }
+
+                else if(openPage == "sign_up"){
+                     
+                    $('.sub_title').html(data.sign_up[0]);
+                    $('.first_comment').html(data.sign_up[1]);
+                    $('.second_comment').html(data.sign_up[2]);
+                    $('.submit').html(data.sign_up[5]);
+                   
+                    menu += '\n<div class ="email_auth"><a href = "#!email_auth" onclick = "fetchPage("list.json","email_auth")">';
+                    menu += data.sign_up[6];
+                    menu += '</div></a></div>';
+                    
+                    article += '\n<li><label>';
+                    article += data.sign_up[3];
+                    article += '</label></li><li><input type="text" class="text" name="third_post"></li>';
+                    article += '\n<li><label>';
+                    article += data.sign_up[4];
+                    article += '</label></li><li><input type="text" class="text" name="forth_post"></li>';
+
+                    paction += '<form name="login_box" action="/sign_up" method="POST">';
+
+                    login_box.action = "/join";
+                }
+    
+                else if(openPage == "email_auth"){
+                                
+                    $('.sub_title').html(data.email_auth[0]);
+                    $('.first_comment').html(data.email_auth[1]);
+                    $('.second_comment').html(data.email_auth[2]);
+                    $('.submit').html(data.email_auth[3]);
+
+                    menu += '\n<div class ="sign_up"><a href = "#!sign_up" onclick = "fetchPage("list.json","sign_up")">';
+                    menu += data.email_auth[4];
+                    menu += '</div></a></div>';
+
+                    paction += '<form name="login_box" action="/email_auth" method="POST">';
+
+                    login_box.action = "/email_auth";
+                }
+
+                else{
+                
+                }
+                document.querySelector('article').innerHTML = article;
+                document.querySelector('menu').innerHTML = menu;
+            })
+        });
+    }
+
+    
+    if(location.hash){
+        fetchPage('./js/list.json',location.hash.substr(2));
+    }
+    else{
+        fetchPage('./js/list.json','login');
+    }
+    

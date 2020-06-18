@@ -1,1 +1,10 @@
-var _0x2eba=['member_info','Rjstw750','createConnection','172.30.1.38','exports'];(function(_0x972121,_0x2eba93){var _0xc6d741=function(_0x5c77f3){while(--_0x5c77f3){_0x972121['push'](_0x972121['shift']());}};_0xc6d741(++_0x2eba93);}(_0x2eba,0x8b));var _0xc6d7=function(_0x972121,_0x2eba93){_0x972121=_0x972121-0x0;var _0xc6d741=_0x2eba[_0x972121];return _0xc6d741;};var mysql=require('mysql');var connection=mysql[_0xc6d7('0x3')]({'host':_0xc6d7('0x4'),'user':'h2','password':_0xc6d7('0x2'),'database':_0xc6d7('0x1')});module[_0xc6d7('0x0')]=connection;
+var mysql = require('mysql');
+
+var connection = mysql.createConnection({
+    host : '172.30.1.38',
+    user : 'h2',
+    password : 'Rjstw750',
+    database : 'member_info'
+});
+
+module.exports = connection;
