@@ -175,7 +175,6 @@ function email_auth(req,res){
 
    });
 
-
 }
 //mail_post
 
@@ -220,27 +219,78 @@ function modify_member_info(req,res){
     var id = req.session.email;
     var new_passwd = NoScriptOrString(req.body.password);
     var new_name = NoScriptOrString(req.body.newname);
+    var check = 0;    
     
-    
 
-    if(!empty(new_name)){
-        mysql.query();
+    if(!empty(new_name) && !empty(new_passwd)){
+       
+        mysql.query("SELECT name FROM member_info.member",function(err,result){
+            if(err) console.log(err);
+            else{
+                for(var i in result){
+                    if(new_name == result[i].name) check++;
+                }
 
-        mysql.query('UPDATE member SET name = ? WHERE id = ?',[new_name,id]
-            ,function(err,result){
-                if(err) console.log(err);
-            });
-    }
+                if(check == 0){
+                    mysql.query("UPDATE member_info.member SET name = ?, pwd = ?  where id = ?",[new_name,new_passwd,id]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
 
-    if(!empty(new_passwd)){
-        mysql.query('UPDATE member SET pwd = ? WHERE id = ?'
-            ,[new_passwd,id]
-            ,function(err,result){
-                if(err) console.log(err);
+                    req.session.destroy();
+                    res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                }
+                else{
+
+                    res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
+                }
+            }
         });
     }
-    req.session.destroy();
-    res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+    else if(!empty(new_name)){
+       
+
+        mysql.query("SELECT name FROM member_info.member",function(err,result){
+            if(err) console.log(err);
+            else{
+                for(var i in result){
+                    if(new_name == result[i].name) check++;
+                }
+
+                if(check == 0){
+                    mysql.query("UPDATE member_info.member SET name = ? where id = ?",[new_name,id]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+
+                    req.session.destroy();
+                    res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                }
+                else{
+
+                    res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
+                }
+            }
+        
+        }); 
+    }
+    else if(!empty(new_passwd)){
+        
+           mysql.query("UPDATE member_info.member SET pwd = ? where id = ?",[new_passwd,id]
+           ,function(err,result){
+                if(err) console.log(err);
+                else{
+                    req.session.destroy();
+                    res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                }
+           });
+       
+    }
+    else{
+            res.send('<script type = "text/javascript">alert("변경할 정보를 입력해 주세요."); document.location.href = "/"</script>');
+    }
+    //req.session.destroy();
+    //res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
 }
 
 function NoScriptOrString(comments){

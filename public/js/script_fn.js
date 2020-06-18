@@ -14,6 +14,30 @@ var sessionName = '';
 var currentArticleAuthor = '';
 var currentArticleIndex = 0;
 
+const slabel ={
+    template: `<label :class="{ selected : isActive }" @click="isClicked" :value="isActive">{{ value }}</label>`,
+    data(){
+        return {
+            isActive: false
+        }
+    },
+    props:{
+        value:{
+            type:String,
+            required: true
+        }
+    },
+    methods:{
+        isClicked(){
+            this.isActive = !this.isActive;
+        }
+    }
+    
+};
+
+function test(){
+    $(".selected").attr("value","false");
+}
 
 function mainMenuLoad(){
 	console.log("start");
@@ -26,10 +50,10 @@ function mainMenuLoad(){
             for (key in NavList){
 				var factor = NavList[key];
 				Sentence += '<li>';
-				Sentence += `<label :class="{ selected : isActive }">${key}</label>`;
+				Sentence += `<slabel value="${key}"></slabel>`;
 				Sentence += `<ul class="subMenu">`;
 				while(Rep1<factor.length){
-					Sentence += `<li><a href="#${factor[Rep1]}" @click="isClicked">${factor[Rep1]}</a></li>`
+					Sentence += `<li><a href="#${factor[Rep1]}">${factor[Rep1]}</a></li>`
 					Rep1 = Rep1+1;
 				}
 				Rep1=0;
@@ -38,14 +62,10 @@ function mainMenuLoad(){
 			$(".mainMenu").append(Sentence);
 			var Views = new Vue({
 				el:'.menu',
-				data: {
-					isActive: false
-				},
-				methods: {
-					isClicked(){
-						this.isActive = !this.isActive;
-					}
-				}
+				components:{
+                        slabel
+                    }
+             
 			});
         });
 	});
