@@ -217,11 +217,17 @@ function mail_post(req,res,check_num){
 function modify_member_info(req,res){
     
     var id = req.session.email;
+    var old_name = req.session.name;
     var new_passwd = NoScriptOrString(req.body.password);
     var new_name = NoScriptOrString(req.body.newname);
     var check = 0;    
-    
+   
+    if((!empty(new_name)&& new_name.length >  30) || (!empty(new_passwd) && new_passwd.length > 30)){
 
+        
+            res.send('<script type = "text/javascript">alert("이름과 비밀번호는 30자 이하로 작성해 주세요."); document.location.href = "/"</script>');
+    }
+    else{
     if(!empty(new_name) && !empty(new_passwd)){
        
         mysql.query("SELECT name FROM member_info.member",function(err,result){
@@ -233,6 +239,16 @@ function modify_member_info(req,res){
 
                 if(check == 0){
                     mysql.query("UPDATE member_info.member SET name = ?, pwd = ?  where id = ?",[new_name,new_passwd,id]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+
+                    mysql.query("UPDATE entries.Programing_C SET author = ?  where author = ?",[new_name,old_name]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+
+                    mysql.query("UPDATE entries.Programing_C_comment SET author = ?  where author = ?",[new_name,old_name]
                     ,function(err,result){
                         if(err) console.log(err);
                     });
@@ -263,6 +279,16 @@ function modify_member_info(req,res){
                         if(err) console.log(err);
                     });
 
+                    mysql.query("UPDATE entries.Programing_C SET author = ?  where author = ?",[new_name,old_name]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+
+                    mysql.query("UPDATE entries.Programing_C_comment SET author = ?  where author = ?",[new_name,old_name]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+
                     req.session.destroy();
                     res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                 }
@@ -289,6 +315,8 @@ function modify_member_info(req,res){
     else{
             res.send('<script type = "text/javascript">alert("변경할 정보를 입력해 주세요."); document.location.href = "/"</script>');
     }
+    }
+
     //req.session.destroy();
     //res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
 }
