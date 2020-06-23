@@ -126,6 +126,23 @@ app.post('/writeComment',function(req,res,next){
 //saveScore
 app.post('/saveScore',function(req,res){
     if(req.session.name != undefined) updown.save_score(req,res);
+    else{
+        console.log("no name");
+    }
+});
+
+//show_readerBoard
+app.post('/show_ranking',function(req,res,next){
+   
+    //console.log(req.body);
+
+    mysql.query('select player,score from game_board.tetris order by score desc limit 5'
+    ,function(err,result){
+       
+        if(err) console.log(err);
+        else res.send(result);
+    });
+
 });
 //server open on port 3000
 

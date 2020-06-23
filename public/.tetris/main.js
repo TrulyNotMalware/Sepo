@@ -1,8 +1,9 @@
+$(show_ranking);
+
 const canvas = document.getElementById('board');
 const ctx = canvas.getContext('2d');
 const canvasNext = document.getElementById('next');
 const ctxNext = canvasNext.getContext('2d');
-
 let accountValues = {
   score: 0,
   level: 0,
@@ -64,6 +65,7 @@ function addEventListener() {
           board.piece.move(p);
           p = moves[KEY.DOWN](board.piece);
         }
+   
         board.piece.hardDrop();
       } else if (board.valid(p)) {
         board.piece.move(p);
@@ -94,6 +96,7 @@ function play() {
 
   animate();
 }
+   
 
 function animate(now = 0) {
   time.elapsed = now - time.start;
@@ -119,8 +122,11 @@ function gameOver() {
   ctx.font = '1px Arial';
   ctx.fillStyle = 'red';
   ctx.fillText('GAME OVER', 1.8, 4);
-  //console.log("score: " + account.score);
-  save_score(account.score);
+ 
+      
+  $(".restart").append("<p>restart in 3 sec</p>");
+  
+  setTimeout(function(){location.reload()},3000);
 }
 function save_score(score){
     $.ajax({
@@ -129,10 +135,33 @@ function save_score(score){
       type:'POST',
       data:{'score' : score},
       success : function(){
-        console.log('saveScore');
+        //console.log("save score");
       }
     });
 }
+
+function show_ranking(){
+   
+    var ranking = "";
+
+    $(".leaderBoard").empty();
+    $.ajax({
+      url : '/show_ranking',
+      dataType:'json',
+      type:'POST',
+      data:{'msg' : "help"},
+      success : function(result){
+        for(var i =0; i<5; i++){
+            ranking += "<p>" + (i+1) + ".";
+            ranking += result[i].player + " " +result[i].score;
+            ranking += "</p>";
+        }
+
+        $(".leaderBoard").append(ranking);
+      }
+    });
+}
+
 function pause() {
   if (!requestId) {
     animate();

@@ -7,7 +7,7 @@ var id_list;
 var cookieParser = require('cookie-parser');
 var nodemailer = require('nodemailer');
 mysql.connect();
-
+var window = require('window');
 var empty = require('is-empty');
 
 var bodyParser = require('body-parser');

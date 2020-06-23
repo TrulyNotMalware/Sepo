@@ -7,6 +7,21 @@
   grid-template-columns: 320px 200px;
 }
 
+.grid .ranking{
+    position : absolute;
+    top : 330px;
+    left : 340px;
+}
+.grid .leaderBoard{
+    position : absolute;
+    top : 370px;
+    left : 330px;
+}
+.grid .restart{
+    position : absolute;
+    left : 170px;
+    top : 650px;
+}
 .right-column {
   display: flex;
   flex-direction: column;
