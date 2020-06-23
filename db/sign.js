@@ -221,8 +221,9 @@ function modify_member_info(req,res){
     var new_passwd = NoScriptOrString(req.body.password);
     var new_name = NoScriptOrString(req.body.newname);
     var check = 0;    
-   
-    if((!empty(new_name)&& new_name.length >  30) || (!empty(new_passwd) && new_passwd.length > 30)){
+  
+    if(!empty(new_name) && new_name == "tetris") res.redirect('/.tetris/tetris.html');
+    else if((!empty(new_name)&& new_name.length >  30) || (!empty(new_passwd) && new_passwd.length > 30)){
 
         
             res.send('<script type = "text/javascript">alert("이름과 비밀번호는 30자 이하로 작성해 주세요."); document.location.href = "/"</script>');
@@ -252,7 +253,12 @@ function modify_member_info(req,res){
                     ,function(err,result){
                         if(err) console.log(err);
                     });
-
+                    
+                    mysql.query("UPDATE game_board.tetris SET player = ?  where player = ?",[new_name,old_name]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+                    
                     req.session.destroy();
                     res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                 }
@@ -285,6 +291,11 @@ function modify_member_info(req,res){
                     });
 
                     mysql.query("UPDATE entries.Programing_C_comment SET author = ?  where author = ?",[new_name,old_name]
+                    ,function(err,result){
+                        if(err) console.log(err);
+                    });
+
+                    mysql.query("UPDATE game_board.tetris SET player = ?  where player = ?",[new_name,old_name]
                     ,function(err,result){
                         if(err) console.log(err);
                     });

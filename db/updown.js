@@ -181,6 +181,19 @@ function write_comment(req,res,next){
 function up(){
     return upload;
 }
+
+function save_score(req,res){
+    
+    var player = req.session.name;
+    var score = req.body.score;
+
+    mysql.query('INSERT INTO game_board.tetris (player,score) VALUES (?,?)'
+        ,[player,score]
+        ,function(err,result){
+            if(err) console.log(err);
+    });
+
+}
 function NoScriptOrString(comments){
     comments = comments.replace(/</g,"&lt;");
     comments = comments.replace(/>/g,"&gt;");
@@ -193,3 +206,4 @@ module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;
 module.exports.write_comment = write_comment;
+module.exports.save_score = save_score;

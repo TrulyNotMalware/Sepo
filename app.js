@@ -136,6 +136,12 @@ app.get('/',function(req,res){
     });
 });
 
+
+//saveScore
+app.post('/saveScore',function(req,res){
+
+    updown.save_score(req,res);
+});
 app.listen(3000, function(){
     console.log('Server on');
 });
