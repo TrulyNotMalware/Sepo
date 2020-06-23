@@ -123,7 +123,9 @@ function gameOver() {
   ctx.fillStyle = 'red';
   ctx.fillText('GAME OVER', 1.8, 4);
  
-      
+     
+  //console.log(account.score);
+  save_score(account.score);
   $(".restart").append("<p>restart in 3 sec</p>");
   
   setTimeout(function(){location.reload()},3000);
@@ -157,6 +159,7 @@ function show_ranking(){
             ranking += "</p>";
         }
 
+          console.log(ranking);
         $(".leaderBoard").append(ranking);
       }
     });

@@ -125,6 +125,7 @@ app.post('/writeComment',function(req,res,next){
 
 //saveScore
 app.post('/saveScore',function(req,res){
+  
     if(req.session.name != undefined) updown.save_score(req,res);
     else{
         console.log("no name");
@@ -140,7 +141,7 @@ app.post('/show_ranking',function(req,res,next){
     ,function(err,result){
        
         if(err) console.log(err);
-        else res.send(result);
+        else  res.send(result);
     });
 
 });
