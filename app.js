@@ -123,6 +123,10 @@ app.post('/writeComment',function(req,res,next){
     updown.write_comment(req,res,next);
 })
 
+//saveScore
+app.post('/saveScore',function(req,res){
+    if(req.session.name != undefined) updown.save_score(req,res);
+});
 //server open on port 3000
 
 app.get('/',function(req,res){
@@ -136,12 +140,6 @@ app.get('/',function(req,res){
     });
 });
 
-
-//saveScore
-app.post('/saveScore',function(req,res){
-
-    updown.save_score(req,res);
-});
 app.listen(3000, function(){
     console.log('Server on');
 });
