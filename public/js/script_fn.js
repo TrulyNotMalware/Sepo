@@ -243,7 +243,7 @@ function delComment(comment){
 			success: function(result){
 			}
 		});
-		alert(name + "님의 댓글이 삭제 되었습니다.. ");
+		alert(sessionName + "님의 댓글이 삭제 되었습니다.. ");
 	}
 	else{
 		alert("본인의 댓글만 삭제 가능합니다.");
