@@ -42,8 +42,8 @@
 				</div>
 			</div>
 			<div class="search">
+				<img src="img/search.png" width="25px">
 				<input type="text" name="value">
-				<button onclick="search()">검색</button>
 			</div>
 			<div class="items">
 				
@@ -73,6 +73,7 @@
 						</td>
 					</tr>
 				</table>
+                <input type="hidden" name="userEmail" class="userEmail">
                 <input type="hidden" name="hashvalue" class="hashvalue">
 				<input type = "submit" value = "확인"/>
 				<input type="reset">
@@ -126,6 +127,7 @@
 				copyright : 공부 WEB STUDY(a.k.a 술을 위한 핑계)
 			</p>
 		</footer>
+        <button onclick="test()">do not erase</button>
 		<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
 		<script src="js/script_fn.js"></script>
         <script src="src/components/View.js"></script>

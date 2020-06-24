@@ -1,7 +1,7 @@
 var moment = require('moment');
 var multer = require('multer');
 var mime = require('mime-types');
-
+var fs = require('fs');
 var mysql = require('/root/wp/db/mysql.js');
 var storage = multer.diskStorage({
 
@@ -60,7 +60,7 @@ function write(req,res,next){
         file_path = req.files[0].path;
         while(1){
             if(req.files[i] == undefined) break;
-            file_path = file_path + "," + req.files[i].path;
+            file_path = file_path + "|" + req.files[i].path;
             i++;
         }
     }
@@ -102,20 +102,41 @@ function del_txt(req,res,next){
    
     var number = req.body.number;
     var author = req.session.email;
+    var path;
+    var j = 0;
+    mysql.query('SELECT path from entries.Programing_C where number = ?',number,function(err,result){
 
-
-    mysql.query('DELETE FROM entries.Programing_C where number = ?',number,function(err,result){
         if(err) console.log(err);
         else{
-                  
-            mysql.query('DELETE FROM entries.Programing_C_comment where origin_num = ?',number,function(err,result){
-            if(err) console.log(err);
-            });
-        }
-    });
+       
+                path=result[0].path.split('|');
 
-    
+
+                mysql.query('DELETE FROM entries.Programing_C where number = ?',number,function(err,result){
+                if(err) console.log(err);
+                else{
+                    //delete comment
+                    mysql.query('DELETE FROM entries.Programing_C_comment where origin_num = ?',number,function(err,result){
+                    if(err) console.log(err);
+                    });
    
+                    if(path[0] != '-1'){ 
+      
+                        for(var i in path){
+                            //console.log(path[i]);
+                    
+                            fs.unlink(path[i],function(err){
+                                if(err) console.log(err);
+                                else console.log('file deleted');
+                            });
+                    }
+                    }
+
+                }
+            });
+
+        }
+    }); 
 }
 
 function write_comment(req,res,next){
@@ -160,6 +181,19 @@ function write_comment(req,res,next){
 function up(){
     return upload;
 }
+
+function save_score(req,res){
+    
+    var player = req.session.name;
+    var score = req.body.score;
+
+    mysql.query('INSERT INTO game_board.tetris (player,score) VALUES (?,?)'
+        ,[player,score]
+        ,function(err,result){
+            if(err) console.log(err);
+    });
+
+}
 function NoScriptOrString(comments){
     comments = comments.replace(/</g,"&lt;");
     comments = comments.replace(/>/g,"&gt;");
@@ -172,3 +206,4 @@ module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;
 module.exports.write_comment = write_comment;
+module.exports.save_score = save_score;

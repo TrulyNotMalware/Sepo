@@ -219,8 +219,22 @@ ul {
     background-color: rgb(236,236,236);
     z-index: 1;
 }
-
-
+#modify p{
+    display:block;
+    text-align : center;
+    margin:auto;
+    height : 80px;
+    float: left;
+}
+#modify form{
+    width:auto;
+    float : left;
+}
+#modify input{
+    margin :auto;
+    display : block;
+    float : left;
+}
 #writeForm p{
 	font-size: 30px;
 	text-align: center;
@@ -285,4 +299,19 @@ ul {
 	bottom: 30px;
 	width: 50px;
 	height: 50px;
+}
+
+.search{
+	margin: 20px;
+	padding: 5px;
+	background-color: white;
+	border: solid gray;
+	border-radius: 100px;
+}
+
+.search input{
+	position: relative;
+	border: none;
+	height: 25px;
+	width: 90%;
 }
