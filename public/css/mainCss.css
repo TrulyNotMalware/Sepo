@@ -36,8 +36,13 @@ ul {
     position : absolute;
     top : 0px;
     left : 0;
-    font-size : 20px;
+    font-size : 17px;
     background-color : rgb(252,252,245);
+    margin-left : 20px;
+    margin-top : 4px;
+    padding : 2px 2px 2px 2px;
+    border : 1px solid gray;
+    border-radius: 70px;
 }
 .title{
     font-size: 60px;
@@ -314,4 +319,27 @@ ul {
 	border: none;
 	height: 25px;
 	width: 90%;
+}
+
+.tetris {
+	display: none;
+}
+
+.tetris iframe{
+	position: fixed;
+	background-color: white;
+	top: 50px;
+	left: 10%;
+	width: 80%;
+	height: 650px;
+	z-index: 5;
+}
+.tetris button{
+	position: fixed;
+	top: 50px;
+	right: 10%;
+	z-index: 6;
+	width: 5%;
+	height: 50px;
+	font-size: 30px;
 }

@@ -198,9 +198,9 @@ function loginSessionLoad(){
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
 				$(".writeMenu").css("display", "none");
 			}else{
-				sessionName = result.name;
-				$("#logInOut").append("<a href = '/log_out'>Logout<br></a>" + sessionName);
-				$("#logInOut").append(`<br><a class="changepw" onclick="modifyShow()">회원 정보 수정</a>`);
+				sessionName = ` | ${result.name} | `;
+				$("#logInOut").append(`<a href = '/log_out'>Logout</a>${sessionName}`);
+				$("#logInOut").append(`<a class="changepw" onclick="modifyShow()">회원 정보 수정</a>`);
 				$(".writeMenu").css("display", "block");
 				$("#modify").append(`<p>${result.name}</p>`);
 			}
@@ -228,6 +228,29 @@ function delArticle(){
 	}
 }
 
+function delComment(comment){
+	var commentHTML = $(comment).parents('p').html();
+	var author = $(commentHTML)[0].innerText;
+	var date = $(commentHTML)[1].innerText;
+	console.log(author);
+	console.log(date);
+	if(author == sessionName){
+		$.ajax({
+			url:'/delComment',
+			dataType:'json',
+			type:'POST',
+			data: {'author' :author, 'date' :date},
+			success: function(result){
+			}
+		});
+		alert(sessionName + "님의 댓글이 삭제 되었습니다.");
+		viewComment();
+	}
+	else{
+		alert("본인의 댓글만 삭제 가능합니다.");
+	}
+}
+
 function viewComment(){
 	$(".commentList").empty();
 	$.ajax({
@@ -238,12 +261,13 @@ function viewComment(){
 			success: function(result){
 				for(var item in result){
 					if(result[item].origin_num == currentArticleIndex){
-						$(".commentList").append("<li><p><b>"+result[item].author+"</b>"+result[item].date+"</p><p>"+result[item].contents+"</p></li>");
+						$(".commentList").append("<li><p><b>"+result[item].author+"</b><span>"+result[item].date+"</span><a href='javascript:void(0);' onclick='delComment(this)'> [삭제]</a></p><p>"+result[item].contents+"</p></li>");
 					}
 				}
 			}
 	});
 }
+
 
 function search(){
 //	console.log($(".search>select option:selected").val());
@@ -258,4 +282,11 @@ function search(){
 
 $(".search > input").on("change keyup paste", function(){
 	search();
+	if ($(".search>input").val() == "tetris") $(".tetris").show();
 });
+
+
+
+$(".tetris button").on("click", function(){
+	$(".tetris").hide();
+})

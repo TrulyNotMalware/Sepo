@@ -222,8 +222,7 @@ function modify_member_info(req,res){
     var new_name = NoScriptOrString(req.body.newname);
     var check = 0;    
   
-    if(!empty(new_name) && new_name == "tetris") res.redirect('/.tetris/tetris.html');
-    else if((!empty(new_name)&& new_name.length >  30) || (!empty(new_passwd) && new_passwd.length > 30)){
+    if((!empty(new_name)&& new_name.length >  30) || (!empty(new_passwd) && new_passwd.length > 30)){
 
         
             res.send('<script type = "text/javascript">alert("이름과 비밀번호는 30자 이하로 작성해 주세요."); document.location.href = "/"</script>');
