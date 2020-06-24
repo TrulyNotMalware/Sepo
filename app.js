@@ -73,6 +73,7 @@ app.post('/modify',function(req,res){
 
 app.get('/log_out',function(req,res){
     console.log(req.session.email +" is logged out");
+    console.log(req.session.name);
     req.session.destroy();
     res.send('<script type = "text/javascript">alert("로그아웃 되었습니다."); document.location.href = "/"</script>');
 });
@@ -106,8 +107,8 @@ app.post('/session',function(req,res,next){
 //write article
 app.post('/write',upload,function(req,res,next){
     updown.write(req,res,next);
-    console.log(req.body);
-    console.log("write");
+    //console.log(req.body);
+    //console.log("write");
     
 });
 
@@ -123,6 +124,12 @@ app.post('/writeComment',function(req,res,next){
     updown.write_comment(req,res,next);
 })
 
+//del comment
+app.post('/delComment',function(req,res){
+  
+
+    updown.del_comment(req,res);
+});
 //saveScore
 app.post('/saveScore',function(req,res){
   
