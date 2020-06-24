@@ -178,6 +178,19 @@ function write_comment(req,res,next){
     
 }
 
+function del_comment(req,res){
+    
+    var author = req.body.author;
+    var date = req.body.date;
+
+    console.log(author,date);
+    mysql.query('delete from entries.Programing_C_comment where author =?, date = ?'
+    ,[author,date]
+    ,function(err,result){
+        if(err) console.log(err);
+    });
+    
+}
 function up(){
     return upload;
 }
@@ -206,4 +219,5 @@ module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;
 module.exports.write_comment = write_comment;
+module.exports.del_comment = del_comment;
 module.exports.save_score = save_score;
