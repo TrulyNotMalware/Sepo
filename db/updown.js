@@ -183,12 +183,17 @@ function del_comment(req,res){
     var author = req.body.author;
     var date = req.body.date;
 
-    console.log(author,date);
-    mysql.query('delete from entries.Programing_C_comment where author =?, date = ?'
-    ,[author,date]
-    ,function(err,result){
-        if(err) console.log(err);
-    });
+    if(author == req.session.name){
+        mysql.query('delete from entries.Programing_C_comment where author =? and  date = ?'
+        ,[author,date]
+        ,function(err,result){
+            if(err) console.log(err);
+        });
+    }
+    else{
+        
+        res.send('<script type = "text/javascript">alert("본인의 글만 삭제 할 수 있습니다.."); document.location.href = "/"</script>');
+    }
     
 }
 function up(){

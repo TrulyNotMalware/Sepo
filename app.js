@@ -120,9 +120,11 @@ app.post('/delarticle',function(req,res,next){
 
 //write comment
 app.post('/writeComment',function(req,res,next){
-   
-    updown.write_comment(req,res,next);
-})
+  
+    if(req.session.name != undefined) updown.write_comment(req,res,next);
+    
+    else res.send('<script type = "text/javascript">alert("로그인한 상태에서만 댓글 작성이 가능합니다."); document.location.href = "/"</script>');
+});
 
 //del comment
 app.post('/delComment',function(req,res){
