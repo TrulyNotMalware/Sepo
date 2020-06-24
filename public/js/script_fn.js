@@ -167,9 +167,9 @@ function writeArticle(){
 }
 
 function viewArticle(item){
+	var top_position = $(item).position().top + 350;
+	$("#viewArticle").css("top", top_position);
 	console.log(item);
-	console.log(item.getElementsByTagName("p"));
-	console.log(item.getElementsByTagName("article"));
 	currentArticleIndex = item.getElementsByTagName("p")[0].innerText;
 	currentArticleAuthor = item.getElementsByTagName("p")[1].innerText;
 	$("#viewArticle").css("display", "block");
@@ -198,8 +198,8 @@ function loginSessionLoad(){
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
 				$(".writeMenu").css("display", "none");
 			}else{
-				sessionName = result.name;
-				$("#logInOut").append(`<a href = '/log_out'>Logout</a> | ${sessionName} | `);
+				sessionName = ` | ${result.name} | `;
+				$("#logInOut").append(`<a href = '/log_out'>Logout</a>${sessionName}`);
 				$("#logInOut").append(`<a class="changepw" onclick="modifyShow()">회원 정보 수정</a>`);
 				$(".writeMenu").css("display", "block");
 				$("#modify").append(`<p>${result.name}</p>`);
