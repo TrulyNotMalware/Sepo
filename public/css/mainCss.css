@@ -264,7 +264,6 @@ ul {
 #viewArticle{
 	display: none;
 	position: absolute;
-	top: 350px;
 	left: 250px;
 	right: 30px;
 	padding: 20px;
