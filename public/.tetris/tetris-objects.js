@@ -40,7 +40,7 @@ function show_ranking(){
         type : 'POST',
         data : {"msg" : "help"},
         success : function(result){
-            for(var i=0; i<5; i++){
+            for(var i=0; i<10; i++){
                 ranking += "<p>" + (i+1) + " . ";
                 ranking += result[i].player + " " + result[i].score;
                 ranking += "</p>";
