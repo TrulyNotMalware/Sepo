@@ -141,7 +141,9 @@ app.post('/show_ranking',function(req,res,next){
     ,function(err,result){
        
         if(err) console.log(err);
-        else  res.send(result);
+        else  {
+            console.log(result[0].player);
+            res.send(result)};
     });
 
 });
