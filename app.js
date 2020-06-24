@@ -145,7 +145,7 @@ app.post('/show_ranking',function(req,res,next){
    
     //console.log(req.body);
 
-    mysql.query('select player,score from game_board.tetris order by score desc limit 5'
+    mysql.query('select player,score from game_board.tetris order by score desc limit 10'
     ,function(err,result){
        
         if(err) console.log(err);

@@ -31,8 +31,9 @@ function save_score(score){
 }
 
 function show_ranking(){
-    var ranking = "";
     $(".leaderBoard").empty();
+
+    var ranking = "<h2>Leader Board</h2>";
     $.ajax({
         url : '/show_ranking',
         dataType : 'json',
