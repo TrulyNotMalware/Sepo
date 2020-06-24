@@ -258,4 +258,11 @@ function search(){
 
 $(".search > input").on("change keyup paste", function(){
 	search();
+	if ($(".search>input").val() == "tetris") $(".tetris").show();
 });
+
+
+
+$(".tetris button").on("click", function(){
+	$(".tetris").hide();
+})
