@@ -198,7 +198,7 @@ function loginSessionLoad(){
 				$("#logInOut").append("<a href = login.html#!login>Login</a>");
 				$(".writeMenu").css("display", "none");
 			}else{
-				sessionName = ` | ${result.name} | `;
+				sessionName = `${result.name}`;
 				$("#logInOut").append(`<a href = '/log_out'>Logout</a>${sessionName}`);
 				$("#logInOut").append(`<a class="changepw" onclick="modifyShow()">회원 정보 수정</a>`);
 				$(".writeMenu").css("display", "block");

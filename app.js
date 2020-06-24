@@ -73,7 +73,6 @@ app.post('/modify',function(req,res){
 
 app.get('/log_out',function(req,res){
     console.log(req.session.email +" is logged out");
-    console.log(req.session.name);
     req.session.destroy();
     res.send('<script type = "text/javascript">alert("로그아웃 되었습니다."); document.location.href = "/"</script>');
 });
@@ -151,7 +150,6 @@ app.post('/show_ranking',function(req,res,next){
        
         if(err) console.log(err);
         else  {
-            console.log(result[0].player);
             res.send(result)};
     });
 
