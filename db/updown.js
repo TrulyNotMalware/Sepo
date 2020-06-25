@@ -200,12 +200,25 @@ function up(){
     return upload;
 }
 
-function save_score(req,res){
+function save_score_tetris(req,res){
     
     var player = req.session.name;
     var score = req.body.score;
 
     mysql.query('INSERT INTO game_board.tetris (player,score) VALUES (?,?)'
+        ,[player,score]
+        ,function(err,result){
+            if(err) console.log(err);
+    });
+
+}
+
+function save_score_pacman(req,res){
+    
+    var player = req.session.name;
+    var score = req.body.score;
+
+    mysql.query('INSERT INTO game_board.pacman (player,score) VALUES (?,?)'
         ,[player,score]
         ,function(err,result){
             if(err) console.log(err);
@@ -225,4 +238,5 @@ module.exports.up = up;
 module.exports.del_txt = del_txt;
 module.exports.write_comment = write_comment;
 module.exports.del_comment = del_comment;
-module.exports.save_score = save_score;
+module.exports.save_score_tetris = save_score_tetris;
+module.exports.save_score_pacman = save_score_pacman;

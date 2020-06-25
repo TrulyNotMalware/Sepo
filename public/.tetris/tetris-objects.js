@@ -20,7 +20,7 @@ Star.prototype.constructor = Star;
 
 function save_score(score){
     $.ajax({
-        url : '/saveScore',
+        url : '/saveScore_tetris',
         dataType : 'json',
         type : 'POST',
         data : {'score' : score},
@@ -35,7 +35,7 @@ function show_ranking(){
 
     var ranking = "<h2>Leader Board</h2>";
     $.ajax({
-        url : '/show_ranking',
+        url : '/show_ranking_tetris',
         dataType : 'json',
         type : 'POST',
         data : {"msg" : "help"},

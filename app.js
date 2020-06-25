@@ -131,17 +131,17 @@ app.post('/delComment',function(req,res){
 
     updown.del_comment(req,res);
 });
-//saveScore
-app.post('/saveScore',function(req,res){
+//saveScore_tetris
+app.post('/saveScore_tetris',function(req,res){
   
-    if(req.session.name != undefined) updown.save_score(req,res);
+    if(req.session.name != undefined) updown.save_score_tetris(req,res);
     else{
         console.log("no name");
     }
 });
 
-//show_readerBoard
-app.post('/show_ranking',function(req,res,next){
+//show_readerBoard_tetris
+app.post('/show_ranking_tetris',function(req,res,next){
    
     //console.log(req.body);
 
@@ -153,6 +153,28 @@ app.post('/show_ranking',function(req,res,next){
             res.send(result)};
     });
 
+});
+
+
+app.post('/saveScore_pacman',function(req,res){
+
+    console.log(req.body);
+    if(req.session.name != undefined) updown.save_score_pacman(req,res);
+    else{
+        console.log("no name");
+    }
+});
+
+app.post('/show_ranking_pacman',function(req,res,next){
+   
+
+    mysql.query('select player,score from game_board.pacman order by score desc limit 10'
+    ,function(err,result){
+       
+        if(err) console.log(err);
+        else  {
+            res.send(result)};
+    });
 });
 //server open on port 3000
 
