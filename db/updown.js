@@ -233,6 +233,10 @@ function NoScriptOrString(comments){
     return comments;
 }
 
+function test(){
+    console.log(process.env.host);
+}
+module.exports.test = test;
 module.exports.write = write;
 module.exports.up = up;
 module.exports.del_txt = del_txt;

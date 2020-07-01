@@ -29,9 +29,16 @@ app.use(session({
     saveUninitialized : true,
 
 }));
+require('dotenv').config();
 app.use(express.static(path.join(__dirname,'/public')));
 app.use(express.static(path.join(__dirname,'/download')));
 
+app.get('/test',function(req,res){
+    console.log("---------------");
+    updown.test();
+    //console.log(process.env.result);
+    
+});
 //join
 app.post('/join',function(req,res){
     sign.sign_up(req,res);
