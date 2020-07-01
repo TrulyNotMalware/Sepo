@@ -282,11 +282,18 @@ function search(){
 
 $(".search > input").on("change keyup paste", function(){
 	search();
-	if ($(".search>input").val() == "tetris") $(".tetris").show();
+	if ($(".search>input").val() == "tetris") {
+		$(".game iframe").attr("src", ".tetris/tetris.html")
+		$(".game").show();
+	}
+	if ($(".search>input").val() == "pacman") {
+		$(".game iframe").attr("src", ".pacman/pacman.html")
+		$(".game").show();
+	}
 });
 
 
 
-$(".tetris button").on("click", function(){
-	$(".tetris").hide();
+$(".game button").on("click", function(){
+	$(".game").hide();
 })
