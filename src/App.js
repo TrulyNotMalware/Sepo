@@ -59,7 +59,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header></Header>
-        <ul className="MainMenu">
+        <ul className="mainMenu">
           {MainMenuList}
         </ul>
         <p>메인메뉴 선택 : {this.state.menu}</p>

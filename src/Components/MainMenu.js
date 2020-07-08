@@ -11,7 +11,7 @@ class MainMenu extends React.Component{
         return(
             <li>
                 <p>{this.props.main}</p>
-                <ul>
+                <ul className='subMenu'>
                     {subList}
                 </ul>
             </li>
