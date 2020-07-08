@@ -4,6 +4,7 @@ import Header from './Components/Header'
 import MainMenu from './Components/MainMenu';
 import LeftMenu from './Components/LeftMenu';
 import BreadCrum from './Components/BreadCrum';
+import Board from './Components/Board';
 
 const MainMenuData = [
   {
@@ -65,6 +66,7 @@ class App extends Component {
         </ul>
         <BreadCrum menu={this.state.menu} board={this.state.board}></BreadCrum>
         <LeftMenu boardList={this.state.boardList} boardClick={this.boardClick.bind(this)}></LeftMenu>
+        <Board></Board>
       </div>
     );
   }
