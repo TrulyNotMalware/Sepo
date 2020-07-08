@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './components/Header'
-import MainMenu from './components/MainMenu';
-import LeftMenu from './components/LeftMenu';
+import Header from './Components/Header'
+import MainMenu from './Components/MainMenu';
+import LeftMenu from './Components/LeftMenu';
+import BreadCrum from './Components/BreadCrum';
 
 const MainMenuData = [
   {
@@ -34,9 +35,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      menu: 'none',
+      menu: 'Home',
       boardList: [],
-      board: 'none'
+      board: ''
     }
   }
 
@@ -62,9 +63,8 @@ class App extends Component {
         <ul className="mainMenu">
           {MainMenuList}
         </ul>
-        <p>메인메뉴 선택 : {this.state.menu}</p>
+        <BreadCrum menu={this.state.menu} board={this.state.board}></BreadCrum>
         <LeftMenu boardList={this.state.boardList} boardClick={this.boardClick.bind(this)}></LeftMenu>
-        <p>게시판 선택 : {this.state.board}</p>
       </div>
     );
   }
