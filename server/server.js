@@ -43,6 +43,26 @@ app.get('/help',function(req,res){
 
 });
 
+app.post('/json',function(req,res,next){
+    console.log(req.body);
+    mysql.query('SELECT * from entries.Programing_C',function(error,result){
+        if(error) console.log(error);
+        else {
+            res.send(result);
+        }
+    });
+});
+
+//post comment data
+app.post('/jsonComment',function(req,res,next){
+    
+    mysql.query('SELECT * from entries.Programing_C_comment',function(err,result){
+        if(err) console.log(err);
+        else {
+            res.send(result);
+        }
+    });
+});
 //check session
 app.get('/session',function(req,res){
     console.log('---------');
