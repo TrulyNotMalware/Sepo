@@ -10,6 +10,7 @@ mysql.connect();
 var window = require('window');
 var empty = require('is-empty');
 
+require('dotenv').config();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -186,14 +187,14 @@ function mail_post(req,res,check_num){
     
         service : 'gmail',
         auth : {
-            user : 'eprograming1234@gmail.com',
-            pass : 'Rjstw750'
+            user : process.env.email,
+            pass : process.env.password
         }
 
     });
 
     let mailOptions = {
-        from : 'eprograming1234@gmail.com',
+        from : process.env.email,
         to : email,
         subject : 'check for sign up',
         text : 'Auth Key Number :' + String(check_num)
