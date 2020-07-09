@@ -47,7 +47,6 @@ app.post('/join',function(req,res){
     sign.sign_up(req,res);
 });
 
-
 //login
 app.post('/login',function(req,res){
      sign.sign_in(req,res);
@@ -56,19 +55,6 @@ app.post('/login',function(req,res){
 //email_auth
 app.post('/email_auth',function(req,res){
    sign.email_auth(req,res); 
-});
-
-app.get('/help',function(req,res){
-
-    console.log('help');
-    console.log("state : " + req.session.state);
-    /*
-    mysql.query("SELECT * from member_info.member",function(err,result){
-        if(err) console.log(err);
-        else res.send(result);
-    });*/
-    res.send(req.session.state);
-
 });
 
 app.post('/json',function(req,res,next){
@@ -97,27 +83,6 @@ app.get('/session',function(req,res){
     console.log(req.session.email);
     console.log(req.session.name);
     //console.log(req.session.dd);
-});
-
-app.get('/set',function(req,res){
-    req.session.dd = 'dd';
-    req.session.save(function(){
-        console.log('set session');
-        res.redirect('/');
-    });
-})
-//login
-app.post('/sign_in',function(req,res){
-
-    sign.sign_in(req,res);
-});
-
-app.get('/mysql',function(req,res){
-    console.log("pls");
-    mysql.query("SELECT * from member_info.member",function(err,result){
-        if(err) console.log(err);
-        else console.log(result);
-    });
 });
 app.listen(3001, function(){
     console.log('Server on ver React');
