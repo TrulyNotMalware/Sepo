@@ -36,30 +36,21 @@ app.get('/',function(req,res){
         }
     });
 });
-
+//send login,join,email_auth state
+app.get('/sendState',function(req,res){
+    console.log(req.session.result);
+    res.send(req.session.result);
+});
 
 //join
 app.post('/join',function(req,res){
     sign.sign_up(req,res);
-    }
-);
+});
 
-app.get('/sendState',function(req,res){
-    res.send(req.session.result);
-})
+
 //login
 app.post('/login',function(req,res){
      sign.sign_in(req,res);
-         /*,result){
-         if(result == 'l:0'){
-             req.session.email = req.body.first;
-             req.session.result = result;
-             req.session.save(function(){
-                res.redirect('/t');
-             });
-         }
-         else res.send(result);
-     });*/
 });
 
 //email_auth

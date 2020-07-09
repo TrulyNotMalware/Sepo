@@ -136,12 +136,25 @@ class Submit extends Component{
             else if(dm[1] === '1') this.setState({errMessage : '잘못된 비밀번호입니다.'});
             else if(dm[1] === '2') this.setState({errMessage : '존재하지 않는 id 입니다.'});
             else if(dm[1] === '3') this.setState({errMessage : '이메일 인증을 통해 계정을 활성화 하세요.'});
+            else{}
         }
         else if(dm[0] === 'j'){
-            console.log('join');
+            //console.log('join');
+            if(dm[1] === '0') {}
+            else if(dm[1] === '1') this.setState({errMessage : '공백 없이 제출해 주세요.'});
+            else if(dm[1] === '2') this.setState({errMessage : 'id를 이메일 형식으로 제출해 주세요.'});
+            else if(dm[1] === '3') this.setState({errMessage : '이미 사용중인 아이디 혹은 닉네임 입니다.'});
+            else if(dm[1] === '4') this.setState({errMessage : '비밀번호와 비밀번호 확인이 일치하지 않습니다.'});
+            else{}
+
         }
         else if(dm[0] === 'e'){
-            console.log('email')
+            //console.log('email')
+            if(dm[1] == 0){}
+            else if(dm[1] === '1') this.setState({errMessage : '잘못된 인증 번호 입니다.'});
+            else if(dm[1] === '2') this.setState({errMessage : '존재하지 않는 id 입니다.'});
+            else{}
+            
         }
         else{
         
