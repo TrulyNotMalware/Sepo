@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var mysql = require('./db/mysql.js');
+var send_message = require('./routes/send_message.js');
 var cors = require('cors');
 var sign = require('./routes/sign.js');
 var cookieParser = require('cookie-parser');
@@ -23,6 +24,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'/public')));
 app.use(bodyParser.urlencoded({extended : true}));
+
+
 app.get('/',function(req,res){
 
     fs.readFile('/root/rwp/public/index.html',function(error,data){
@@ -34,12 +37,46 @@ app.get('/',function(req,res){
     });
 });
 
+
+//join
+app.post('/join',function(req,res){
+    sign.sign_up(req,res);
+    }
+);
+
+app.get('/sendState',function(req,res){
+    res.send(req.session.result);
+})
+//login
+app.post('/login',function(req,res){
+     sign.sign_in(req,res);
+         /*,result){
+         if(result == 'l:0'){
+             req.session.email = req.body.first;
+             req.session.result = result;
+             req.session.save(function(){
+                res.redirect('/t');
+             });
+         }
+         else res.send(result);
+     });*/
+});
+
+//email_auth
+app.post('/email_auth',function(req,res){
+   sign.email_auth(req,res); 
+});
+
 app.get('/help',function(req,res){
 
+    console.log('help');
+    console.log("state : " + req.session.state);
+    /*
     mysql.query("SELECT * from member_info.member",function(err,result){
         if(err) console.log(err);
         else res.send(result);
-    });
+    });*/
+    res.send(req.session.state);
 
 });
 
@@ -65,7 +102,7 @@ app.post('/jsonComment',function(req,res,next){
 });
 //check session
 app.get('/session',function(req,res){
-    console.log('---------');
+    console.log('---check session---');
     console.log(req.session.email);
     console.log(req.session.name);
     //console.log(req.session.dd);

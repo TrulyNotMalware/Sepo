@@ -26,10 +26,10 @@ function sign_up (req,res){
       //joinErr4 = pwd != pwdchk
     
    
-       var user_id = req.body.second_post;
-       var user_pwd = req.body.third_post;
-       var user_name = req.body.first_post;
-       var user_pwdchk = req.body.forth_post;
+       var user_id = req.body.second;
+       var user_pwd = req.body.third;
+       var user_name = req.body.first;
+       var user_pwdchk = req.body.forth;
        var id_check = 0;
        var mail_num_check = getRandomInt(100000,999999);
      
@@ -88,9 +88,9 @@ function sign_up (req,res){
 function sign_in(req,res){
     
    var check = 0;
-   var user_id = req.body.id;
-   var user_pw = req.body.pw;
-   var user_name; 
+   var user_id = req.body.first;
+   var user_pw = req.body.second;
+   var user_name;
    mysql.query('SELECT * FROM member',function(err,result){
         for(var i in result){
             //console.log(result[i].id);
@@ -106,7 +106,6 @@ function sign_in(req,res){
                 if(result[check].pwd == user_pw){
                     if(result[check].active == 1){
                         req.session.email = user_id;
-                        console.log(user_id + " is logged in");
                         mysql.query('SELECT name from member where id = ?',user_id,function(err,result){
                             if(err){
                                 console.log(err);
@@ -114,26 +113,40 @@ function sign_in(req,res){
                             else {
                                 //console.log("result[0].name ="+result[0].name);
                                 user_name = result[0].name;
+                                req.session.email = user_id;
                                 req.session.name = user_name;
+                                req.session.result = "l:0";
                                 req.session.save(function(){
-                                    res.redirect('/session');
-                                }) 
-                                //res.redirect('/login/:success');
-
+                                    res.redirect('/sendState');  
+                                }); 
+                                //callbackFunc(req,res,'l:0');
                                 //console.log("session.email = " + req.session.email);
                                 //console.log("session.name = " + req.session.name);
                             }
                         });
                     }
-                    else res.redirect('/login/:no_active');
-                    
+                    else
+                        {
+                                req.session.result = "l:3";
+                                req.session.save(function(){
+                                    res.redirect('/sendState');  
+                                });
+                        }
                 }
-                else res.redirect('/login/:wrong_pw');
-        }
-        
+                else {
+                                 req.session.result = "l:1";
+                                req.session.save(function(){
+                                    res.redirect('/sendState');  
+                                });
+                
+                }        }
         else{
-            res.redirect('/login/:no_id');
+                                 req.session.result = "l:2";
+                                req.session.save(function(){
+                                    res.redirect('/sendState');  
+                                });
         }
+
 
    });
     
@@ -141,8 +154,8 @@ function sign_in(req,res){
 //email_auth
 function email_auth(req,res){
     
-    var user_id = req.body.first_post;
-    var user_auth = req.body.second_post;
+    var user_id = req.body.first;
+    var user_auth = req.body.second;
     var check;
 
     mysql.query('SELECT * FROM member',function(err,result){

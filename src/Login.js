@@ -109,7 +109,9 @@ class Submit extends Component{
         first_comment: '',
         second_comment: '',
         third_comment : '',
-        forth_comment : ''
+        forth_comment : '',
+        apiResponse : '',
+        errMessage: ''
     }
     changeFirst = (e) => {
         this.setState({first_comment: e.target.value});
@@ -124,17 +126,47 @@ class Submit extends Component{
     changeForth = (e) => {
         this.setState({forth_comment: e.target.value});
     }
+
+    sendMessage = (data) =>{
+        var dm = data.split(':');
+        
+        if(dm[0] === 'l'){
+            //console.log('login');    
+            if(dm[1] === '0') {}
+            else if(dm[1] === '1') this.setState({errMessage : '잘못된 비밀번호입니다.'});
+            else if(dm[1] === '2') this.setState({errMessage : '존재하지 않는 id 입니다.'});
+            else if(dm[1] === '3') this.setState({errMessage : '이메일 인증을 통해 계정을 활성화 하세요.'});
+        }
+        else if(dm[0] === 'j'){
+            console.log('join');
+        }
+        else if(dm[0] === 'e'){
+            console.log('email')
+        }
+        else{
+        
+        }
+    }
     postData = () => {
         console.log("send");
         axios({
             method : 'post',
             url : this.props.state.path,
             data : {
-                id : this.state.id,
-                pw : this.state.passwd
-            }
+                first : this.state.first_comment,
+                second : this.state.second_comment,
+                third : this.state.third_comment,
+                forth : this.state.forth_comment,
+            },
+
+        }).then(res => {
+            this.setState({apiResponse :res.data})
+        }).then(() => {
+            this.sendMessage(this.state.apiResponse);
         });
+
     }
+
 
     render(){
         return(
@@ -142,13 +174,11 @@ class Submit extends Component{
                 <div className="Wrapper">
                     <div className="Entry">
                         <div className="login_Wrapper">
-                                <Form state = {this.props.state}></Form>
-                                <button onClick = {this.postData}> send </button> 
+                                <Form state = {this.props.state} changeFirst = {this.changeFirst} changeSecond = {this.changeSecond} changeThird = {this.changeThird} changeForth = { this.changeForth}></Form>
+                                <button onClick = {this.postData}> send </button>
+                                <p>{this.state.errMessage}</p>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <p>{this.state.apiResponse}</p>
                 </div>
             </div>
         )};
@@ -164,29 +194,34 @@ class Form extends Component{
                <div className="login_body">
                      <ul>
                         <li><p>{this.props.state.index.first}</p></li>
-                         <li><input type="text" name="id" onChange={this.changeFirst} /></li>
+                         <li><input type="text" name="first_comment" onChange={this.props.changeFirst} /></li>
                          <li><p>{this.props.state.index.second}</p></li>
-                        <li><input type="text" name="passwd"  onChange={this.changeSecond} /></li>
+                        <li><input type="text" name="second_comment"  onChange={this.props.changeSecond} /></li>
                         <li><p>{this.props.state.index.third}</p></li>
-                         <li><input type="text" name="id"   onChange={this.changeThird} /></li>
+                         <li><input type="text" name="third_comment"   onChange={this.props.changeThird} /></li>
                          <li><p>{this.props.state.index.forth}</p></li>
-                        <li><input type="text" name="passwd"  onChange={this.changeForth} /></li>
+                        <li><input type="text" name="forth_comment"  onChange={this.props.changeForth} /></li>
                     </ul>
+                    
                </div>
             )
         }
 
-        else return(
+        else{ 
+            return(
 
                <div className="login_body">
+                   <form>
                      <ul>
                         <li><p>{this.props.state.index.first}</p></li>
-                         <li><input type="text" name="id"   onChange={this.changeFirst} /></li>
+                         <li><input type="text" name="first_comment"   onChange={this.props.changeFirst} /></li>
                          <li><p>{this.props.state.index.second}</p></li>
-                        <li><input type="text" name="passwd"  onChange={this.changeSecond} /></li>
+                        <li><input type="text" name="second_comment"  onChange={this.props.changeSecond} /></li>
                     </ul>
+                    </form>
                </div>
         )
+       }
     }
 }
 class Menu extends Component{
@@ -196,8 +231,8 @@ class Menu extends Component{
             <div>
                 <menu>
                     <ul>
-                        <li><p>{this.props.state.menu.first}</p></li>
-                        <li><p>{this.props.state.menu.second}</p></li>
+                        <li><a href = {this.props.state.menu.path1}>{this.props.state.menu.first}</a></li>
+                        <li><a href = {this.props.state.menu.path2}>{this.props.state.menu.second}</a></li>
                     </ul>
                 </menu>
             </div>
@@ -212,7 +247,7 @@ class LoginPage extends Component{
         this.state = {
             title : '',
             index : {first : '', second : '', third : '', forth : ''},
-            menu : {first : '', second : ''},
+            menu : {first : '', second : '', path1 : '', path2 : ''},
             path : ''
         }
     }
@@ -221,7 +256,7 @@ class LoginPage extends Component{
         this.setState({
             title : 'Login',
             index : {first : 'ID', second : 'PW', third : '', forth : ''},
-            menu : {first : 'Join', second : 'Email Auth'},
+            menu : {first : 'Join', second : 'Email Auth', path1 : '/join', path2 : 'email_auth'},
             path : '/login'
         });
     }
@@ -230,7 +265,7 @@ class LoginPage extends Component{
         this.setState({
             title : 'Join',
             index : {first : 'Name', second : 'ID', third : 'PW', forth : 'PWCHK'},
-            menu : {first : 'Login', second : 'Email Auth'},
+            menu : {first : 'Login', second : 'Email Auth', path1 : '/login' , path2: '/email_auth'},
             path : '/join'
         });
     }
@@ -239,10 +274,11 @@ class LoginPage extends Component{
         this.setState({
             title : 'Email Auth',
             index : {first : 'ID', second : 'Auth Key', third : '', forth : ''},
-            menu : {first : 'Login', second : 'Join'},
+            menu : {first : 'Login', second : 'Join', path1 : '/login', path2 : '/join'},
             path : '/email_auth'
         });
     }
+
 
     render(){
 
