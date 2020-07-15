@@ -1,9 +1,33 @@
 import React from 'react';
+import axios from 'axios';
 import Paragraph from './Paragraph';
 
 class Board extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            loading: false,
+            paragraph: []
+        }
+      }
+
+    postData = () => {
+        axios.post('/json',{
+            message: "get paragraph list"
+        }).then((res) => {
+            this.setState({paragraph: res.data});
+            this.setState({loading: true});
+        }).catch(function (err){
+            console.log(err);
+        });
+    }
+
     render(){
-        return(
+        if(this.state.loading === false) {
+            this.postData();
+        }
+        const paragraph_list = this.state.paragraph.map((item, index) => (<Paragraph key='index' title={item.title} author={item.author} date={item.date} contents={item.contents}></Paragraph>))
+        if(this.state.loading === true) return(
             <div className='board'>
                 <p className='writeArticle'>글 쓰려면 클릭</p>
                 <div className='writeMedia'>
@@ -16,11 +40,13 @@ class Board extends React.Component{
                 </div>
 
                 <div className='Contents'>
-                    cntents test
-                    <Paragraph></Paragraph>
-                    <Paragraph></Paragraph>
-                    <Paragraph></Paragraph>
+                    {paragraph_list}
                 </div>
+            </div>
+        );
+        else return(
+            <div>
+                paragraph not loading
             </div>
         );
     }
