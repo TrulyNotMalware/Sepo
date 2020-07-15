@@ -1,33 +1,53 @@
 import React from 'react';
 import axios from 'axios';
 import Paragraph from './Paragraph';
+import View from './View';
 
 class Board extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            loading: false,
-            paragraph: []
+            article_loading: false,
+            comment_loading: false,
+            paragraph: [],
+            select_item: {
+                number: -1,
+                title: 'title',
+                author: 'author',
+                date: 'date',
+                contents: 'contents'
+            }
         }
       }
 
     postData = () => {
-        axios.post('/json',{
+        axios.post('http://175.193.68.230:3000/article',{
             message: "get paragraph list"
         }).then((res) => {
             this.setState({paragraph: res.data});
-            this.setState({loading: true});
+            this.setState({article_loading: true});
         }).catch(function (err){
             console.log(err);
         });
     }
 
+    view_article(item){
+        this.set_comment_loading(false);
+        this.setState({select_item: item});
+        document.querySelector(".viewArticle").style.display = 'block';
+    }
+
+    set_comment_loading(is_comment_loading){
+        console.log(is_comment_loading);
+        this.setState({comment_loading: is_comment_loading});
+    }
+
     render(){
-        if(this.state.loading === false) {
+        if(this.state.article_loading === false) {
             this.postData();
         }
-        const paragraph_list = this.state.paragraph.map((item, index) => (<Paragraph key='index' title={item.title} author={item.author} date={item.date} contents={item.contents}></Paragraph>))
-        if(this.state.loading === true) return(
+        const paragraph_list = this.state.paragraph.map((item) => (<div key={item.number}><a onClick={() => this.view_article(item)}><Paragraph title={item.title} author={item.author} date={item.date} contents={item.contents}></Paragraph></a></div>))
+        if(this.state.article_loading === true) return(
             <div className='board'>
                 <p className='writeArticle'>글 쓰려면 클릭</p>
                 <div className='writeMedia'>
@@ -42,6 +62,7 @@ class Board extends React.Component{
                 <div className='Contents'>
                     {paragraph_list}
                 </div>
+                <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)}></View>
             </div>
         );
         else return(

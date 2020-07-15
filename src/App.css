@@ -132,14 +132,14 @@ ul {
 	border: 1px solid rgb(145, 145, 145);
 }
 
-.paragraph #date{
+#date{
     color: gray;
     border-bottom: 1px solid rgb(236, 236, 236);
     padding-bottom: 20px;
     text-align: right;
 }
 
-.paragraph #author{
+#author{
     color: gray;
     border-bottom: 1px solid rgb(236, 236, 236);
     padding-bottom: 20px;
@@ -161,4 +161,17 @@ ul {
 	display: -webkit-box; 
 	-webkit-line-clamp: 8; 
 	-webkit-box-orient: vertical;
+}
+
+.viewArticle{
+	display: none;
+	position: absolute;
+	left: 250px;
+	right: 30px;
+	padding: 20px;
+	z-index: 2;
+	border: 3px solid rgb(145, 145, 145);
+	background-color: rgb(252, 252, 245);
+	max-width: 75%;
+	min-width: 30%;
 }
