@@ -36,9 +36,10 @@ app.get('/',function(req,res){
         }
     });
 });
+
 //send login,join,email_auth state
 app.get('/sendState',function(req,res){
-    console.log(req.session.result);
+    //console.log(req.session.result);
     res.send(req.session.result);
 });
 
@@ -57,8 +58,15 @@ app.post('/email_auth',function(req,res){
    sign.email_auth(req,res); 
 });
 
-app.post('/json',function(req,res,next){
-    console.log(req.body);
+//logout
+app.post('/logout',function(req,res){
+    req.session.destroy(function(){
+        req.session;
+    });
+});
+//show article
+app.post('/article',function(req,res,next){
+    //console.log(req.body);
     mysql.query('SELECT * from entries.Programing_C',function(error,result){
         if(error) console.log(error);
         else {
@@ -67,15 +75,26 @@ app.post('/json',function(req,res,next){
     });
 });
 
+//modify_info
+app.post('/modify_info',function(req,res){
+    sign.modify_member_info(req,res);
+});
 //post comment data
-app.post('/jsonComment',function(req,res,next){
-    
-    mysql.query('SELECT * from entries.Programing_C_comment',function(err,result){
+app.post('/comment',function(req,res,next){
+   
+    var num = req.body.article_num;
+    mysql.query('SELECT * from entries.Programing_C_comment where origin_num = ?' ,num,function(err,result){
         if(err) console.log(err);
         else {
+            console.log(result);
             res.send(result);
         }
     });
+});
+
+app.post('/check_session',function(req,res){
+
+    res.send(req.session.name);
 });
 //check session
 app.get('/session',function(req,res){
