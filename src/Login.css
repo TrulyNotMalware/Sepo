@@ -1,0 +1,100 @@
+/*
+body, div, h1, h2, p, ul{ margin:0; padding:0;}
+a:link { color: black; }
+a:visited { color: black;}
+header { padding-top:80px; }
+li {list-style: none;}
+*/
+.Login li{
+    padding-top : 5px;
+    padding-bottom : 5px;
+}
+.Login .head {
+    color: black;
+    background-color: rgb(252, 252, 245);
+}
+
+.Login .head .title{
+    text-align: center;
+    font-size: 150%;
+    text-shadow: 1px 1px 2px black;
+    margin: 0;
+    padding: 0;
+    font-family: 'Dosis', sans-serif;
+}
+.Login .head {
+    font-size: 120%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: gray;
+}
+.Login .body{
+    padding-top:70px;
+}
+.Login .body .Wrapper .Entry{ 
+    width: 400px;
+    background-color: rgb(252, 252, 245);
+    margin:0 auto;
+    border: 1px solid rgb(206, 206, 206);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_head{
+    font-size: 150%;
+    padding: 30px 30px 30px 30px;
+    border-bottom: solid 1px rgb(206, 206, 206);
+    text-align : right;
+    text-align : center;
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body ul{
+    padding: 5px 0px;
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body { text-align: center;}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body ul input{
+    font-size: 150%;
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .login_form_body { 
+    border-bottom: rgb(206, 206, 206) 1px solid;
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body {
+    padding-top : 5px;
+}
+
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .errMessage{
+    position : absolute;
+    bottom : 130px;
+    right :680px;
+    color : red;
+}
+
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .route_menu {
+    border-top: rgb(206, 206, 206) 1px solid;
+    
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .form_body .login_form_body{
+   padding-bottom : 10px;
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .form_body .login_form_body input{
+
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .form_body button{
+    margin: 10px auto ;
+}
+.Login .body .Wrapper .Entry .login_Wrapper .login_body .route_menu menu{
+    
+    padding-bottom : -20px;
+}
+
+.login .body .wrapper .entry .login_wrapper .login_body .route_menu menu li{
+    padding-right : 40px;
+}
+.login .body .wrapper .entry .login_wrapper .login_body .route_menu menu ul{
+    width : 100%;
+}
+.line {
+
+    color : rgb(206, 206, 206);
+    opacity : 0.5;
+}
+
+

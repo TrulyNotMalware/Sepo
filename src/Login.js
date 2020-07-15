@@ -1,79 +1,14 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
-import  axios from 'axios';
-/*
-class LoginPage extends Component{
-    state = {
-        id: '',
-        passwd: ''
-    }
-    changeID = (e) => {
-        this.setState({id: e.target.value});
-    }
-    changePW = (e) => {
-        this.setState({passwd: e.target.value});
-    }
-    postData = () => {
-        console.log("send");
-        axios({
-            method : 'post',
-            url : '/sign_in',
-            data : {
-                id : this.state.id,
-                pw : this.state.passwd
-            }
-        });
-    }
-
-    //test 'send data from nodejs to react'
-    constructor(props){
-        super(props)
-        this.state = {apiRespnse : "" }
-    
-    }
-    callAPI(){
-        fetch("http://175.193.68.230:3001/help")
-        .then((res) => res.text())
-        .then((res) => this.setState({apiResponse : res}))
-    }
-
-    componentDidMount(){
-        this.callAPI()
-        console.log(this.state)
-    }
-    render(){
-        return (
-        
-    <div className="body">
-        <div className="Wrapper">
-            <div className="Entry">
-               <div className="login_Wrapper">
-                        <div className="login_body">
-                                <input type="text" name="id"  placeholder="name" onChange={this.changeID} />
-                                <input type="text" name="passwd" placeholder="passwd" onChange={this.changePW} />
-                        </div>
-            
-                           <button onClick = {this.postData}> send </button> 
-                    </div>
-            </div>
-        </div>
-
-            <div>
-
-                <p>{this.state.apiResponse}</p>
-            </div>
-    </div>
-        );
-    } 
-}
-*/
+//import { history } from 'history';
+import { Link, withRouter, RouteComponentProps, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class Header extends Component {
     render(){
         return(
             <div>
                 <header>
-                    <h1><p className="title"><a href="Index.html">A<sup>+</sup>star</a></p></h1>
+                    <h1><p className="title"><a href="/">A<sup>+</sup>star</a></p></h1>
                     <h2><small><div className = "sub_title"><p className = "subtitle">{this.props.title}</p></div></small></h2>
                 </header>
             </div>
@@ -132,7 +67,9 @@ class Submit extends Component{
         
         if(dm[0] === 'l'){
             //console.log('login');    
-            if(dm[1] === '0') {}
+            if(dm[1] === '0') {
+                this.setState({errMessage : '0'});
+            }
             else if(dm[1] === '1') this.setState({errMessage : '잘못된 비밀번호입니다.'});
             else if(dm[1] === '2') this.setState({errMessage : '존재하지 않는 id 입니다.'});
             else if(dm[1] === '3') this.setState({errMessage : '이메일 인증을 통해 계정을 활성화 하세요.'});
@@ -140,7 +77,9 @@ class Submit extends Component{
         }
         else if(dm[0] === 'j'){
             //console.log('join');
-            if(dm[1] === '0') {}
+            if(dm[1] === '0') {
+                this.setState({errMessage : '0'});
+            }
             else if(dm[1] === '1') this.setState({errMessage : '공백 없이 제출해 주세요.'});
             else if(dm[1] === '2') this.setState({errMessage : 'id를 이메일 형식으로 제출해 주세요.'});
             else if(dm[1] === '3') this.setState({errMessage : '이미 사용중인 아이디 혹은 닉네임 입니다.'});
@@ -150,7 +89,9 @@ class Submit extends Component{
         }
         else if(dm[0] === 'e'){
             //console.log('email')
-            if(dm[1] == 0){}
+            if(dm[1] == 0){
+                this.setState({errMessage : '0'});
+            }
             else if(dm[1] === '1') this.setState({errMessage : '잘못된 인증 번호 입니다.'});
             else if(dm[1] === '2') this.setState({errMessage : '존재하지 않는 id 입니다.'});
             else{}
@@ -183,16 +124,13 @@ class Submit extends Component{
 
     render(){
         return(
-            <div className="body">
-                <div className="Wrapper">
-                    <div className="Entry">
-                        <div className="login_Wrapper">
+            <div className="form_body">
                                 <Form state = {this.props.state} changeFirst = {this.changeFirst} changeSecond = {this.changeSecond} changeThird = {this.changeThird} changeForth = { this.changeForth}></Form>
                                 <button onClick = {this.postData}> send </button>
-                                <p>{this.state.errMessage}</p>
-                        </div>
-                    </div>
-                </div>
+                                <div className = "errMessage"><p>{this.state.errMessage}</p></div>
+                                <div>
+                                    {this.state.errMessage === '0'? <Redirect to = '/' />:null }
+                                </div>
             </div>
         )};
 
@@ -204,16 +142,16 @@ class Form extends Component{
         if(this.props.state.title == "Join"){
             return(
             
-               <div className="login_body">
+               <div className="login_form_body">
                      <ul>
                         <li><p>{this.props.state.index.first}</p></li>
                          <li><input type="text" name="first_comment" onChange={this.props.changeFirst} /></li>
                          <li><p>{this.props.state.index.second}</p></li>
                         <li><input type="text" name="second_comment"  onChange={this.props.changeSecond} /></li>
                         <li><p>{this.props.state.index.third}</p></li>
-                         <li><input type="text" name="third_comment"   onChange={this.props.changeThird} /></li>
+                         <li><input type="password" name="third_comment"   onChange={this.props.changeThird} /></li>
                          <li><p>{this.props.state.index.forth}</p></li>
-                        <li><input type="text" name="forth_comment"  onChange={this.props.changeForth} /></li>
+                        <li><input type="password" name="forth_comment"  onChange={this.props.changeForth} /></li>
                     </ul>
                     
                </div>
@@ -223,13 +161,13 @@ class Form extends Component{
         else{ 
             return(
 
-               <div className="login_body">
+               <div className="login_form_body">
                    <form>
                      <ul>
                         <li><p>{this.props.state.index.first}</p></li>
                          <li><input type="text" name="first_comment"   onChange={this.props.changeFirst} /></li>
                          <li><p>{this.props.state.index.second}</p></li>
-                        <li><input type="text" name="second_comment"  onChange={this.props.changeSecond} /></li>
+                        <li><input type="password" name="second_comment"  onChange={this.props.changeSecond} /></li>
                     </ul>
                     </form>
                </div>
@@ -241,13 +179,12 @@ class Menu extends Component{
     
     render(){
         return(
-            <div>
-                <menu>
+            <div className = "route_menu">
                     <ul>
-                        <li><a href = {this.props.state.menu.path1}>{this.props.state.menu.first}</a></li>
-                        <li><a href = {this.props.state.menu.path2}>{this.props.state.menu.second}</a></li>
+                        <li><div className = "button1"><button><a href = {this.props.state.menu.path1}>{this.props.state.menu.first}</a></button></div></li>
+                        <hr className = "line" />
+                        <li><div className = "button2"><button><a href = {this.props.state.menu.path2}>{this.props.state.menu.second}</a></button></div></li>
                     </ul>
-                </menu>
             </div>
         )
     }
@@ -317,11 +254,11 @@ class LoginPage extends Component{
 
 
         return(
-            <div>
+            <div className = "Login">
                  <div className="head"><Header title = {this.state.title}></Header></div>
                  <div className="body"><Body state = {this.state}></Body></div>
             </div>
         )};
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

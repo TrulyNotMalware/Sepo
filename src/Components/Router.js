@@ -1,9 +1,10 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
+import history from 'history';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import LoginPage from '../Login';
 import App from '../App';
-
+import Modify from '../Modify';
 const PermissionRoute = ({component: Component, ...others}) =>{
     return (
         <Route 
@@ -29,6 +30,7 @@ class Nrouter extends Component{
             <PermissionRoute path = "/login" component = {LoginPage} />
             <PermissionRoute path = "/join" component = {LoginPage} />
             <PermissionRoute path = "/email_auth" component = {LoginPage} />
+            <PermissionRoute path = "/modify" component = {Modify} />
         </Switch>
         </Router>
         );

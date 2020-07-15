@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
+import './Login.css';
 import Header from './Components/Header'
 import MainMenu from './Components/MainMenu';
 import LeftMenu from './Components/LeftMenu';
 import BreadCrum from './Components/BreadCrum';
 import Board from './Components/Board';
-
+import Session from './Components/Session';
 const MainMenuData = [
   {
     main : 'Program',
@@ -60,6 +61,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <Session></Session>
         <Header></Header>
         <ul className="mainMenu">
           {MainMenuList}
