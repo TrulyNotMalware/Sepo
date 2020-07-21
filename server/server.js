@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var mysql = require('./db/mysql.js');
-var send_message = require('./routes/send_message.js');
 var cors = require('cors');
 var sign = require('./routes/sign.js');
 var cookieParser = require('cookie-parser');
