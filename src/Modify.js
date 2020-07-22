@@ -1,11 +1,13 @@
 import React from 'react';
 import  axios  from 'axios';
-import { Link} from 'react-router-dom';
+import { Link , Redirect } from 'react-router-dom';
 class Modify extends React.Component{
     
     state = {
         first_comment : '',
-        second_comment : ''
+        second_comment : '',
+        apiResponse : '',
+        errMessage : ''
     }
 
     changeFirst = (e) =>{
@@ -27,9 +29,33 @@ class Modify extends React.Component{
                 password : this.state.second_comment,
             }
 
+        }).then(res => {
+            this.setState({apiResponse : res.data})
+        }).then(() => {
+            this.sendMessage(this.state.apiResponse);
         });
     }
 
+    sendMessage = (data) =>{
+        var dm = data.split(':');
+        if(dm[1] == 0){
+            this.setState({errMessage : '0'});
+        }
+        else if(dm[1] == 1){
+            this.setState({errMessage : '변경할 이름과 비밀번호를 30자 이하로 작성해 주세요.'});
+        }
+        else if(dm[1] == 2){
+        
+            this.setState({errMessage : '이미 사용중인 이름입니다.'});
+        }
+        else if(dm[1] == 3){
+            
+            this.setState({errMessage : '변경할 정보를 입력해 주세요'});
+        }
+        else{
+        
+        }
+    }
     render(){
         return(
             <div className="fullBody">
@@ -52,7 +78,9 @@ class Modify extends React.Component{
                             <p>PW</p>
                             <input type = "password" name = "second" onChange = {this.changeSecond} />
                         </div>
-                        <button onClick = {this.postData}>send</button> 
+                        <button onClick = {this.postData}>send</button>
+                        <div className = 'errMessage'><p>{this.state.errMessage}</p></div>
+                        <div>{this.state.errMessage === '0'? <Redirect to  = '/'/>:null }</div>
                     </div>         
                 </div>
             </div>

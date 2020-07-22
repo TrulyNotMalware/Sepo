@@ -61,9 +61,9 @@ li {list-style: none;}
 }
 
 .Login .body .Wrapper .Entry .login_Wrapper .login_body .errMessage{
-    position : absolute;
-    bottom : 130px;
-    right :680px;
+    margin : auto;
+    position : relative;
+    text-align : center;
     color : red;
 }
 
@@ -74,9 +74,7 @@ li {list-style: none;}
 .Login .body .Wrapper .Entry .login_Wrapper .login_body .form_body .login_form_body{
    padding-bottom : 10px;
 }
-.Login .body .Wrapper .Entry .login_Wrapper .login_body .form_body .login_form_body input{
 
-}
 .Login .body .Wrapper .Entry .login_Wrapper .login_body .form_body button{
     margin: 10px auto ;
 }

@@ -32,8 +32,11 @@ class WriteForm extends React.Component {
     write() {
         const tableName = document.querySelector(".table").innerText;
         const chapterName = document.querySelector(".chapter").innerText;
-        this.setState({ table: tableName, chapter: chapterName });
-        this.postData();
+        this.setState({ table: tableName, chapter: chapterName },function(){
+            this.postData();
+        });
+        //console.log(this.state.table);
+        //this.postData();
     }
 
     changeTitle(event) {

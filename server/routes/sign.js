@@ -266,9 +266,9 @@ function modify_member_info(req, res) {
     
     if ((!empty(new_name) && new_name.length > 30) || (!empty(new_passwd) && new_passwd.length > 30)) {
             
-            req.session.result = "wa:1";
+            req.session.result = "m:1";
             req.session.save(function() {
-            res.redirect('/sendArticleState');
+                res.redirect('/sendState');
             });
 
             //30자 이하
@@ -300,19 +300,19 @@ function modify_member_info(req, res) {
                             if (err) console.log(err);
                         });
 
-                        req.session.destroy();
+                        //req.session.destroy();
                         
-                        req.session.result = "wa:0";
+                        req.session.result = "m:0";
                         req.session.save(function() {
-                        res.redirect('/sendArticleState');
+                        res.redirect('/sendState');
                         });
            
                         //res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                     } else {
                         
-                        req.session.result = "wa:2";
+                        req.session.result = "m:2";
                         req.session.save(function() {
-                        res.redirect('/sendArticleState');
+                        res.redirect('/sendState');
                         });
 
 
@@ -347,16 +347,18 @@ function modify_member_info(req, res) {
                             if (err) console.log(err);
                         });
 
-                        req.session.destroy();
-                        req.session.result = "wa:0";
-                        req.session.save(function() {
-                        res.redirect('/sendArticleState');
-                        });
+                        //req.session.destroy();
+
+                            req.session.result = "m:0"
+                        
+                            req.session.save(function() {
+                            res.redirect('/sendState');
+                            });
                         //res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                     } else {
-                        req.session.result = "wa:2";
+                        req.session.result = "m:2";
                         req.session.save(function() {
-                        res.redirect('/sendArticleState');
+                        res.redirect('/sendState');
                         });
 
                         //res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
@@ -369,13 +371,23 @@ function modify_member_info(req, res) {
             mysql.query("UPDATE member_info.member SET pwd = ? where id = ?", [new_passwd, id], function(err, result) {
                 if (err) console.log(err);
                 else {
-                    req.session.destroy();
-                    res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                        //req.session.destroy();
+                        req.session.result = "m:0";
+                        req.session.save(function() {
+                        res.redirect('/sendState');
+                        });
+
+                    //res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                 }
             });
 
         } else {
-            res.send('<script type = "text/javascript">alert("변경할 정보를 입력해 주세요."); document.location.href = "/"</script>');
+                        req.session.result = "m:3";
+                        req.session.save(function() {
+                            res.redirect('/sendState');
+                        });
+
+            //res.send('<script type = "text/javascript">alert("변경할 정보를 입력해 주세요."); document.location.href = "/"</script>');
         }
     }
     

@@ -122,9 +122,6 @@ class Submit extends Component{
     }
 
 
-    noticeLogin = () =>{
-        alert('Login Success');
-    }
     render(){
         return(
             <div className="form_body">
@@ -132,7 +129,7 @@ class Submit extends Component{
                                 <button onClick = {this.postData}> send </button>
                                 <div className = "errMessage"><p>{this.state.errMessage}</p></div>
                                 <div>
-                                    {this.state.errMessage === '0'? <Redirect to = '/'/>:null }
+                                {this.state.errMessage === '0'? <Redirect to = '/'/>:null }
                                 </div>
             </div>
         )};

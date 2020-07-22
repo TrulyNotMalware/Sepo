@@ -8,6 +8,7 @@ var cors = require('cors');
 var sign = require('./routes/sign.js');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var updown = require('./routes/updown.js');
 app.use(cookieParser());
 app.use(session({
     key: 'sid',
@@ -24,7 +25,9 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'/public')));
 app.use(bodyParser.urlencoded({extended : true}));
 
-
+app.post('/permission',function(req,res){
+    console.log(req.body);
+});
 app.get('/',function(req,res){
 
     fs.readFile('/root/rwp/public/index.html',function(error,data){
@@ -38,14 +41,15 @@ app.get('/',function(req,res){
 
 //send login,join,email_auth state
 app.get('/sendState',function(req,res){
-    //console.log(req.session.result);
+    console.log(req.session.result);
     res.send(req.session.result);
 });
 
 //send write,del article,comment state
 app.get('/sendArticleState',function(req,res){
-    res.send(req.session.articleState);
-})
+    console.log(req.session.article);
+    res.send(req.session.article);
+});
 //join
 app.post('/join',function(req,res){
     sign.sign_up(req,res);
@@ -77,7 +81,7 @@ app.post('/modify_info',function(req,res){
 //show article
 app.post('/article',function(req,res,next){
     //console.log(req.body);
-    //var sql = 'SELECT * from ' + table;
+    //var sql = 'SELECT * from entries.Programing_' + table + 'where chapter = ?';
     mysql.query('SELECT * from entries.Programing_C',function(error,result){
         if(error) console.log(error);
         else {
@@ -105,7 +109,8 @@ app.post('/comment',function(req,res,next){
 app.post('/write_article',function(req,res){
   
     console.log(req.body);
-    updown.write_article(req,res,next);
+    updown.write_article(req,res);
+    //updown.write_article(req,res,next);
     /*
     var table = 'member_info.member';
     var sql = 'SELECT * FROM ' + table;

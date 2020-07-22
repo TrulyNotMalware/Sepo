@@ -46,7 +46,7 @@ function download_file(req,res){
     filestream.pipe(res);
 };
 */
-function write_article(req,res,next){
+function write_article(req,res){
     
     var title;
     var contents;
@@ -54,7 +54,8 @@ function write_article(req,res,next){
     var date;
     var author;
     var i = 1;
-
+    var chapter;
+    /*
     if(req.files[0] != undefined){
 
         file_path = req.files[0].path;
@@ -67,23 +68,25 @@ function write_article(req,res,next){
     else{
         file_path = "-1";
     }
-
+    */
+    file_path = '-1';
     title = NoScriptOrString(req.body.title);
     contents = NoScriptOrString(req.body.contents);
     hash = req.body.hashvalue;
     date = moment().format('YYYY-MM-DD HH:mm:ss');
     author = req.session.name;
+    chapter = req.body.chapter;
 
-    //var table = req.body.table;
-    //var sql = 'INSERT INTO ' + table + ' (title,contents,path,date,author) VALUES (?,?,?,?,?)' 
+    var table = req.body.table;
+    var sql = 'INSERT INTO entries.Programing_' + table + ' (title,contents,path,date,author,chapter) VALUES (?,?,?,?,?,?)' 
     if(title == "" || contents ==""){
     
         //res.send('<script type = "text/javascript">alert("빈칸 없이 작성해주세요."); document.location.href = "/"</script>');
 
     }
     else{
-        mysql.query('INSERT INTO entries.Programing_C (title,contents,path,date,author) VALUES (?,?,?,?,?)'
-        ,[title,contents,file_path,date,author],
+        mysql.query(sql
+        ,[title,contents,file_path,date,author,chapter],
         function(error,result){
             if(error) console.log(error);
             else {
@@ -94,7 +97,7 @@ function write_article(req,res,next){
                         if(err) console.log(err);
                     });
                 }
-                res.send('<script type = "text/javascript">alert("글이 작성 되었습니다"); document.location.href = "/"</script>');
+                //res.send('<script type = "text/javascript">alert("글이 작성 되었습니다"); document.location.href = "/"</script>');
             }
         });
     }
