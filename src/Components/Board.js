@@ -17,8 +17,10 @@ class Board extends React.Component {
                 author: 'author',
                 date: 'date',
                 contents: 'contents'
-            }
+            },
+            search: ''
         }
+        this.search = this.search.bind(this);
     }
 
     postData = () => {
@@ -43,11 +45,15 @@ class Board extends React.Component {
         this.setState({ comment_loading: is_comment_loading });
     }
 
+    search(event) {
+        this.setState({ search: event.target.value })
+    }
+
     render() {
         if (this.state.article_loading === false) {
             this.postData();
         }
-        const paragraph_list = this.state.paragraph.map((item) => (<div key={item.number}><a onClick={() => this.view_article(item)}><Paragraph title={item.title} author={item.author} date={item.date} contents={item.contents}></Paragraph></a></div>))
+        const paragraph_list = this.state.paragraph.map((item) => { if (item.title.indexOf(this.state.search) != -1) return (<div key={item.number}><a onClick={() => this.view_article(item)}><Paragraph title={item.title} author={item.author} date={item.date} contents={item.contents}></Paragraph></a></div>); })
         if (this.state.article_loading === true) return (
             <div className='board'>
                 <p className='writeArticle' onClick={() => document.querySelector(".writeForm").style.display = 'block'} > 글 쓰려면 클릭</p>
@@ -57,7 +63,7 @@ class Board extends React.Component {
                 </div>
                 <div className='search'>
                     <img src='/img/search.png' width='25px' alt='search'></img>
-                    <input type='text' name='value'></input>
+                    <input type='text' name='search' value={this.state.search} onChange={this.search}></input>
                 </div>
 
                 <div className='Contents'>
