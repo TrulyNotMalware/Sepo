@@ -63,7 +63,7 @@ class Board extends React.Component {
                 <div className='Contents'>
                     {paragraph_list}
                 </div>
-                <WriteForm></WriteForm>
+                <WriteForm menu={this.props.menu} board={this.props.board}></WriteForm>
                 <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)}></View>
             </div>
         );
