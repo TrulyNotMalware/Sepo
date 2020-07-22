@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var mysql = require('./db/mysql.js');
+var send_message = require('./routes/send_message.js');
 var cors = require('cors');
 var sign = require('./routes/sign.js');
 var cookieParser = require('cookie-parser');
@@ -63,17 +64,9 @@ app.post('/logout',function(req,res){
         req.session;
     });
 });
-
-
-//modify_info
-app.post('/modify_info',function(req,res){
-    sign.modify_member_info(req,res);
-});
-
 //show article
 app.post('/article',function(req,res,next){
     //console.log(req.body);
-    //var sql = 'SELECT * from ' + table;
     mysql.query('SELECT * from entries.Programing_C',function(error,result){
         if(error) console.log(error);
         else {
@@ -82,35 +75,23 @@ app.post('/article',function(req,res,next){
     });
 });
 
-//show comment
+//modify_info
+app.post('/modify_info',function(req,res){
+    sign.modify_member_info(req,res);
+});
+//post comment data
 app.post('/comment',function(req,res,next){
    
     var num = req.body.article_num;
-
-    //var sql = 'SELECT * from ' + table;
     mysql.query('SELECT * from entries.Programing_C_comment where origin_num = ?' ,num,function(err,result){
         if(err) console.log(err);
         else {
-            //console.log(result);
+            console.log(result);
             res.send(result);
         }
     });
 });
 
-//write article 
-app.get('/write_article',function(req,res){
-    
-    var table = 'member_info.member';
-    var sql = 'SELECT * FROM ' + table;
-
-    //var sql = 'SELECT * from ' + table;
-    mysql.query(sql,function(err,result){
-        if(err) console.log(err);
-        else{
-            console.log(result);
-        }
-    });
-})
 app.post('/check_session',function(req,res){
 
     res.send(req.session.name);

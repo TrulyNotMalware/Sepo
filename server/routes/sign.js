@@ -264,10 +264,9 @@ function modify_member_info(req, res) {
 
     console.log(new_passwd,new_name);
     
-    
     if ((!empty(new_name) && new_name.length > 30) || (!empty(new_passwd) && new_passwd.length > 30)) {
 
-        res.send('<script type = "text/javascript">alert("이름과 비밀번호는 30자 이하로 작성해 주세요."); document.location.href = "/"</script>');
+        //res.send('<script type = "text/javascript">alert("이름과 비밀번호는 30자 이하로 작성해 주세요."); document.location.href = "/"</script>');
     } else {
         if (!empty(new_name) && !empty(new_passwd)) {
 
@@ -296,10 +295,10 @@ function modify_member_info(req, res) {
                         });
 
                         req.session.destroy();
-                        res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                        //res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                     } else {
 
-                        res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
+                        //res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
                     }
                 }
             });
@@ -331,10 +330,10 @@ function modify_member_info(req, res) {
                         });
 
                         req.session.destroy();
-                        res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                        //res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                     } else {
 
-                        res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
+                        //res.send('<script type = "text/javascript">alert("이미 사용중인 이름 입니다."); document.location.href = "/"</script>');
                     }
                 }
 
@@ -345,15 +344,15 @@ function modify_member_info(req, res) {
                 if (err) console.log(err);
                 else {
                     req.session.destroy();
-                    res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
+                    //res.send('<script type = "text/javascript">alert("변경된 정보로 다시 로그인 해주세요."); document.location.href = "/"</script>');
                 }
             });
 
         } else {
-            res.send('<script type = "text/javascript">alert("변경할 정보를 입력해 주세요."); document.location.href = "/"</script>');
+            //res.send('<script type = "text/javascript">alert("변경할 정보를 입력해 주세요."); document.location.href = "/"</script>');
         }
     }
-    
+
     //req.session.destroy();
     //res.send('<script type = "text/javascript">alert("변경된 비밀번호로 다시 로그인 해주세요."); document.location.href = "/"</script>');
     

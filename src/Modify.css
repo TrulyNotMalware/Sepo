@@ -1,0 +1,63 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.fullBody .head {
+    color: black;
+    background-color: rgb(252, 252, 245);
+}
+
+.fullBody .head .title{
+    text-align: center;
+    font-size: 150%;
+    text-shadow: 1px 1px 2px black;
+    margin: 0;
+    padding: 0;
+    font-family: 'Dosis', sans-serif;
+}
+.fullBody .head {
+    font-size: 120%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: gray;
+}
+#root{
+    width: 960px;
+    margin: 0px auto;
+}
+#root .userModify{
+    position: relative;
+} 
+#root .userModify .back{
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    left: 280px;
+    width: 360px;
+    border: solid 1px rgb(206, 206, 206);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    background-color: rgb(252, 252, 245);
+    
+}
+#root .userModify .back .workName{
+    
+    padding: 10px;
+    border-bottom: solid 1px rgb(206, 206, 206);
+}
+#root .userModify .back .nickname{
+    padding: 10px;
+    border-bottom: solid 1px rgb(206, 206, 206);
+}
+#root .userModify .back .password{
+    padding: 10px;
+    border-bottom: solid 1px rgb(206, 206, 206);
+}
+#root .userModify .back button{
+    margin: 10px;
+}
+#root .userModify .back input{
+    font-size: 150%;
+    margin: 5px;
+}
