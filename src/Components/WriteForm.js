@@ -7,7 +7,8 @@ class WriteForm extends React.Component {
         this.state = {
             title: '',
             contents: '',
-            table: ''
+            table: '',
+            chapter: ''
         }
         this.changeTitle = this.changeTitle.bind(this);
         this.changeContents = this.changeContents.bind(this);
@@ -19,7 +20,8 @@ class WriteForm extends React.Component {
         axios.post('http://175.193.68.230:3000/write_article', {
             title: this.state.title,
             contents: this.state.contents,
-            table: this.state.table
+            table: this.state.table,
+            chapter: this.state.chapter
         }).then((res) => {
             console.log(res);
         }).catch(function (err) {
@@ -29,7 +31,8 @@ class WriteForm extends React.Component {
 
     write() {
         const tableName = document.querySelector(".table").innerText;
-        this.setState({ table: tableName });
+        const chapterName = document.querySelector(".chapter").innerText;
+        this.setState({ table: tableName, chapter: chapterName });
         this.postData();
     }
 
@@ -52,7 +55,7 @@ class WriteForm extends React.Component {
         return (
             <div className="writeForm">
                 <p>글 작성하기</p>
-                <p>게시판 : <span className='table'>{this.props.menu}_{this.props.board}</span></p>
+                <p>게시판 : <span className='table'>{this.props.menu}</span>_<span className='chapter'>{this.props.board}</span></p>
                 <table>
                     <tr>
                         <th>Title</th>
