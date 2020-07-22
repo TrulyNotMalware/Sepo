@@ -12,8 +12,7 @@ const PermissionRoute = ({component: Component, ...others}) =>{
                     return <Component {...props} />
                 }else{
                     return null;
-                }
-            
+                } 
             }}
         />
     );
