@@ -1,7 +1,6 @@
 import React from 'react';
 import  axios  from 'axios';
 import { Link} from 'react-router-dom';
-
 class Modify extends React.Component{
     
     state = {
@@ -33,17 +32,28 @@ class Modify extends React.Component{
 
     render(){
         return(
-            <div classNmae = "userModify">
-                <div>
-                        <div>
-                            <p>닉네임</p>
+            <div className="fullBody">
+                <div className = "head">
+                    <header>
+                        <h1><p className="title"><a href="/">A<sup>+</sup>star</a></p></h1>
+                        <h2><small><div className = "sub_title"><p className = "subtitle">Modify info</p></div></small></h2>
+                    </header>
+                </div>
+                <div className = "userModify">
+                    <div className = "back">
+                        <div className = "workName">
+                            <h1><p>Modify Info</p></h1>
+                        </div>
+                        <div  className = "nickname">
+                            <p>Nickname</p>
                             <input type ="text" name = "first" onChange = {this.changeFirst}/>
                         </div>
-                        <div>
-                            <p>비밀번호</p>
+                        <div className = "password">
+                            <p>PW</p>
                             <input type = "password" name = "second" onChange = {this.changeSecond} />
                         </div>
                         <button onClick = {this.postData}>send</button> 
+                    </div>         
                 </div>
             </div>
         );

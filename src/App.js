@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Login.css';
-import './Modify.css';
+//import './Modify.css';
 import Header from './Components/Header'
 import MainMenu from './Components/MainMenu';
 import LeftMenu from './Components/LeftMenu';

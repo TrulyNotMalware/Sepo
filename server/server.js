@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var fs = require('fs');
 var mysql = require('./db/mysql.js');
-var send_message = require('./routes/send_message.js');
 var cors = require('cors');
 var sign = require('./routes/sign.js');
 var cookieParser = require('cookie-parser');
@@ -43,6 +42,10 @@ app.get('/sendState',function(req,res){
     res.send(req.session.result);
 });
 
+//send write,del article,comment state
+app.get('/sendArticleState',function(req,res){
+    res.send(req.session.articleState);
+})
 //join
 app.post('/join',function(req,res){
     sign.sign_up(req,res);
@@ -64,9 +67,17 @@ app.post('/logout',function(req,res){
         req.session;
     });
 });
+
+
+//modify_info
+app.post('/modify_info',function(req,res){
+    sign.modify_member_info(req,res);
+});
+
 //show article
 app.post('/article',function(req,res,next){
     //console.log(req.body);
+    //var sql = 'SELECT * from ' + table;
     mysql.query('SELECT * from entries.Programing_C',function(error,result){
         if(error) console.log(error);
         else {
@@ -75,23 +86,53 @@ app.post('/article',function(req,res,next){
     });
 });
 
-//modify_info
-app.post('/modify_info',function(req,res){
-    sign.modify_member_info(req,res);
-});
-//post comment data
+//show comment
 app.post('/comment',function(req,res,next){
    
     var num = req.body.article_num;
+
+    //var sql = 'SELECT * from ' + table;
     mysql.query('SELECT * from entries.Programing_C_comment where origin_num = ?' ,num,function(err,result){
         if(err) console.log(err);
         else {
-            console.log(result);
+            //console.log(result);
             res.send(result);
         }
     });
 });
 
+//write article 
+app.post('/write_article',function(req,res){
+  
+    console.log(req.body);
+    updown.write_article(req,res,next);
+    /*
+    var table = 'member_info.member';
+    var sql = 'SELECT * FROM ' + table;
+
+    //var sql = 'SELECT * from ' + table;
+    mysql.query(sql,function(err,result){
+        if(err) console.log(err);
+        else{
+//            console.log(result);
+        }
+    });
+    */
+});
+
+//wirte comment
+app.post('/write_comment',function(req,res){
+    updown.write_comment(req,res,next);
+});
+
+//del article
+app.post('/del_article',function(req,res){
+    updown.del_article(req,res,next);
+});
+//del comment
+app.post('/del_comment',function(req,res){
+    updown.del_comment(req,res,next);
+});
 app.post('/check_session',function(req,res){
 
     res.send(req.session.name);
