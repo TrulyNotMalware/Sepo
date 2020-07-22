@@ -178,3 +178,40 @@ ul {
 	max-width: 75%;
 	min-width: 30%;
 }
+
+
+.writeForm{
+	display: none;
+	position: absolute;
+	top: 350px;
+	left: 250px;
+	right: 30px;
+	max-width: 70%;
+	min-width: 30%;
+	z-index: 1;
+	margin: 10px 80px;
+	padding: 10px;
+	border-radius: 20px;
+	background-color: rgb(200, 200, 200);
+}
+
+.writeForm p{
+	font-size: 30px;
+	text-align: center;
+}
+
+.writeForm table{
+	margin: 20px;
+	width: 95%;
+}
+
+.writeForm table input{
+	width: 90%;
+	font-size: 20px;
+}
+
+.writeForm textarea{
+	display: block;
+	width: 90%;
+	height: 200px;
+}
