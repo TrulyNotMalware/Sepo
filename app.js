@@ -22,7 +22,7 @@ app.post('/login',function(req,res){
 
 
 
-//d ddddd
+//ddddd
 //open server
 app.get('/',function(req,res){
     res.writeHead(200,{'Content-Type' : 'text/html'});
