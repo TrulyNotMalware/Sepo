@@ -20,8 +20,7 @@ app.post('/login',function(req,res){
    });
 });
 
-
-
+//ddd
 //ddddd
 //open server
 app.get('/',function(req,res){
