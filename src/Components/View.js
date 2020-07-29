@@ -24,6 +24,16 @@ class View extends React.Component {
         });
     }
 
+    del = () => {
+        axios.post('http://175.193.68.230:3000/del_article', {
+            article_num: this.props.item.number
+        }).then((res) => {
+            console.log('del article');
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+
     render() {
         if (this.props.item.number !== -1 && this.props.comment_loading === false) this.postData();
         const comment_list = this.state.comments.map((comment) => <Comment key={comment.number} author={comment.author} date={comment.date} comment={comment.contents}></Comment>)
@@ -36,6 +46,7 @@ class View extends React.Component {
                 <p>[댓글]</p>
                 <CommentWriteForm article_num={this.props.item.number}></CommentWriteForm>
                 {comment_list}
+                <button onClick={this.del}>삭제</button>
                 <button onClick={() => document.querySelector(".viewArticle").style.display = 'none'}>닫기</button>
             </div>
         )
