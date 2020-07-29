@@ -28,12 +28,12 @@ class Board extends React.Component {
         axios({
             method: 'post',
             url: '/check_session',
-            data:{
+            data: {
                 msg: 'Board Loading'
-            } 
+            }
         }).then(res => {
-            if(res.data != this.state.islogin){
-                this.setState({islogin: res.data});
+            if (res.data != this.state.islogin) {
+                this.setState({ islogin: res.data });
             }
         });
     }
@@ -66,19 +66,19 @@ class Board extends React.Component {
 
     render() {
         this.isLogin();
-        if(this.state.islogin == ''){
-            return(
+        if (this.state.islogin == '') {
+            return (
                 <div className='board'>
                     <div className='writeMedia'>
                         <p id='photo'>사진</p>
                         <p id='video'>영상</p>
                     </div>
-                    
+
                     <div className='search'>
                         <img src='/img/search.png' width='25px' alt='search'></img>
                         <input type='text' name='search' placeholder="Search" value={this.state.search} onChange={this.search}></input>
                     </div>
-                    
+
                     <div className='Contents'>
                         <h1>Login to see</h1>
                         <h2>gurgle~ gurgle~</h2>
@@ -108,7 +108,7 @@ class Board extends React.Component {
                     {paragraph_list}
                 </div>
                 <WriteForm menu={this.props.menu} board={this.props.board}></WriteForm>
-                <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)}></View>
+                <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)} menu={this.props.menu} board={this.props.board}></View>
             </div>
         );
         else return (
