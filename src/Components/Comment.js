@@ -4,7 +4,9 @@ import axios from 'axios';
 class Comment extends React.Component {
     del = () => {
         axios.post('http://175.193.68.230:3000/del_comment', {
-            article_num: this.props.key
+            table: this.state.table,
+            chapter: this.state.chapter,
+            comment_num: this.props.key
         }).then((res) => {
             console.log('del comment');
         }).catch(function (err) {
