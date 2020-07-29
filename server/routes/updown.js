@@ -46,7 +46,7 @@ function download_file(req,res){
     filestream.pipe(res);
 };
 */
-function write_article(req,res){
+function write_article(req,res,next){
     
     var title;
     var contents;

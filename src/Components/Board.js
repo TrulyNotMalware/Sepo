@@ -8,6 +8,7 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            islogin: '',
             article_loading: false,
             comment_loading: false,
             paragraph: [],
@@ -21,6 +22,21 @@ class Board extends React.Component {
             search: ''
         }
         this.search = this.search.bind(this);
+    }
+
+    isLogin = () => {
+        axios({
+            method: 'post',
+            url: '/check_session',
+            data:{
+                msg: 'is the fucking...'
+            } 
+        }).then(res => {
+            if(res.data != this.state.islogin){
+                this.setState({islogin: res.data});
+            }
+            console.log(this.state.islogin);
+        });
     }
 
     postData = () => {
@@ -50,6 +66,29 @@ class Board extends React.Component {
     }
 
     render() {
+        this.isLogin();
+        if(this.state.islogin == ''){
+            return(
+                <div className='board'>
+                    <div className='writeMedia'>
+                        <p id='photo'>사진</p>
+                        <p id='video'>영상</p>
+                    </div>
+                    
+                    <div className='search'>
+                        <img src='/img/search.png' width='25px' alt='search'></img>
+                        <input type='text' name='search' placeholder="Search" value={this.state.search} onChange={this.search}></input>
+                    </div>
+                    
+                    <div className='Contents'>
+                        <h1>Login to see</h1>
+                        <h2>gurgle~ gurgle~</h2>
+                    </div>
+                    <WriteForm menu={this.props.menu} board={this.props.board}></WriteForm>
+                    <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)}></View>
+                </div>
+            )
+        }
         if (this.state.article_loading === false) {
             this.postData();
         }
@@ -63,7 +102,7 @@ class Board extends React.Component {
                 </div>
                 <div className='search'>
                     <img src='/img/search.png' width='25px' alt='search'></img>
-                    <input type='text' name='search' value={this.state.search} onChange={this.search}></input>
+                    <input type='text' name='search' placeholder="Search" value={this.state.search} onChange={this.search}></input>
                 </div>
 
                 <div className='Contents'>

@@ -129,8 +129,9 @@ class Submit extends Component{
                                 <button onClick = {this.postData}> send </button>
                                 <div className = "errMessage"><p>{this.state.errMessage}</p></div>
                                 <div>
-                                {this.state.errMessage === '0'? <Redirect to = '/'/>:null }
-                                </div>
+                                {this.state.errMessage === '0'? <Redirect to = {{ pathname : '/' }}/>:null }
+                                
+                </div>
             </div>
         )};
 
