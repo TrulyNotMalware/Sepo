@@ -48,11 +48,8 @@ app.post('/permission',function(req,res){
         for(var Rep2=0; Rep2<BlackLists.length;Rep2++){
             if(req.session.email == BlackLists[Rep2]) Level = '0';
         }
-        console.log(`this user is AdminLevel User`);
+        console.log(`Admin user ${req.session.name} is login`);
     }
-    else {
-        console.log(`Someone is notLogin`);
-    };
     res.send(Level);
 
 });
@@ -138,22 +135,27 @@ app.post('/comment',function(req,res,next){
 app.post('/write_article',function(req,res,next){
   
     console.log(req.body);
-    updown.write_article(req,res,next);
+    //updown.write_article(req,res,next);
     
 });
 
 //wirte comment
 app.post('/write_comment',function(req,res,next){
-    updown.write_comment(req,res,next);
+    
+   console.log(req.body);
+  //  updown.write_comment(req,res,next);
 });
 
 //del article
 app.post('/del_article',function(req,res,next){
-    updown.del_article(req,res,next);
+    console.log(req.body);
+    //updown.del_article(req,res,next);
 });
 //del comment
 app.post('/del_comment',function(req,res,next){
-    updown.del_comment(req,res,next);
+    
+    console.log(req.body);
+    //updown.del_comment(req,res,next);
 });
 app.post('/check_session',function(req,res){
     console.log(req.body);

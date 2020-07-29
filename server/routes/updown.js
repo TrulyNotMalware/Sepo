@@ -171,11 +171,11 @@ function write_comment(req,res,next){
     //var table = req.body.table;
     //var sql = 'INSERT INTO ' + table + ' (contents,date,author,origin_num) VALUES (?,?,?,?)';
     if(author == undefined){
-            res.send('<script type = "text/javascript">alert("댓글을 작성하려면 로그인 해주세요."); document.location.href = "/"</script>');
+            //res.send('<script type = "text/javascript">alert("댓글을 작성하려면 로그인 해주세요."); document.location.href = "/"</script>');
     }
     else{
         if(contents == ""){
-            res.send('<script type = "text/javascript">alert("빈칸으로 제출 할 수 없습니다."); document.location.href = "/"</script>');
+            //res.send('<script type = "text/javascript">alert("빈칸으로 제출 할 수 없습니다."); document.location.href = "/"</script>');
         } 
         else{
             mysql.query('INSERT INTO entries.Programing_C_comment (contents,date,author,origin_num) VALUES (?,?,?,?)'

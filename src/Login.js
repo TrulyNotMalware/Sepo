@@ -117,6 +117,8 @@ class Submit extends Component{
             this.setState({apiResponse :res.data})
         }).then(() => {
             this.sendMessage(this.state.apiResponse);
+        }).then(() => {
+                window.location.replace('/');
         });
 
     }

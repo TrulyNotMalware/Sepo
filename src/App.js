@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Login.css';
+import './Modify.css';
 import Header from './Components/Header'
 import MainMenu from './Components/MainMenu';
 import LeftMenu from './Components/LeftMenu';
 import BreadCrum from './Components/BreadCrum';
 import Board from './Components/Board';
 import Session from './Components/Session';
+
 const MainMenuData = [
   {
     main: 'Program',
@@ -39,12 +41,12 @@ class App extends Component {
     this.state = {
       menu: 'Home',
       boardList: [],
-      board: 'home'
+      board: ''
     }
   }
 
   menuClick(submenu) {
-    this.setState({ menu: submenu, board: 'home' });
+    this.setState({ menu: submenu });
     LeftMenuData.map(function (data) {
       if (submenu === data.menu) {
         this.setState({ boardList: data.boards });

@@ -26,9 +26,7 @@ class View extends React.Component {
 
     del = () => {
         axios.post('http://175.193.68.230:3000/del_article', {
-            article_num: this.props.item.number,
-            table: this.props.menu,
-            chapter: this.props.board
+            article_num: this.props.item.number
         }).then((res) => {
             console.log('del article');
         }).catch(function (err) {
@@ -46,7 +44,7 @@ class View extends React.Component {
                 <p id='date'>수정일 : {this.props.item.date}</p>
                 <article>{this.props.item.contents}</article>
                 <p>[댓글]</p>
-                <CommentWriteForm article_num={this.props.item.number} menu={this.props.menu} board={this.props.board}></CommentWriteForm>
+                <CommentWriteForm article_num={this.props.item.number}></CommentWriteForm>
                 {comment_list}
                 <button onClick={this.del}>삭제</button>
                 <button onClick={() => document.querySelector(".viewArticle").style.display = 'none'}>닫기</button>

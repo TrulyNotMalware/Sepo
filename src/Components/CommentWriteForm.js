@@ -16,9 +16,7 @@ class CommentWriteForm extends React.Component {
     postData = () => {
         axios.post('http://175.193.68.230:3000/write_comment', {
             article_num: this.state.article_num,
-            comment: this.state.comment,
-            table: this.props.menu,
-            chapter: this.props.board
+            comment: this.state.comment
         }).then((res) => {
             console.log('댓글 작성 완료');
         }).catch(function (err) {
