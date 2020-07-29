@@ -8,8 +8,7 @@ class WriteForm extends React.Component {
             title: '',
             contents: '',
             table: '',
-            chapter: '',
-            file: null
+            chapter: ''
         }
         this.changeTitle = this.changeTitle.bind(this);
         this.changeContents = this.changeContents.bind(this);
@@ -22,8 +21,7 @@ class WriteForm extends React.Component {
             title: this.state.title,
             contents: this.state.contents,
             table: this.state.table,
-            chapter: this.state.chapter,
-            file: this.state.file
+            chapter: this.state.chapter
         }).then((res) => {
             console.log(res);
         }).catch(function (err) {
@@ -34,9 +32,11 @@ class WriteForm extends React.Component {
     write() {
         const tableName = document.querySelector(".table").innerText;
         const chapterName = document.querySelector(".chapter").innerText;
-        this.setState({ table: tableName, chapter: chapterName }, function () {
+        this.setState({ table: tableName, chapter: chapterName },function(){
             this.postData();
         });
+        //console.log(this.state.table);
+        //this.postData();
     }
 
     changeTitle(event) {
@@ -47,17 +47,10 @@ class WriteForm extends React.Component {
         this.setState({ contents: event.target.value });
     }
 
-    handleFileInput(e) {
-        this.setState({
-            file: e.target.files[0],
-        })
-    }
-
     reset() {
         this.setState({
             title: '',
-            contents: '',
-            file: null
+            contents: ''
         })
     }
 
@@ -77,12 +70,6 @@ class WriteForm extends React.Component {
                         <th>Contents</th>
                         <td>
                             <textarea name="contents" value={this.state.contents} onChange={this.changeContents}></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>File</th>
-                        <td>
-                            <input type="file" name="file" onChange={e => this.handleFileInput(e)} />
                         </td>
                     </tr>
                 </table>

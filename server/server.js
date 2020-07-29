@@ -26,35 +26,7 @@ app.use(express.static(path.join(__dirname,'/public')));
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.post('/permission',function(req,res){
-    
-    var Level = '1';
-    var AdminPermissionLists = [
-    "sksghgus7175@naver.com",
-    "wodn3322@naver.com",
-    "yds05074@naver.com",
-    "junsik1998@naver.com",
-    "yslle0@naver.com"
-    ];
-
-    var BlackLists = [
-    "blacklist"
-    ];
-
-    if(req.session.email) {
-        console.log(`${req.session.email}`);
-        for(var Rep1=0; Rep1<AdminPermissionLists.length;Rep1++){
-           if(req.session.email == AdminPermissionLists[Rep1]) Level = '3'; 
-        }
-        for(var Rep2=0; Rep2<BlackLists.length;Rep2++){
-            if(req.session.email == BlackLists[Rep2]) Level = '0';
-        }
-        console.log(`this user is AdminLevel User`);
-    }
-    else {
-        console.log(`Someone is notLogin`);
-    };
-    res.send(Level);
-
+    console.log(req.body);
 });
 app.get('/',function(req,res){
 
@@ -66,6 +38,11 @@ app.get('/',function(req,res){
         }
     });
 });
+
+/*app.get('/commentState',function(req,res){
+    console.log(req.session.result);
+    res.send(req.session.result);
+});*/
 
 //send login,join,email_auth state
 app.get('/sendState',function(req,res){
@@ -97,7 +74,6 @@ app.post('/email_auth',function(req,res){
 app.post('/logout',function(req,res){
     req.session.destroy(function(){
         req.session;
-        res.send('1');
     });
 });
 
@@ -135,28 +111,40 @@ app.post('/comment',function(req,res,next){
 });
 
 //write article 
-app.post('/write_article',function(req,res,next){
+app.post('/write_article',function(req,res){
   
     console.log(req.body);
-    updown.write_article(req,res,next);
-    
+    updown.write_article(req,res);
+    //updown.write_article(req,res,next);
+    /*
+    var table = 'member_info.member';
+    var sql = 'SELECT * FROM ' + table;
+
+    //var sql = 'SELECT * from ' + table;
+    mysql.query(sql,function(err,result){
+        if(err) console.log(err);
+        else{
+//            console.log(result);
+        }
+    });
+    */
 });
 
 //wirte comment
-app.post('/write_comment',function(req,res,next){
+app.post('/write_comment',function(req,res){
     updown.write_comment(req,res,next);
 });
 
 //del article
-app.post('/del_article',function(req,res,next){
+app.post('/del_article',function(req,res){
     updown.del_article(req,res,next);
 });
 //del comment
-app.post('/del_comment',function(req,res,next){
+app.post('/del_comment',function(req,res){
     updown.del_comment(req,res,next);
 });
 app.post('/check_session',function(req,res){
-    console.log(req.body);
+
     res.send(req.session.name);
 });
 //check session

@@ -4,8 +4,7 @@ import axios from 'axios';
 class Session extends Component{
 
     state = {
-        apiResponse :'',
-        oldSession:'-1'
+        apiResponse :''
     }
 
     sendMessage = (data) => {
@@ -20,37 +19,25 @@ class Session extends Component{
             },
 
         }).then(res => {
-            this.setState({oldSession : this.state.apiResponse},function(){
-                this.setState({oldSession : this.state.apiResponse},function(){
-                    this.setState({apiResponse : res.data});
-                }); 
-            });
-        }).then(()=>{
-          
+            this.setState({apiResponse :res.data})
+        }).then(() => {
+            this.sendMessage(this.state.apiResponse);
         });
 
     }
 
     logOut = () => {
-       
+        
         axios({
             method : 'post',
             url : '/logout',
             data : {
                 msg : 'logout',
             }
-        }).then(function(){
-            window.location.replace('/');
-        });
-
+        }); 
     }
     render(){
-        if((this.state.apiResponse === '' && this.state.oldSession === '-1')  || this.state.apiResponse != this.state.oldSession) {
-            console.log(this.state.apiResponse,this.state.oldSession);    
-            this.postData();
-            //window.location.replace('/');
-        }
-        //if(this.state.oldSession != this.state.apiResponse) window.location.replace('/');
+        this.postData();
         if(this.state.apiResponse){
             return(
                 <div className="Session">
