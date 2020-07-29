@@ -4,8 +4,8 @@ import axios from 'axios';
 class Comment extends React.Component {
     del = () => {
         axios.post('http://175.193.68.230:3000/del_comment', {
-            table: this.state.table,
-            chapter: this.state.chapter,
+            table: this.props.table,
+            chapter: this.props.chapter,
             comment_num: this.props.key
         }).then((res) => {
             console.log('del comment');
@@ -18,8 +18,7 @@ class Comment extends React.Component {
         return (
             <div>
                 <p><b>{this.props.author}</b> <span>{this.props.date}</span></p>
-                <p>{this.props.comment}</p>
-                <a onClick={this.del}>[삭제]</a>
+                <p>{this.props.comment} <button onClick={this.del}>[삭제]</button></p>
             </div>
         );
     }

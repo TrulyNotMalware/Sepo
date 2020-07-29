@@ -8,8 +8,7 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            islogin: '',
-            article_loading: false,
+            islogin: 'test',
             comment_loading: false,
             paragraph: [],
             select_item: {
@@ -38,12 +37,17 @@ class Board extends React.Component {
         });
     }
 
+    setLoading(isLoading) {
+        this.props.setLoading(isLoading);
+    }
+
     postData = () => {
         axios.post('http://175.193.68.230:3000/article', {
-            message: "get paragraph list"
+            table: this.props.menu,
+            chapter: this.props.board
         }).then((res) => {
             this.setState({ paragraph: res.data });
-            this.setState({ article_loading: true });
+            this.setLoading(true);
         }).catch(function (err) {
             console.log(err);
         });
@@ -88,11 +92,11 @@ class Board extends React.Component {
                 </div>
             )
         }
-        if (this.state.article_loading === false) {
+        if (this.props.loading === false) {
             this.postData();
         }
         const paragraph_list = this.state.paragraph.map((item) => { if (item.title.indexOf(this.state.search) != -1) return (<div key={item.number}><a onClick={() => this.view_article(item)}><Paragraph title={item.title} author={item.author} date={item.date} contents={item.contents}></Paragraph></a></div>); })
-        if (this.state.article_loading === true) return (
+        if (this.props.loading === true) return (
             <div className='board'>
                 <p className='writeArticle' onClick={() => document.querySelector(".writeForm").style.display = 'block'} > 글 쓰려면 클릭</p>
                 <div className='writeMedia'>

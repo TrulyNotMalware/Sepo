@@ -39,7 +39,8 @@ class App extends Component {
     this.state = {
       menu: 'Home',
       boardList: [],
-      board: 'home'
+      board: 'home',
+      article_loading: false
     }
   }
 
@@ -54,6 +55,11 @@ class App extends Component {
 
   boardClick(board_) {
     this.setState({ board: board_ });
+    this.setState({ article_loading: false });
+  }
+
+  setLoading(isLoading) {
+    this.setState({ article_loading: isLoading });
   }
 
   render() {
@@ -67,7 +73,7 @@ class App extends Component {
           {MainMenuList}
         </ul>
         <BreadCrum menu={this.state.menu} board={this.state.board}></BreadCrum>
-        <Board menu={this.state.menu} board={this.state.board}></Board>
+        <Board menu={this.state.menu} board={this.state.board} loading={this.state.article_loading} setLoading={this.setLoading.bind(this)}></Board>
         <LeftMenu boardList={this.state.boardList} boardClick={this.boardClick.bind(this)}></LeftMenu>
       </div>
     );
