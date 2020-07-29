@@ -97,21 +97,8 @@ class Submit extends Component{
             else{}
             
         }
-        else if(dm[0] === 'c'){
-            
-            if(dm[1] == 0){
-                this.setState({errMessage : '0'});
-            }
-            else if(dm[1] == 1){
-                this.setState({errMessage : '<script type = "text/javascript">alert("댓글을 작성하려면 로그인 해주세요."); document.location.href = "/"</script>'});
-            }
-            else if(dm[1] == 2){
-                this.setState({errMessage : '<script type = "text/javascript">alert("빈칸으로 제출 할 수 없습니다."); document.location.href = "/"</script>'});
-            }
-            console.log("댓글 작성 오류");
-        }
         else{
-
+        
         }
     }
     postData = () => {
@@ -142,8 +129,9 @@ class Submit extends Component{
                                 <button onClick = {this.postData}> send </button>
                                 <div className = "errMessage"><p>{this.state.errMessage}</p></div>
                                 <div>
-                                {this.state.errMessage === '0'? <Redirect to = '/'/>:null }
-                                </div>
+                                {this.state.errMessage === '0'? <Redirect to = {{ pathname : '/' }}/>:null }
+                                
+                </div>
             </div>
         )};
 
