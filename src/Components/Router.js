@@ -30,29 +30,11 @@ const PermissionRoute =({Permission, component: Component, ...others}) =>{
 
 
 class Denied extends Component{
-   
-    
-    logOut = () => {
-       
-        axios({
-            method : 'post',
-            url : '/logout',
-            data : {
-                msg : 'logout',
-            }
-        }).then(function(){
-            window.location.replace('/');
-        });
-
-    }
-
     render(){
         return(
             <div>
                 <br />
                 <h1>No Permissions to Access this Page</h1>
-                <h2>gurgle~ gurgle~ gurgle~~~</h2>
-                <h2 onClick={this.logOut}>LogOut^^</h2>
             </div>
         );
     }
@@ -62,17 +44,13 @@ class Denied extends Component{
 class Nrouter extends Component{
     
    state = {
-        PermissionLevel: '1',
         userPermission: {
             basicPage: PERMISSION.WRITE,
             extraPage: PERMISSION.READ,
             adminPage: PERMISSION.DENY
 
         }
-    }
-
-        
-
+   }
     PermissionLoad = () => {
         axios({
             method:'post',
@@ -81,39 +59,29 @@ class Nrouter extends Component{
                 msg: 'permissionLoad'
             },
         }).then(res => {
-            if(res.data != this.state.PermissionLevel) {
-                this.setState({PermissionLevel: res.data});
-                this.PermissionUpdate();
-            }
+            
         });
     }
 
+    test = () =>{
+        console.log(this.state.userPermission.adminPage); 
+    }
     
-    PermissionUpdate = () => {
-        if(this.state.PermissionLevel == '0'){
-            this.setState({
-                ...this.state,
-                userPermission: {
-                    basicPage: PERMISSION.DENY,
-                    extraPage: PERMISSION.DENY,
-                    adminPage: PERMISSION.DENY
-                }
-            }) 
-        }
-        if(this.state.PermissionLevel == '3'){
-            this.setState({
-                ...this.state,
-                userPermission: {
-                    basicPage: PERMISSION.WRITE,
-                    extraPage: PERMISSION.WRITE,
-                    adminPage: PERMISSION.WRITE
-                }
-            })
-        }
+    checkLogin =() =>{
+       axios({
+        method:'post',
+        url:'/check_session',
+        data:{
+            msg:'isLogin?'
+        },
+        }).then(res => {
+            console.log(res.name);
+            
+        });
     }
 
    render(){
-       this.PermissionLoad();
+       this.checkLogin();
         return(
         <Router>
         <Switch>
@@ -126,7 +94,7 @@ class Nrouter extends Component{
             <PermissionRoute path = "/email_auth" component = {LoginPage}
             Permission={this.state.userPermission.adminPage}/>
             <PermissionRoute path = "/modify" component = {Modify}
-            Permission={this.state.userPermission.basicPage}/>
+            Permission={this.state.userPermission.adminPage}/>
         </Switch>
         </Router>
         );
