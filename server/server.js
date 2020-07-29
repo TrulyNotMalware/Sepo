@@ -29,15 +29,15 @@ app.post('/permission',function(req,res){
     
     var Level = '1';
     var AdminPermissionLists = [
-    "sksghgus7175@naver.com",
     "wodn3322@naver.com",
     "yds05074@naver.com",
     "junsik1998@naver.com",
-    "yslle0@naver.com"
+    "yslle0@naver.com",
+    "sksghgus7175@naver.com"
     ];
 
     var BlackLists = [
-    "blacklist"
+    "blacklist",
     ];
 
     if(req.session.email) {
@@ -53,6 +53,11 @@ app.post('/permission',function(req,res){
     res.send(Level);
 
 });
+app.get('/adminPage', (req,res) => {
+    console.log(req);
+
+});
+
 app.get('/',function(req,res){
 
     fs.readFile('/root/rwp/public/index.html',function(error,data){
@@ -63,6 +68,7 @@ app.get('/',function(req,res){
         }
     });
 });
+
 
 //send login,join,email_auth state
 app.get('/sendState',function(req,res){
@@ -135,7 +141,7 @@ app.post('/comment',function(req,res,next){
 app.post('/write_article',function(req,res,next){
   
     console.log(req.body);
-    //updown.write_article(req,res,next);
+    updown.write_article(req,res,next);
     
 });
 
@@ -143,19 +149,19 @@ app.post('/write_article',function(req,res,next){
 app.post('/write_comment',function(req,res,next){
     
    console.log(req.body);
-  //  updown.write_comment(req,res,next);
+  updown.write_comment(req,res,next);
 });
 
 //del article
 app.post('/del_article',function(req,res,next){
     console.log(req.body);
-    //updown.del_article(req,res,next);
+    updown.del_article(req,res,next);
 });
 //del comment
 app.post('/del_comment',function(req,res,next){
     
     console.log(req.body);
-    //updown.del_comment(req,res,next);
+    updown.del_comment(req,res,next);
 });
 app.post('/check_session',function(req,res){
     console.log(req.body);

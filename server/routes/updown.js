@@ -78,7 +78,8 @@ function write_article(req,res,next){
     chapter = req.body.chapter;
 
     var table = req.body.table;
-    var sql = 'INSERT INTO entries.Programing_' + table + ' (title,contents,path,date,author,chapter) VALUES (?,?,?,?,?,?)' 
+    if(table == 'C' || table == 'Java' || table == 'Python') var sql = 'INSERT INTO entries.Programing_' + table + ' (title,contents,path,date,author,chapter) VALUES (?,?,?,?,?,?)'; 
+    else var sql = 'INSERT INTO entries.Web_' + table + ' (title,contents,path,date,author,chapter) VALUES (?,?,?,?,?,?)'; 
     if(title == "" || contents ==""){
     
         //res.send('<script type = "text/javascript">alert("빈칸 없이 작성해주세요."); document.location.href = "/"</script>');
@@ -105,14 +106,14 @@ function write_article(req,res,next){
 };
 function del_article(req,res,next){
    
-    var number = req.body.number;
+    var number = req.body.article_num;
     var author = req.session.email;
     var path;
     var j = 0;
 
-    //var table = req.body.table;
-    //var sql = 'SELECT path FROM ' + table + ' where number = ?';
-    mysql.query('SELECT path from entries.Programing_C where number = ?',number,function(err,result){
+    var table = req.body.table;
+    var sql = 'SELECT path FROM entries.Programing_' + table + ' where number = ?';
+    mysql.query(sql,number,function(err,result){
 
         if(err) console.log(err);
         else{
@@ -120,13 +121,17 @@ function del_article(req,res,next){
                 path=result[0].path.split('|');
 
 
-                //var sql2 = 'DELETE FROM ' + table + ' where number = ?'; 
-                mysql.query('DELETE FROM entries.Programing_C where number = ?',number,function(err,result){
+                if(table == 'C' || table == 'Java' || table == 'Python') var sql2 = 'DELETE FROM entries.Programing_' + table + ' where number = ?'; 
+                else var sql2 = 'DELETE FROM entries.Web_' + table + 'where number = ?';
+
+                mysql.query(sql2,number,function(err,result){
                 if(err) console.log(err);
                 else{
                     //delete comment
-                    //var sql3 = 'DELETE FROM ' + table + '_comment where origin_num = ?';
-                    mysql.query('DELETE FROM entries.Programing_C_comment where origin_num = ?',number,function(err,result){
+
+                    if(table == 'C' || table == 'Java' || table == 'Python') var sql3 = 'DELETE FROM entries.Programing_' + table + '_comment where origin_num  = ?'; 
+                    else var sql3 = 'DELETE FROM entries.Web_' + table + '_comment where origin_num = ?';
+                    mysql.query(sql3,number,function(err,result){
                     if(err) console.log(err);
                     });
    
@@ -159,7 +164,7 @@ function write_comment(req,res,next){
     contents = NoScriptOrString(req.body.comment);
     date = moment().format('YYYY-MM-DD HH:mm:ss');
     author = NoScriptOrString(req.session.name);
-    origin_num = req.body.origin_number;
+    origin_num = req.body.article_num;
 
     
     console.log("contents: "+ contents);
@@ -168,8 +173,9 @@ function write_comment(req,res,next){
     console.log("origin_num:"+ origin_num);
    
 
-    //var table = req.body.table;
-    //var sql = 'INSERT INTO ' + table + ' (contents,date,author,origin_num) VALUES (?,?,?,?)';
+    var table = req.body.table;
+    if(table == 'C' || table == 'Java' || table == 'Python' ) var sql = 'INSERT INTO entries.Programing_' + table + '_comment (contents,date,author,origin_num) VALUES (?,?,?,?)';
+    else var sql = 'INSERT INTO entries.Web_' + table + '_comment (contents,date,author,origin_num) VALUES (?,?,?,?)';
     if(author == undefined){
             //res.send('<script type = "text/javascript">alert("댓글을 작성하려면 로그인 해주세요."); document.location.href = "/"</script>');
     }
@@ -178,7 +184,7 @@ function write_comment(req,res,next){
             //res.send('<script type = "text/javascript">alert("빈칸으로 제출 할 수 없습니다."); document.location.href = "/"</script>');
         } 
         else{
-            mysql.query('INSERT INTO entries.Programing_C_comment (contents,date,author,origin_num) VALUES (?,?,?,?)'
+            mysql.query(sql
                     ,[contents,date,author,origin_num]
                     ,function(err,result){
                     if(err) console.log(err);
@@ -193,11 +199,12 @@ function write_comment(req,res,next){
 
 function del_comment(req,res){
     
-    var author = req.body.author;
-    var date = req.body.date;
-
-    //var table = req.body.table;
-    //var sql = 'DELETE FROM ' + table + ' where author = ? and date = ?';
+    /*
+    //var author = req.body.author;
+    //var date = req.body.date;
+    //var num = req.body.
+    var table = req.body.table;
+    if( table == 'C' || table == 'Java' || table == 'Python' ) var sql = 'DELETE FROM Programing_' + table + '_comment  where author = ? and date = ?';
     if(author == req.session.name){
         mysql.query('delete from entries.Programing_C_comment where author =? and  date = ?'
         ,[author,date]
@@ -208,7 +215,7 @@ function del_comment(req,res){
     else{
         
         res.send('<script type = "text/javascript">alert("본인의 글만 삭제 할 수 있습니다.."); document.location.href = "/"</script>');
-    }
+    }*/
     
 }
 function up(){

@@ -1,11 +1,13 @@
 import { Link, withRouter, RouteComponentProps, Redirect} from 'react-router-dom';
 import React,{Component} from 'react';
 import axios from 'axios';
+
 class Session extends Component{
 
     state = {
         apiResponse :'',
-        oldSession:'-1'
+        oldSession:'-1',
+        PermissionLevel: '1'
     }
 
     sendMessage = (data) => {
@@ -25,11 +27,26 @@ class Session extends Component{
                     this.setState({apiResponse : res.data});
                 }); 
             });
-        }).then(()=>{
         });
 
     }
 
+    PermissionLoad = () => {
+        axios({
+            method:'post',
+            url:'/permission',
+            data:{
+                msg: 'permissionLoad'
+            },
+        }).then(res => {
+            if(res.data != this.state.PermissionLevel) {
+                this.setState({PermissionLevel: res.data});
+                console.log(this.state.PermissionLevel);
+            }
+        });
+    }
+
+    
     logOut = () => {
        
         axios({
@@ -52,11 +69,24 @@ class Session extends Component{
         }
         
         if(this.state.apiResponse){
+            this.PermissionLoad();
+            if(this.state.PermissionLevel == '3') {
+                return( 
+                    <div className="Session">
+                        <p>{this.state.apiResponse}</p>
+                        <p onClick = {this.logOut}>LogOut</p>
+                        <a href = '/modify'>회원정보수정</a>
+                        <br />
+                        <a href = '/adminPage'>AdminPage</a>
+                    </div>
+                )
+            }
             return(
                 <div className="Session">
                     <p>{this.state.apiResponse}</p>
                     <p onClick = {this.logOut}>LogOut</p>
                     <a href = '/modify'>회원정보수정</a>
+                    <br />
                 </div>
             );
         }

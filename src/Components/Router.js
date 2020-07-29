@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import LoginPage from '../Login';
 import App from '../App';
 import Modify from '../Modify';
+import AdminPage from './AdminPage';
 import axios from 'axios';
 const PERMISSION={
     DENY: "DENY",
@@ -51,8 +52,8 @@ class Denied extends Component{
             <div>
                 <br />
                 <h1>No Permissions to Access this Page</h1>
-                <h2>gurgle~ gurgle~ gurgle~~~</h2>
-                <h2 onClick={this.logOut}>LogOut^^</h2>
+                <h2>Or you entered blacklist ID</h2>
+                <h2 onClick={this.logOut}>LogOut</h2>
             </div>
         );
     }
@@ -127,6 +128,8 @@ class Nrouter extends Component{
             Permission={this.state.userPermission.adminPage}/>
             <PermissionRoute path = "/modify" component = {Modify}
             Permission={this.state.userPermission.basicPage}/>
+            <PermissionRoute path = "/adminPage" component = {AdminPage}
+            Permission={this.state.userPermission.adminPage}/>
         </Switch>
         </Router>
         );
