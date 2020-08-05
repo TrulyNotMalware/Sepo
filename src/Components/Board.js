@@ -87,7 +87,7 @@ class Board extends React.Component {
                         <h1>Login to see</h1>
                         <h2>gurgle~ gurgle~</h2>
                     </div>
-                    <WriteForm menu={this.props.menu} board={this.props.board}></WriteForm>
+                    <WriteForm menu={this.props.menu} board={this.props.board} setLoading={this.setLoading.bind(this)}></WriteForm>
                     <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)}></View>
                 </div>
             )
@@ -111,7 +111,7 @@ class Board extends React.Component {
                 <div className='Contents'>
                     {paragraph_list}
                 </div>
-                <WriteForm menu={this.props.menu} board={this.props.board}></WriteForm>
+                <WriteForm menu={this.props.menu} board={this.props.board} setLoading={this.setLoading.bind(this)}></WriteForm>
                 <View item={this.state.select_item} comment_loading={this.state.comment_loading} set_comment_loading={this.set_comment_loading.bind(this)} menu={this.props.menu} board={this.props.board}></View>
             </div>
         );

@@ -26,6 +26,9 @@ class WriteForm extends React.Component {
             file: this.state.file
         }).then((res) => {
             console.log(res);
+            this.reset();
+            document.querySelector(".writeForm").style.display = 'none';
+            this.props.setLoading(false);
         }).catch(function (err) {
             console.log(err);
         });
