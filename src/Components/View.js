@@ -38,7 +38,7 @@ class View extends React.Component {
 
     render() {
         if (this.props.item.number !== -1 && this.props.comment_loading === false) this.postData();
-        const comment_list = this.state.comments.map((comment) => <Comment key={comment.number} comment_num={comment.number} author={comment.author} date={comment.date} comment={comment.contents}></Comment>)
+        const comment_list = this.state.comments.map((comment) => <Comment key={comment.number} comment_num={comment.number} author={comment.author} date={comment.date} comment={comment.contents}  table={this.props.menu} chapter={this.props.board}></Comment>)
         return (
             <div className='viewArticle'>
                 <h1>{this.props.item.title}</h1>
