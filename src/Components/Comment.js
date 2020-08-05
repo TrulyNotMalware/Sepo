@@ -6,7 +6,7 @@ class Comment extends React.Component {
         axios.post('http://175.193.68.230:3000/del_comment', {
             table: this.props.table,
             chapter: this.props.chapter,
-            comment_num: this.props.key
+            comment_num: this.props.comment_num
         }).then((res) => {
             console.log('del comment');
         }).catch(function (err) {
