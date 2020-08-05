@@ -20,7 +20,8 @@ class CommentWriteForm extends React.Component {
             table: this.props.menu,
             chapter: this.props.board
         }).then((res) => {
-            console.log('댓글 작성 완료');
+            alert('댓글 작성 완료');
+            document.querySelector(".viewArticle").style.display = 'none';
         }).catch(function (err) {
             console.log(err);
         });

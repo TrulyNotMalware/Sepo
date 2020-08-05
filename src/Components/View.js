@@ -13,7 +13,9 @@ class View extends React.Component {
 
     postData = () => {
         axios.post('http://175.193.68.230:3000/comment', {
-            article_num: this.props.item.number
+            article_num: this.props.item.number,
+            table: this.props.menu,
+            chapter: this.props.board
         }).then((res) => {
             console.log(this.props.item.number)
             this.setState({ comments: res.data });
@@ -38,7 +40,7 @@ class View extends React.Component {
 
     render() {
         if (this.props.item.number !== -1 && this.props.comment_loading === false) this.postData();
-        const comment_list = this.state.comments.map((comment) => <Comment key={comment.number} comment_num={comment.number} author={comment.author} date={comment.date} comment={comment.contents}  table={this.props.menu} chapter={this.props.board}></Comment>)
+        const comment_list = this.state.comments.map((comment) => <Comment key={comment.number} comment_num={comment.number} author={comment.author} date={comment.date} comment={comment.contents} table={this.props.menu} chapter={this.props.board}></Comment>)
         return (
             <div className='viewArticle'>
                 <h1>{this.props.item.title}</h1>

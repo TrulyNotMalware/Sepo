@@ -8,7 +8,8 @@ class Comment extends React.Component {
             chapter: this.props.chapter,
             comment_num: this.props.comment_num
         }).then((res) => {
-            console.log('del comment');
+            alert('del comment');
+            document.querySelector(".viewArticle").style.display = 'none';
         }).catch(function (err) {
             console.log(err);
         });
